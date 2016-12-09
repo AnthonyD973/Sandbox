@@ -24,7 +24,7 @@ endif (USE_MYMATH)
 # = INTROSPECTION =
 # =================
 
-set(CMAKE_REQUIRED_LIBRARIES ${CMAKE_REQUIRED_LIBRARIES} m)
+set(CMAKE_REQUIRED_LIBRARIES ${CMAKE_REQUIRED_LIBRARIES} -lm)
 
 include(CheckFunctionExists)
 check_function_exists(log HAVE_LOG)
