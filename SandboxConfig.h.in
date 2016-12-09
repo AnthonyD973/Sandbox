@@ -1,3 +1,4 @@
 // The configured options and settings for Sandbox
-#define Sandbox_VERSION_MAJOR  @Tutorial_VERSION_MAJOR@
-#define Tutorial_VERSION_MINOR @Sandbox_VERSION_MINOR@
+#define Sandbox_VERSION_MAJOR @Sandbox_VERSION_MAJOR@
+#define Sandbox_VERSION_MINOR @Sandbox_VERSION_MINOR@
+#cmakedefine USE_MYMATH

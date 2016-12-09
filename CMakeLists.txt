@@ -1,9 +1,11 @@
 cmake_minimum_required(VERSION 2.6)
 project(Sandbox)
 
+option(USE_MYMATH "Use tutorial-provided math implementation" ON)
+
 # The version number
-set(Tutorial_VERSION_MAJOR 1)
-set(Sandbox_VERSION_MINOR  0)
+set(Sandbox_VERSION_MAJOR 1)
+set(Sandbox_VERSION_MINOR 0)
 
 # Configure a header file to pass some of the CMake settings
 # to the source code
@@ -16,5 +18,15 @@ configure_file (
 # so that we will find SandboxConfig.h
 include_directories("${PROJECT_BINARY_DIR}")
 
+
+# Add the MathFunctions library?
+if (USE_MYMATH)
+	# Include the MathFunctions library
+	include_directories("${PROJECT_SOURCE_DIR}/MathFunctions")
+	add_subdirectory(MathFunctions)
+	set(EXTRA_LIBS ${EXTRA_LIBS} MathFunctions)
+endif (USE_MYMATH)
+
 # Add the executable
 add_executable(Sandbox main.cpp)
+target_link_libraries(Sandbox ${EXTRA_LIBS})
