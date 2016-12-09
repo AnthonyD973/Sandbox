@@ -4,15 +4,16 @@
 **/*Config.h
 
 CMakeFiles/
+build/
 Win32/
-Debug/
-Release/
 *.dir/
 
 Sandbox
 **/lib*.a
 
 # For Visual Studio...
+Debug/
+Release/
 *.vcxproj*
 *.sln
 *.*sdf
