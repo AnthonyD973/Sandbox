@@ -3,5 +3,12 @@
 
 float mysqrt(float f) {
     printf("Using mysqrt.\n");
-    return sqrt(f);
+    
+    float ret = sqrt(f);
+    
+    if (isnan(ret)) {
+        ret = 0;
+    }
+    
+    return ret;
 }

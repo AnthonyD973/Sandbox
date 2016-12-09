@@ -14,7 +14,7 @@ int main (int argc, char *argv[])
     if (argc < 2)
     {
         fprintf(stdout,"%s Version %d.%d\n", argv[0], Sandbox_VERSION_MAJOR, Sandbox_VERSION_MINOR);
-        fprintf(stdout,"Usage: %s number\n",argv[0]);
+        fprintf(stdout,"Usage: %s number\n", argv[0]);
         return 1;
     }
     

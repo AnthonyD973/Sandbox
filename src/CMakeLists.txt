@@ -30,3 +30,34 @@ endif (USE_MYMATH)
 # Add the executable
 add_executable(Sandbox main.cpp)
 target_link_libraries(Sandbox ${EXTRA_LIBS})
+
+
+# Add the install target
+install(TARGETS Sandbox DESTINATION bin)
+install(FILES "${PROJECT_BINARY_DIR}/SandboxConfig.h" DESTINATION include)
+
+
+# =================
+# =     TESTS     =
+# =================
+
+include(CTest)
+
+# does the application run
+add_test (SandboxRuns Sandbox 25)
+
+# does it sqrt of 25
+add_test (SandboxComp25 Sandbox 25)
+set_tests_properties (SandboxComp25   PROPERTIES PASS_REGULAR_EXPRESSION "25 is 5")
+
+# does it handle negative numbers
+add_test (SandboxNegative Sandbox -25)
+set_tests_properties (SandboxNegative PROPERTIES PASS_REGULAR_EXPRESSION "-25 is 0")
+
+# does it handle small numbers
+add_test (SandboxSmall Sandbox 0.0001)
+set_tests_properties (SandboxSmall    PROPERTIES PASS_REGULAR_EXPRESSION "0.0001 is 0.01")
+
+# does the usage message work?
+add_test (SandboxUsage Sandbox)
+set_tests_properties (SandboxUsage    PROPERTIES PASS_REGULAR_EXPRESSION "Usage:.*number")
