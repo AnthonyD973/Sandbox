@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 2.6)
 project(Sandbox)
 
+# ====================
+# =  GENERAL CONFIG  =
+# ====================
+
 option(USE_MYMATH "Use tutorial-provided math implementation" ON)
 
 # The version number
@@ -20,9 +24,9 @@ if (USE_MYMATH)
 	set(EXTRA_LIBS ${EXTRA_LIBS} MathFunctions)
 endif (USE_MYMATH)
 
-# =================
-# = INTROSPECTION =
-# =================
+# ====================
+# =  INTROSPECTION   =
+# ====================
 
 set(CMAKE_REQUIRED_LIBRARIES ${CMAKE_REQUIRED_LIBRARIES} -lm)
 
@@ -48,9 +52,9 @@ install(TARGETS Sandbox DESTINATION bin)
 install(FILES "${PROJECT_BINARY_DIR}/SandboxConfig.h" DESTINATION include)
 
 
-# =================
-# =     TESTS     =
-# =================
+# ====================
+# =      TESTS       =
+# ====================
 
 include(CTest)
 
@@ -72,3 +76,19 @@ set_tests_properties (SandboxSmall    PROPERTIES PASS_REGULAR_EXPRESSION "0.0001
 # does the usage message work?
 add_test (SandboxUsage Sandbox)
 set_tests_properties (SandboxUsage    PROPERTIES PASS_REGULAR_EXPRESSION "Usage:.*number")
+
+# ====================
+# = BINARY INSTALLER =
+# ====================
+
+# The below configures the project by including all the requirments for the
+# current system and by creating config files for CPack.
+
+include(InstallRequiredSystemLibraries)
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/license.txt")
+set(CPACK_PACKAGE_VERSION_MAJOR "${Sandbox_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${Sandbox_VERSION_MINOR}")
+include(CPack)
+
+# Build the binary : $ cpack --config CPackConfig.cmake
+# Build the source distro : $ cpack --config CPackSourceConfig.cmake
