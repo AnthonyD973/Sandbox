@@ -11,7 +11,7 @@ Win32/
 Sandbox
 **/lib*.a
 
-# For Visual Studio...
+# For Visual Studio... Lotsa stuff :S
 Debug/
 Release/
 *.vcxproj*
