@@ -1,4 +1,12 @@
+#ifndef SANDBOX_CONFIG_H
+#define SANDBOX_CONFIG_H
+
 // The configured options and settings for Sandbox
 #define Sandbox_VERSION_MAJOR @Sandbox_VERSION_MAJOR@
 #define Sandbox_VERSION_MINOR @Sandbox_VERSION_MINOR@
+
 #cmakedefine USE_MYMATH
+#cmakedefine HAVE_LOG
+#cmakedefine HAVE_EXP
+
+#endif // SANDBOX_CONFIG_H

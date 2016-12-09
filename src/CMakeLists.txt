@@ -7,13 +7,6 @@ option(USE_MYMATH "Use tutorial-provided math implementation" ON)
 set(Sandbox_VERSION_MAJOR 1)
 set(Sandbox_VERSION_MINOR 0)
 
-# Configure a header file to pass some of the CMake settings
-# to the source code
-configure_file (
-	"${PROJECT_SOURCE_DIR}/SandboxConfig.h.in"
-	"${PROJECT_BINARY_DIR}/SandboxConfig.h"
-)
-
 # Add the binary tree to the source path for include files
 # so that we will find SandboxConfig.h
 include_directories("${PROJECT_BINARY_DIR}")
@@ -26,6 +19,24 @@ if (USE_MYMATH)
 	add_subdirectory(MathFunctions)
 	set(EXTRA_LIBS ${EXTRA_LIBS} MathFunctions)
 endif (USE_MYMATH)
+
+# =================
+# = INTROSPECTION =
+# =================
+
+set(CMAKE_REQUIRED_LIBRARIES ${CMAKE_REQUIRED_LIBRARIES} m)
+
+include(CheckFunctionExists)
+check_function_exists(log HAVE_LOG)
+check_function_exists(exp HAVE_EXP)
+
+
+# Configure a header file to pass some of the CMake settings
+# to the source code
+configure_file (
+	"${PROJECT_SOURCE_DIR}/SandboxConfig.h.in"
+	"${PROJECT_BINARY_DIR}/SandboxConfig.h"
+)
 
 # Add the executable
 add_executable(Sandbox main.cpp)
