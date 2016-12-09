@@ -1,7 +1,7 @@
 **/CMakeCache.txt
 **/cmake_install.cmake
 **/Makefile
-*Config.h
+**/*Config.h
 
 CMakeFiles/
 Win32/
@@ -10,7 +10,7 @@ Release/
 *.dir/
 
 Sandbox
-MathFunctions/libMathFunctions.a
+**/lib*.a
 
 # For Visual Studio...
 *.vcxproj*
