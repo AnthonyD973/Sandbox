@@ -4,6 +4,15 @@
 *Config.h
 
 CMakeFiles/
+Win32/
+Debug/
+Release/
+*.dir/
 
 Sandbox
 MathFunctions/libMathFunctions.a
+
+# For Visual Studio...
+*.vcxproj*
+*.sln
+*.*sdf
