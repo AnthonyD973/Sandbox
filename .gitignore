@@ -1,19 +1,16 @@
-**/CMakeCache.txt
-**/cmake_install.cmake
-**/Makefile
-**/*Config.h
-
-CMakeFiles/
 build/
-Win32/
 *.dir/
 
-Sandbox
+**/*.out
 **/lib*.a
 
 # For Visual Studio... Lotsa stuff :S
 Debug/
 Release/
+Win32/
 *.vcxproj*
 *.sln
 *.*sdf
+
+# For Flex
+**/*.yy.c
