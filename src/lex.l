@@ -1,12 +1,10 @@
+%option NOYYWRAP
+
 %%
 
 "good"  { printf("bad"); }
 
 %%
-
-int yywrap() {
-	
-}
 
 int main() {
 	

@@ -6,6 +6,7 @@ project(Flex_Tutorial)
 # ========================
 
 set(FLEX_PROJECT ${PROJECT_NAME})
+set(OBJ_EXT ${CMAKE_C_OUTPUT_EXTENSION})
 
 # ========================
 # = GENERATE_FLEX_PARSER =
@@ -16,27 +17,32 @@ set(FLEX_PROJECT ${PROJECT_NAME})
 find_package(FLEX)
 
 add_custom_target(Generate_Flex_Parser)
+set(FLEX_PARSER_TARGET Generate_Flex_Parser)
+
+if (WIN32)
+	set(MACROS_FOR_PARSER "-DYY_NO_UNISTD_H")
+endif (WIN32)
 
 add_custom_command (
-	TARGET  Generate_Flex_Parser
+	TARGET  ${FLEX_PARSER_TARGET}
 	COMMAND ${FLEX_EXECUTABLE}
-	ARGS    ${CMAKE_SOURCE_DIR}/lex.l
+	ARGS    ${MACROS_FOR_PARSER} -o ${CMAKE_CURRENT_BINARY_DIR}/lex.yy.c ${CMAKE_SOURCE_DIR}/lex.l
 	DEPENDS ${CMAKE_SOURCE_DIR}/lex.l
 	OUTPUTS ${CMAKE_CURRENT_BINARY_DIR}/lex.yy.c
 )
 add_custom_command (
-	TARGET  Generate_Flex_Parser
+	TARGET  ${FLEX_PARSER_TARGET}
 	COMMAND ${CMAKE_C_COMPILER}
-	ARGS    -o${CMAKE_CURRENT_BINARY_DIR}/lex.yy.c.o -c ${CMAKE_CURRENT_BINARY_DIR}/lex.yy.c
+	ARGS    -c ${CMAKE_CURRENT_BINARY_DIR}/lex.yy.c
 	DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/lex.yy.c
-	OUTPUTS ${CMAKE_CURRENT_BINARY_DIR}/lex.yy.c.o
+	OUTPUTS ${CMAKE_CURRENT_BINARY_DIR}/lex.yy${OBJ_EXT}
 )
-set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/lex.yy.c.o GENERATED)
+set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/lex.yy${OBJ_EXT} GENERATED)
 
 # ========================
 # =    FLEX_TUTORIAL     =
 # ========================
 
-add_executable(${FLEX_PROJECT}  lex.yy.c.o)
-add_dependencies(${FLEX_PROJECT} Generate_Flex_Parser)
+add_executable(${FLEX_PROJECT}  lex.yy${OBJ_EXT})
+add_dependencies(${FLEX_PROJECT} ${FLEX_PARSER_TARGET})
 set_target_properties(${FLEX_PROJECT} PROPERTIES LINKER_LANGUAGE CXX)
