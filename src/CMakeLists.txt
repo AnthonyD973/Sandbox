@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-project(Flex_Tutorial)
+project(Flex_Bison_Tutorial)
 
 # ========================
 # =    GENERAL CONFIG    =
@@ -37,6 +37,7 @@ add_custom_command (
 	DEPENDS ${BP_C_FILE}
 	OUTPUTS ${BP_OUTPUT}
 )
+set_source_files_properties(${BP_OUTPUT} GENERATED)
 
 # ========================
 # =    FLEX_SCANNER      =
@@ -68,7 +69,7 @@ add_custom_command (
 	TARGET  ${FS_TARGET}
 	COMMAND ${CMAKE_C_COMPILER}
 	ARGS    -c ${FS_C_FILE}
-	DEPENDS ${FS_C_FILE} ${BP_H_FILE}
+	DEPENDS ${BP_TARGET}
 	OUTPUTS ${FS_OUTPUT}
 )
 set_source_files_properties(${FS_OUTPUT} GENERATED)
@@ -77,6 +78,6 @@ set_source_files_properties(${FS_OUTPUT} GENERATED)
 # =    FLEX_TUTORIAL     =
 # ========================
 
-add_executable(${TOP_PROJECT} ${FS_OUTPUT})
+add_executable(${TOP_PROJECT} ${FS_OUTPUT} ${BP_OUTPUT})
 add_dependencies(${TOP_PROJECT} ${FS_TARGET} ${BP_TARGET})
 set_target_properties(${TOP_PROJECT} PROPERTIES LINKER_LANGUAGE CXX)

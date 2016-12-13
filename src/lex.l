@@ -1,18 +1,29 @@
 %option NOYYWRAP
 
+%{
+    // C includes
+    #include <stdio.h>
+    #include "parse.tab.h"
+%}
+
+DIGIT               [[:digit:]]
+
+TOK_MULTIPLY        "*"
+TOK_DIVIDE          "/"
+TOK_ADD             "+"
+TOK_SUBTRACT        "-"
+
+TOK_NEWLINE         "\n"
+
 %%
 
-"good"  { printf("bad"); }
+{DIGIT}+            { yylval = atoi(yytext); return NUM; }
+
+{TOK_MULTIPLY}      { return '*'; }
+{TOK_DIVIDE}        { return '/'; }
+{TOK_ADD}           { return '+'; }
+{TOK_SUBTRACT}      { return '-'; }
+
+{TOK_NEWLINE}       { return '\n'; }
 
 %%
-
-int main() {
-	
-	int val;
-	while (val = yylex()) {
-		printf("%d", val);
-	}
-	printf("final =%d\n", val);
-	
-	return 0;
-}
