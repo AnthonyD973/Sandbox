@@ -3,27 +3,36 @@
 %{
     // C includes
     #include <stdio.h>
+    #include <string.h>
+    
     #include "parse.tab.h"
 %}
 
-DIGIT               [[:digit:]]
+REGEX_ID                [[:alpha:]_][[:alnum:]_]*
+REGEX_INT               [[:digit:]]+
+REGEX_PRINT             "print"
+REGEX_DECL              "declare"
 
-TOK_MULTIPLY        "*"
-TOK_DIVIDE          "/"
-TOK_ADD             "+"
-TOK_SUBTRACT        "-"
-
-TOK_NEWLINE         "\n"
+REGEX_MULTIPLY          "*"
+REGEX_DIVIDE            "/"
+REGEX_ADD               "+"
+REGEX_SUBTRACT          "-"
+REGEX_ASSIGN            "="
+REGEX_NEWLINE           "\n"
 
 %%
 
-{DIGIT}+            { yylval = atoi(yytext); return NUM; }
+{REGEX_PRINT}           { return PRINT; }
+{REGEX_DECL}            { return DECL; }
+{REGEX_ID}              { yylval.str = strdup(yytext); return ID; }
 
-{TOK_MULTIPLY}      { return '*'; }
-{TOK_DIVIDE}        { return '/'; }
-{TOK_ADD}           { return '+'; }
-{TOK_SUBTRACT}      { return '-'; }
+{REGEX_INT}             { yylval.val = atoi(yytext); return NUM; }
 
-{TOK_NEWLINE}       { return '\n'; }
+{REGEX_ADD}             { return '+'; }
+{REGEX_MULTIPLY}        { return '*'; }
+{REGEX_SUBTRACT}        { return '-'; }
+{REGEX_NEWLINE}         { return '\n'; }
+{REGEX_DIVIDE}          { return '/'; }
+{REGEX_ASSIGN}          { return '='; }
 
 %%
