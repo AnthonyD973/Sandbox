@@ -12,7 +12,7 @@
         int   value;
     } Node;
     
-    static Node* symbols[100] = {};
+    static Node* symbols[100] = {0};
 %}
 
 %union {
