@@ -67,11 +67,11 @@ set_tests_properties (SandboxComp25   PROPERTIES PASS_REGULAR_EXPRESSION "25 is 
 
 # does it handle negative numbers
 add_test (SandboxNegative Sandbox -25)
-set_tests_properties (SandboxNegative PROPERTIES PASS_REGULAR_EXPRESSION "-25 is 0")
+set_tests_properties (SandboxNegative PROPERTIES PASS_REGULAR_EXPRESSION "-25 is 1")
 
 # does it handle small numbers
 add_test (SandboxSmall Sandbox 0.0001)
-set_tests_properties (SandboxSmall    PROPERTIES PASS_REGULAR_EXPRESSION "0.0001 is 0.01")
+set_tests_properties (SandboxSmall    PROPERTIES PASS_REGULAR_EXPRESSION "0\.0001 is 0\.01")
 
 # does the usage message work?
 add_test (SandboxUsage Sandbox)
