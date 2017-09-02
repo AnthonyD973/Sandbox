@@ -1,24 +1,10 @@
-import { Component } from '@angular/core';
-
-export class Hero {
-  id: number;
-  name: string;
-}
-
-const HEROES: Hero[] = [
-  { id: 11, name: 'Mr. Nice'  },
-  { id: 12, name: 'Narco'     },
-  { id: 13, name: 'Bombasto'  },
-  { id: 14, name: 'Celeritas' },
-  { id: 15, name: 'Magneta'   },
-  { id: 16, name: 'RubberMan' },
-  { id: 17, name: 'Dynama'    },
-  { id: 18, name: 'Dr IQ'     },
-  { id: 19, name: 'Magma'     },
-  { id: 20, name: 'Tornado'   }
-];
+import { Component, OnInit } from '@angular/core';
+import { Hero } from './classes/hero';
+import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
+import { HeroService } from './services/hero.service';
 
 @Component({
+  providers: [HeroService],
   selector: 'app-root',
   templateUrl: './app.component.html',
   template: `
@@ -29,11 +15,7 @@ const HEROES: Hero[] = [
         <span class="badge">{{hero.id}}</span> {{hero.name}}
       </li>
     </ul>
-    <div *ngIf="selectedHero != null">
-      <h2>{{selectedHero.name}}'s details!</h2>
-      <div><label>ID: </label>{{selectedHero.id}}</div>
-      <div><label>Name: </label> {{selectedHero.name}}</div>
-    </div>`,
+    <hero-detail [hero]="selectedHero"></hero-detail>`,
   styleUrls: ['./app.component.css'],
   styles: [`
     .selected {
@@ -85,13 +67,24 @@ const HEROES: Hero[] = [
     }
   `]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Tour of Heroes';
-  heroes: Hero[] = HEROES;
+  heroes: Hero[];
   selectedHero: Hero;
+
+  constructor(private heroService: HeroService) {}
+
+  ngOnInit() {
+    this.getHeroes();
+  }
+
+  getHeroes() {
+    this.heroService.getHeroesSlowly().then(heroes => this.heroes = heroes);
+  }
 
   onClick(hero: Hero): void {
     this.selectedHero = hero;
-    console.log("clicked");
   }
+
+
 }
