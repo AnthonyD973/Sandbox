@@ -1,0 +1,11 @@
+<div id="search-component">
+  <input #nameInput id="search-box"
+    placeholder="Enter search name"
+    (keyup)="onTriggerByName(nameInput.value)"/>
+  <div>
+    <div *ngFor="let hit of hits | async" class="search-result"
+        (click)="gotoDetail(hit)">
+      {{hit.name}}
+    </div>
+  </div>
+</div>

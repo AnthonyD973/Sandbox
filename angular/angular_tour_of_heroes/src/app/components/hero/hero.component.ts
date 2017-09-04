@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Hero } from '../../classes/hero';
+import { Hero }                from '../../classes/hero';
 import { HeroDetailComponent } from '../../components/hero-detail/hero-detail.component';
-import { HeroService } from '../../services/hero.service';
-import { Router } from "@angular/router";
+import { HeroService }         from '../../services/hero.service';
+import { Router }              from "@angular/router";
 
 @Component({
   selector: "my-heroes",
@@ -15,8 +15,8 @@ export class HeroComponent implements OnInit {
   selectedHero: Hero;
 
   constructor(
-    private heroService: HeroService,
-    private router: Router) {}
+      private heroService: HeroService,
+      private router: Router) {}
 
   ngOnInit() {
     this.getHeroes();
@@ -24,6 +24,29 @@ export class HeroComponent implements OnInit {
 
   getHeroes() {
     this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+  }
+
+  createHero(heroName: string) {
+    heroName = heroName.trim();
+    if (heroName == ""){
+      return;
+    }
+    this.heroService.createHero(heroName).then(
+      (hero) => {
+        this.heroes.push(hero);
+        this.selectedHero = null;
+      }
+    );
+  }
+
+  removeHero(hero: Hero) {
+    this.heroService.removeHero(hero).then(
+      () => {
+        this.heroes = this.heroes.filter((h) => h !== hero);
+        if (this.selectedHero == hero) {
+          this.selectedHero = null;
+        }
+      });
   }
 
   onClick(hero: Hero): void {
