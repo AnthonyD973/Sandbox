@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 
 import { AppComponent } from "./app.component";
 import { SvgModule } from "./svg/svg.module";
+import { CanvasModule } from "./canvas/canvas.module";
 
 @NgModule({
     declarations: [
@@ -10,7 +11,8 @@ import { SvgModule } from "./svg/svg.module";
     ],
     imports: [
         BrowserModule,
-        SvgModule
+        SvgModule,
+        CanvasModule
     ],
     providers: [],
     bootstrap: [AppComponent]
