@@ -1,7 +1,5 @@
 import { Component } from "@angular/core";
 
-import { SvgAngularLogoComponent } from "./svg/components/svg-angular-logo/svg-angular-logo.component";
-
 @Component({
     selector: "app-root",
     templateUrl: "./app.component.html",

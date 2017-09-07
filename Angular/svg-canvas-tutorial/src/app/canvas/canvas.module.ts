@@ -7,6 +7,9 @@ import { CanvasDottedLogoComponent } from './components/canvas-dotted-logo/canva
     imports: [
         CommonModule
     ],
+    exports: [
+        CanvasDottedLogoComponent
+    ],
     declarations: [
         CanvasDottedLogoComponent
     ]

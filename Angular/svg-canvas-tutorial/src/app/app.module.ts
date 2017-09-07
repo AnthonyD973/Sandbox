@@ -14,6 +14,10 @@ import { CanvasModule } from "./canvas/canvas.module";
         SvgModule,
         CanvasModule
     ],
+    exports: [
+        SvgModule,
+        CanvasModule
+    ],
     providers: [],
     bootstrap: [AppComponent]
 })
