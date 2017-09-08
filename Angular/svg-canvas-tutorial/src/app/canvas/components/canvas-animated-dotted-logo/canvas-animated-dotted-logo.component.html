@@ -1,3 +1,11 @@
-<p>
-  canvas-animated-dotted-logo works!
-</p>
+<div class="canvas">
+    <h2>Canvas animated dotted logo</h2>
+    <canvas #animDottedCanvas
+        [width]="canvasWidth"
+        [height]="canvasHeight"
+        style="max-width: 200px">
+    </canvas>
+    <div>
+        <button (click)="toggleAnimate()">Animate</button>
+    </div>
+</div>

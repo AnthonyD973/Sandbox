@@ -9,7 +9,8 @@ import { CanvasAnimatedDottedLogoComponent } from './components/canvas-animated-
         CommonModule
     ],
     exports: [
-        CanvasDottedLogoComponent
+        CanvasDottedLogoComponent,
+        CanvasAnimatedDottedLogoComponent
     ],
     declarations: [
         CanvasDottedLogoComponent,
