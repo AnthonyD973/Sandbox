@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CanvasDottedLogoComponent } from './components/canvas-dotted-logo/canvas-dotted-logo.component';
 import { CanvasAnimatedDottedLogoComponent } from './components/canvas-animated-dotted-logo/canvas-animated-dotted-logo.component';
+import { MyCanvasComponent } from './components/my-canvas/my-canvas.component';
 
 @NgModule({
     imports: [
@@ -10,11 +11,13 @@ import { CanvasAnimatedDottedLogoComponent } from './components/canvas-animated-
     ],
     exports: [
         CanvasDottedLogoComponent,
-        CanvasAnimatedDottedLogoComponent
+        CanvasAnimatedDottedLogoComponent,
+        MyCanvasComponent
     ],
     declarations: [
         CanvasDottedLogoComponent,
-        CanvasAnimatedDottedLogoComponent
+        CanvasAnimatedDottedLogoComponent,
+        MyCanvasComponent
     ]
 })
 export class CanvasModule { }
