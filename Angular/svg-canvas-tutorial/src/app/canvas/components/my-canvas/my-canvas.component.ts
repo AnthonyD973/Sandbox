@@ -1,19 +1,20 @@
 import { Component,
          OnInit,
-         OnChanges,
          ElementRef,
          ViewChild,
          Input } from '@angular/core';
 
-import { Point } from '../../classes/point';
 import { Drawable } from '../../classes/drawable';
+import { Point } from '../../classes/point';
+import { Path } from '../../classes/path';
+
 
 @Component({
     selector: 'app-my-canvas',
     templateUrl: './my-canvas.component.html',
     styleUrls: ['../../canvas-style.css', './my-canvas.component.css']
 })
-export class MyCanvasComponent implements OnInit, OnChanges, Drawable {
+export class MyCanvasComponent implements OnInit, Drawable {
 
     private canvasWidth:  number = 500;
     private canvasHeight: number = 500;
@@ -22,8 +23,8 @@ export class MyCanvasComponent implements OnInit, OnChanges, Drawable {
     private myCanvas: ElementRef;
     private canvasContext: CanvasRenderingContext2D;
 
-    @Input()
     private points: Point[] = [];
+    private path: Path;
 
 
     constructor() { }
@@ -33,13 +34,12 @@ export class MyCanvasComponent implements OnInit, OnChanges, Drawable {
         this.canvasContext =
             this.myCanvas.nativeElement.getContext('2d');
 
-        this.points = [new Point(this.canvasContext, 50, 50, 1, '#000000')];
+        this.points = [];
+        this.points.push(new Point(this.canvasContext, 50, 50, 10, '#ff0000'));
+        this.points.push(new Point(this.canvasContext, 100, 50, 10, '#ff8800'));
+        this.points.push(new Point(this.canvasContext, 100, 100, 10, '#ffff00'));
+        this.path = new Path(this.canvasContext, this.points, '#0000ff', 10, true, true);
         requestAnimationFrame(() => this.draw());
-    }
-
-
-    public ngOnChanges(): void {
-        this.draw();
     }
 
 
@@ -50,18 +50,8 @@ export class MyCanvasComponent implements OnInit, OnChanges, Drawable {
                                          this.canvasWidth,
                                          this.canvasHeight);
 
-            this.points.forEach(
-                (point: Point) => {
-                    this.canvasContext.beginPath();
-                    this.canvasContext.arc(point.x,
-                                           point.y,
-                                           point.radius,
-                                           0,
-                                           2 * Math.PI);
-                    this.canvasContext.fillStyle = point.color;
-                    this.canvasContext.fill();
-                }
-            );
+            this.path.points = this.points;
+            this.path.draw();
         });
     }
 

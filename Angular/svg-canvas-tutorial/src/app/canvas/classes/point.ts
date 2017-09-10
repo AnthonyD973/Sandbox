@@ -18,6 +18,7 @@ export class Point implements Drawable {
         this.x = x;
         this.y = y;
         this.radius = radius;
+        this.color = color;
     }
 
 
