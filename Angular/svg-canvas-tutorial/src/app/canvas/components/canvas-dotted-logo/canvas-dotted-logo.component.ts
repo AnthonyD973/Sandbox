@@ -7,13 +7,13 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 })
 export class CanvasDottedLogoComponent implements OnInit {
 
-    @ViewChild("myCanvas") private canvasRef: ElementRef;
+    @ViewChild("canvasDottedLogo") private canvasDottedLogo: ElementRef;
 
     constructor() { }
 
     ngOnInit() {
         let ctxt: CanvasRenderingContext2D =
-            this.canvasRef.nativeElement.getContext("2d");
+            this.canvasDottedLogo.nativeElement.getContext("2d");
         
         ctxt.moveTo(250,   60);
         ctxt.lineTo(63.8,  126.4);

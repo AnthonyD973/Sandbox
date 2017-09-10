@@ -7,10 +7,10 @@ import { Particle } from "./particle";
     styleUrls: ["../../canvas-style.css", './canvas-animated-dotted-logo.component.css']
 })
 export class CanvasAnimatedDottedLogoComponent implements OnInit {
-    
+
     private canvasHeight: number = 500;
     private canvasWidth:  number = 500;
-    @ViewChild("animDottedCanvas") private canvas: ElementRef;
+    @ViewChild("canvasAnimatedDottedLogo") private canvasAnimatedDottedLogo: ElementRef;
     private canvasContext: CanvasRenderingContext2D;
     private particles: Particle[] = [];
     @Input() private shouldAnimate: boolean = false;
@@ -19,7 +19,7 @@ export class CanvasAnimatedDottedLogoComponent implements OnInit {
 
     ngOnInit() {
         this.canvasContext =
-            this.canvas.nativeElement.getContext("2d");
+            this.canvasAnimatedDottedLogo.nativeElement.getContext("2d");
 
         let currentTime = Date.now();
         let previousTime = 0;
@@ -65,11 +65,11 @@ export class CanvasAnimatedDottedLogoComponent implements OnInit {
         this.canvasContext.lineTo(216,   270.8);
         this.canvasContext.lineTo(250,   189);
         this.canvasContext.lineTo(284,   270.8);
-        this.canvasContext.clip("evenodd");
+        this.canvasContext.clip('evenodd');
 
         this.canvasContext.beginPath();
         this.canvasContext.fillStyle = '#DD0031';
-        for (let {x, y} of this.particles) {
+        for (const {x, y} of this.particles) {
             this.canvasContext.beginPath();
             this.canvasContext.moveTo(x, y);
             this.canvasContext.rect(x, y, 1.0, 1.0);
