@@ -5,3 +5,11 @@
 .myCanvas {
     border: solid 1px #555;
 }
+
+.stateInactive {
+    /* Nothing for now */
+}
+
+.stateActive {
+    background-color: #44f
+}

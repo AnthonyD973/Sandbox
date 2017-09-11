@@ -1,13 +1,14 @@
 <div class="canvas">
   <h2>Custom canvas</h2>
-  <ul *ngFor="let msg of errorMessages" class="errorMessage">
-    <li>{{msg}}</li>
-  </ul>
+  <div *ngFor="let msg of errorMessages" class="errorMessage">
+    <p>{{msg}}</p>
+  </div>
   <canvas #myCanvas
     [width]="canvasWidth" [height]="canvasHeight"
     (mousemove)="mouseMoved($event)" class="myCanvas"></canvas>
   <div>
     <button (click)="save()">Save</button>
     <button (click)="reset()">Reset</button>
+    <button (click)="toggleState()" [@buttonState]="state">ToggleState</button>
   </div>
 </div>

@@ -3,6 +3,11 @@ import { Component,
          ElementRef,
          ViewChild,
          Input } from '@angular/core';
+import { trigger,
+         state,
+         style,
+         animate,
+         transition } from '@angular/animations';
 
 import { Drawable } from '../../classes/drawable';
 import { Point } from '../../classes/point';
@@ -12,7 +17,15 @@ import { Path } from '../../classes/path';
 @Component({
     selector: 'app-my-canvas',
     templateUrl: './my-canvas.component.html',
-    styleUrls: ['../../canvas-style.css', './my-canvas.component.css']
+    styleUrls: ['../../canvas-style.css', './my-canvas.component.css'],
+    animations: [
+        trigger('buttonState', [
+            state('inactive', style({})),
+            state('active', style({transform: 'scale(1.1)'})),
+            transition('inactive => active', animate('150ms ease-in')),
+            transition('active => inactive', animate('150ms ease-out'))
+        ])
+    ]
 })
 export class MyCanvasComponent implements OnInit, Drawable {
 
@@ -91,6 +104,16 @@ export class MyCanvasComponent implements OnInit, Drawable {
         this.errorMessages = [];
         this.points = [new Point(this.canvasContext, 50, 50, 5, '#00f')];
         this.draw();
+    }
+
+    private state: string = 'inactive';
+    private toggleState(): void {
+        if (this.state === 'inactive') {
+            this.state = 'active';
+        }
+        else {
+            this.state = 'inactive';
+        }
     }
 
 }
