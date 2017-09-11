@@ -26,6 +26,8 @@ export class MyCanvasComponent implements OnInit, Drawable {
     private points: Point[] = [];
     private path: Path;
 
+    private errorMessages: string[] = [];
+
 
     constructor() { }
 
@@ -58,8 +60,36 @@ export class MyCanvasComponent implements OnInit, Drawable {
 
 
     private mouseMoved(event: MouseEvent) {
-        this.points[0].x = event.offsetX;
-        this.points[0].y = event.offsetY;
+        const COORDINATE_X_OK =
+            event.offsetX >= 0 &&
+            event.offsetX < this.canvasWidth;
+        const COORDINATE_Y_OK =
+            event.offsetY >= 0 &&
+            event.offsetY < this.canvasHeight;
+        if (COORDINATE_X_OK && COORDINATE_Y_OK) {
+            this.errorMessages = [];
+            this.points[0].x = event.offsetX;
+            this.points[0].y = event.offsetY;
+            this.draw();
+        }
+        else {
+            if (!COORDINATE_X_OK) {
+                this.errorMessages.push(`Invalid mouse X coordinate: ${event.offsetX}`);
+            }
+            else {
+                // !COORDINATE_Y_OK
+                this.errorMessages.push(`Invalid mouse Y coordinate: ${event.offsetY}`);
+            }
+        }
+    }
+
+    private save(): void {
+        console.log('Map saved.');
+    }
+
+    private reset(): void {
+        this.errorMessages = [];
+        this.points = [new Point(this.canvasContext, 50, 50, 5, '#00f')];
         this.draw();
     }
 
