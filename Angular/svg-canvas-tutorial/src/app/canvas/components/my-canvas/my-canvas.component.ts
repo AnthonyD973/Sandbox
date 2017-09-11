@@ -35,24 +35,32 @@ export class MyCanvasComponent implements OnInit, Drawable {
             this.myCanvas.nativeElement.getContext('2d');
 
         this.points = [];
-        this.points.push(new Point(this.canvasContext, 50, 50, 10, '#ff0000'));
-        this.points.push(new Point(this.canvasContext, 100, 50, 10, '#ff8800'));
-        this.points.push(new Point(this.canvasContext, 100, 100, 10, '#ffff00'));
-        this.path = new Path(this.canvasContext, this.points, '#0000ff', 10, true, true);
+        this.points.push(new Point(this.canvasContext, 50, 50, 5, '#0000ff'));
+        this.points.push(new Point(this.canvasContext, 100, 50, 5, '#0000ff'));
+        this.points.push(new Point(this.canvasContext, 100, 100, 5, '#0000ff'));
+        this.path = new Path(this.canvasContext,
+                             this.points,
+                             10,
+                             '#0000ff',
+                             true,
+                             true);
         requestAnimationFrame(() => this.draw());
     }
 
 
     public draw(): void {
         requestAnimationFrame(() => {
-            this.canvasContext.clearRect(0,
-                                         0,
-                                         this.canvasWidth,
-                                         this.canvasHeight);
-
+            this.canvasContext.clearRect(0, 0, 500, 500);
             this.path.points = this.points;
             this.path.draw();
         });
+    }
+
+
+    private mouseMoved(event: MouseEvent) {
+        this.points[0].x = event.offsetX;
+        this.points[0].y = event.offsetY;
+        this.draw();
     }
 
 }

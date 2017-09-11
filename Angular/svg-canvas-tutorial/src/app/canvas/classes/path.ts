@@ -7,8 +7,8 @@ export class Path implements Drawable {
 
     public points: Point[];
 
-    public color: string;
     public width: number;
+    public color: string;
 
     public renderPoints: boolean;
     public closed: boolean;
@@ -16,8 +16,8 @@ export class Path implements Drawable {
 
     constructor(context: CanvasRenderingContext2D,
                 points: Point[] = [],
+                width: number = -1,
                 color: string = '',
-                width: number,
                 renderPoints: boolean = false,
                 closed: boolean = false) {
         this.context = context;

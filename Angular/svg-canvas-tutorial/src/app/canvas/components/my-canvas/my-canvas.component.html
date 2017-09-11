@@ -1,5 +1,6 @@
 <div class="canvas">
   <h2>Custom canvas</h2>
   <canvas #myCanvas
-    [width]="canvasWidth" [height]="canvasHeight"></canvas>
+    [width]="canvasWidth" [height]="canvasHeight"
+    (mousemove)="mouseMoved($event)" style="border: solid 3px"></canvas>
 </div>
