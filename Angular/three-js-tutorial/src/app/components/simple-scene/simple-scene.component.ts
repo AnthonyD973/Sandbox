@@ -8,14 +8,14 @@ import * as THREE from 'three';
 })
 export class SimpleSceneComponent implements OnInit {
 
-    public readonly WIDTH  = 400;
-    public readonly HEIGHT = 300;
+    public readonly WIDTH: number  = 400;
+    public readonly HEIGHT: number = 300;
 
-    public readonly VIEW_ANGLE = 45.0;
-    public readonly ASPECT = this.WIDTH / this.HEIGHT;
+    public readonly VIEW_ANGLE: number = 45.0;
+    public readonly ASPECT: number = this.WIDTH / this.HEIGHT;
 
-    public readonly NEAR = 0.1;
-    public readonly FAR  = 10000.0;
+    public readonly NEAR: number = 0.1;
+    public readonly FAR: number  = 10000.0;
 
     private readonly RENDERER: THREE.WebGLRenderer;
     private readonly CAMERA: THREE.PerspectiveCamera;
@@ -40,7 +40,7 @@ export class SimpleSceneComponent implements OnInit {
         this.RENDERER.setSize(this.WIDTH, this.HEIGHT);
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.container.nativeElement.appendChild(this.RENDERER.domElement);
     }
 
