@@ -24,7 +24,7 @@ export class SimpleSceneComponent implements OnInit {
     @ViewChild('container')
     public container: ElementRef;
 
-    constructor() {
+    public constructor() {
         // Set readonly
         this.RENDERER = new THREE.WebGLRenderer();
         this.CAMERA = new THREE.PerspectiveCamera(
@@ -40,7 +40,7 @@ export class SimpleSceneComponent implements OnInit {
         this.RENDERER.setSize(this.WIDTH, this.HEIGHT);
     }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         this.container.nativeElement.appendChild(this.RENDERER.domElement);
     }
 
