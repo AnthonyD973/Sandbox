@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import * as THREE from 'three';
 
 @Component({
@@ -23,6 +23,9 @@ export class SimpleSceneComponent implements OnInit {
 
     private readonly SUBJECTS: THREE.Mesh[] = [];
     private readonly LIGHTS: THREE.Light[] = [];
+
+    private isRendering: boolean = false;
+    private animationRequestId: number = 0;
 
     @ViewChild('container')
     public container: ElementRef;
@@ -55,7 +58,7 @@ export class SimpleSceneComponent implements OnInit {
     private setupScene(): void {
         this.addLights();
         this.addSubjects();
-        this.render();
+        this.startRendering();
     }
 
     private addLights(): void {
@@ -64,7 +67,6 @@ export class SimpleSceneComponent implements OnInit {
         this.LIGHTS.push(LIGHT);
         this.SCENE.add(LIGHT);
     }
-
 
     private addSubjects(): void {
         const RADIUS: number = 50;
@@ -79,7 +81,35 @@ export class SimpleSceneComponent implements OnInit {
         this.SCENE.add(SPHERE);
     }
 
-    private render(): void {
-        this.RENDERER.render(this.SCENE, this.CAMERA);
+    @Input()
+    public set should_render(render: boolean) {
+        if (render) {
+            this.startRendering();
+        }
+        else {
+            this.stopRendering();
+        }
     }
+
+    private startRendering(): void {
+        if (!this.isRendering) {
+            this.isRendering = true;
+            this.render();
+        }
+    }
+
+    private stopRendering(): void {
+        if (this.animationRequestId !== 0) {
+            cancelAnimationFrame(this.animationRequestId);
+        }
+        this.isRendering = false;
+    }
+
+    private render(): void {
+        this.animationRequestId = requestAnimationFrame(() => {
+            this.RENDERER.render(this.SCENE, this.CAMERA);
+            this.render();
+        });
+    }
+
 }
