@@ -21,6 +21,8 @@ export class SimpleSceneComponent implements OnInit {
     private readonly CAMERA: THREE.PerspectiveCamera;
     private readonly SCENE: THREE.Scene;
 
+    private readonly OBJECTS: THREE.Mesh[];
+
     @ViewChild('container')
     public container: ElementRef;
 
@@ -41,7 +43,29 @@ export class SimpleSceneComponent implements OnInit {
     }
 
     public ngOnInit(): void {
+        this.addRenderer();
+    }
+
+    private addRenderer(): void {
         this.container.nativeElement.appendChild(this.RENDERER.domElement);
+    }
+
+    private setupScene(): void {
+        const RADIUS: number = 50;
+        const SEGMENTS: number = 16;
+        const RINGS: number = 16;
+        const SPHERE_MATERIAL: THREE.Material = null;
+
+        const SPHERE: THREE.Mesh = new THREE.Mesh(
+            new THREE.SphereGeometry(
+                RADIUS, SEGMENTS, RINGS
+            ),
+            SPHERE_MATERIAL
+        );
+
+        SPHERE.position.z = -300;
+        this.OBJECTS.push(SPHERE);
+        this.SCENE.add(SPHERE);
     }
 
 }
