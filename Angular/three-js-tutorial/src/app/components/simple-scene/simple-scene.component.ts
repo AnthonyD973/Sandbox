@@ -53,30 +53,33 @@ export class SimpleSceneComponent implements OnInit {
     }
 
     private setupScene(): void {
+        this.addLights();
+        this.addSubjects();
+        this.render();
+    }
+
+    private addLights(): void {
         const LIGHT: THREE.PointLight = new THREE.PointLight(0xffffff);
         [LIGHT.position.x, LIGHT.position.y, LIGHT.position.z] = [10, 50, 130];
         this.LIGHTS.push(LIGHT);
         this.SCENE.add(LIGHT);
+    }
 
+
+    private addSubjects(): void {
         const RADIUS: number = 50;
         const SEGMENTS: number = 16;
         const RINGS: number = 16;
-        const SPHERE_MATERIAL: THREE.Material =
-            new THREE.MeshLambertMaterial({
-                color: 0xCC0000
-            });
-
-        const SPHERE: THREE.Mesh = new THREE.Mesh(
-            new THREE.SphereGeometry(
-                RADIUS, SEGMENTS, RINGS
-            ),
-            SPHERE_MATERIAL
-        );
-
+        const SPHERE_MATERIAL: THREE.Material = new THREE.MeshLambertMaterial({
+            color: 0xCC0000
+        });
+        const SPHERE: THREE.Mesh = new THREE.Mesh(new THREE.SphereGeometry(RADIUS, SEGMENTS, RINGS), SPHERE_MATERIAL);
         SPHERE.position.z = -300;
         this.SUBJECTS.push(SPHERE);
         this.SCENE.add(SPHERE);
-        this.RENDERER.render(this.SCENE, this.CAMERA);
     }
 
+    private render(): void {
+        this.RENDERER.render(this.SCENE, this.CAMERA);
+    }
 }
