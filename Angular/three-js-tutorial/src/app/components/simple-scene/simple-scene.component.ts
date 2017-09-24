@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as THREE from 'three';
 
 @Component({
@@ -21,7 +21,11 @@ export class SimpleSceneComponent implements OnInit {
     private readonly CAMERA: THREE.PerspectiveCamera;
     private readonly SCENE: THREE.Scene;
 
+    @ViewChild('container')
+    public container: ElementRef;
+
     constructor() {
+        // Set readonly
         this.RENDERER = new THREE.WebGLRenderer();
         this.CAMERA = new THREE.PerspectiveCamera(
             this.VIEW_ANGLE,
@@ -30,9 +34,14 @@ export class SimpleSceneComponent implements OnInit {
             this.FAR
         );
         this.SCENE = new THREE.Scene();
+
+        // Setup THREE
+        this.SCENE.add(this.CAMERA);
+        this.RENDERER.setSize(this.WIDTH, this.HEIGHT);
     }
 
     ngOnInit() {
+        this.container.nativeElement.appendChild(this.RENDERER.domElement);
     }
 
 }
