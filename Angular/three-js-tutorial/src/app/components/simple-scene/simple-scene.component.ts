@@ -22,10 +22,13 @@ export class SimpleSceneComponent implements OnInit {
     private readonly SCENE: THREE.Scene;
 
     private readonly SUBJECTS: THREE.Mesh[] = [];
+    private readonly INITIAL_SUBJECT_POS: THREE.Vector3[] = [];
     private readonly LIGHTS: THREE.Light[] = [];
 
     private isRendering: boolean = false;
     private animationRequestId: number = 0;
+
+    private speed: THREE.Vector3 = new THREE.Vector3(1.0, 1.0, 1.0);
 
     @ViewChild('container')
     public container: ElementRef;
@@ -76,7 +79,9 @@ export class SimpleSceneComponent implements OnInit {
             color: 0xCC0000
         });
         const SPHERE: THREE.Mesh = new THREE.Mesh(new THREE.SphereGeometry(RADIUS, SEGMENTS, RINGS), SPHERE_MATERIAL);
-        SPHERE.position.z = -300;
+        const INITIAL_SPHERE_POS: THREE.Vector3 = new THREE.Vector3(0, 0, -300);
+        SPHERE.position.copy(INITIAL_SPHERE_POS);
+        this.INITIAL_SUBJECT_POS.push(INITIAL_SPHERE_POS);
         this.SUBJECTS.push(SPHERE);
         this.SCENE.add(SPHERE);
     }
@@ -107,9 +112,28 @@ export class SimpleSceneComponent implements OnInit {
 
     private render(): void {
         this.animationRequestId = requestAnimationFrame(() => {
+            this.runPhysics();
             this.RENDERER.render(this.SCENE, this.CAMERA);
             this.render();
         });
+    }
+
+    private runPhysics(): void {
+        const MAX_LENGTH: number = 50.0;
+        const INIT_POS: THREE.Vector3 = this.INITIAL_SUBJECT_POS[0].clone();
+        const SUBJECT: THREE.Mesh = this.SUBJECTS[0];
+        const RELATIVE_TO_INIT: THREE.Vector3 =
+            SUBJECT.position.clone().add(
+                INIT_POS.clone().multiplyScalar(-1));
+        if (RELATIVE_TO_INIT.length() > MAX_LENGTH) {
+            const NEW_POSITION: THREE.Vector3 =
+                INIT_POS.add(RELATIVE_TO_INIT.setLength(MAX_LENGTH));
+            SUBJECT.position.copy(NEW_POSITION);
+            this.speed.x = 2 * Math.random() - 1;
+            this.speed.y = 2 * Math.random() - 1;
+            this.speed.z = 2 * Math.random() - 1;
+        }
+        SUBJECT.position.add(this.speed);
     }
 
 }
