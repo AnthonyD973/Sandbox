@@ -26,3 +26,4 @@ include_directories(SDL2)
 #################################################################
 
 
+add_subdirectory("examples")
