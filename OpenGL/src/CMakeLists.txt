@@ -11,19 +11,19 @@ cmake_minimum_required(VERSION 3.5.0)
 #                         COMPILE OPTIONS                       #
 #################################################################
 
+# OpenGL
+find_package(OpenGL REQUIRED)
+link_libraries("${OPENGL_LIBRARIES}")
+
 # SDL2
-find_package(SDL2 REQUIRED)
-link_directories("${SDL2_LIBRARIES}")
+find_package(SDL2  REQUIRED)
+link_libraries("${SDL2_LIBRARIES}")
 include_directories("${SDL2_INCLUDE_DIRS}")
 
-# Library directories
-find_library(GLEW_LIBRARY GLEW REQUIRED)
-find_library(GLU_LIBRARY  GLU  REQUIRED)
-find_library(GL_LIBRARY   GL   REQUIRED)
-link_directories("${GLEW_LIBRARY} ${GLU_LIBRARY} ${GL_LIBRARY} ${SDL2_LIBRARY}")
-
-# Include paths
-include_directories(SDL2)
+# GLEW
+find_package(GLEW  REQUIRED)
+link_libraries("${GLEW_LIBRARIES}")
+include_directories("${GLEW_INCLUDE_DIRS}")
 
 #################################################################
 #                       ADD SUBDIRECTORIES                      #
