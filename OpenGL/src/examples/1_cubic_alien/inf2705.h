@@ -1,3 +1,4 @@
+// Version: sam nov 25 15:30:17 EST 2017
 #ifndef INF2705_MATRICE_H
 #define INF2705_MATRICE_H
 
@@ -10,7 +11,9 @@
 #include <GL/glew.h>
 #include <iostream>
 
-#define GLM_FORCE_SWIZZLE
+// #define GLM_SWIZZLE
+// // (à compter de GLM 9.8, c'est plutôt la variable ci-dessous qu'il faut définir)
+// #define GLM_FORCE_SWIZZLE
 #define GLM_FORCE_RADIANS 1
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -29,6 +32,7 @@ public:
 
    void LoadIdentity()
    { matr_.top() = glm::mat4(1.0); }
+   // Note: la librairie glm s’occupe de convertir les glm::vec3 en glm::vec4 pour la multiplication par glm::mat4 matr_.
    void Scale( GLfloat sx, GLfloat sy, GLfloat sz )
    { matr_.top() = glm::scale( matr_.top(), glm::vec3(sx,sy,sz) ); }
    void Translate( GLfloat tx, GLfloat ty, GLfloat tz )
@@ -2671,7 +2675,7 @@ public:
             AJOUTE( 0.0, 0.0, 0.0,  0.0, 0.0, -1.0,  0.5, 0.5 );
             for ( int i = slices; i >= 0; i-- )
             {
-               GLfloat a = ( i == slices ) ? 0.0 : i * da;
+               GLfloat a = ( i == slices ) ? 0.0 : i * -da;
                GLfloat x = sin( a );
                GLfloat y = cos( a );
                AJOUTE( base*x, base*y, 0.0,  0.0, 0.0, -1.0,  0.5*(1.0-x), 0.5*(1.0+y) );

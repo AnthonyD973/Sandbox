@@ -1,10 +1,6 @@
-// Prénoms, noms et matricule des membres de l'équipe:
-// - Prénom1 Emir Khaled Belhaddad (1825569)
-// - Prénom2 Anthony Dentinger (1718526)
-//#warning "Écrire les prénoms, noms et matricule des membres de l'équipe dans le fichier et commenter cette ligne"
-
 #include <iostream>
 #include "inf2705.h"
+#include "teapot_data.h"
 
 // variables pour l'utilisation des nuanceurs
 GLuint progBase;  // le programme de nuanceurs de base
@@ -19,31 +15,94 @@ MatricePipeline matrModel;
 MatricePipeline matrVisu;
 MatricePipeline matrProj;
 
-bool afficheAxes = false;      // indique si on affiche les axes
+// les formes
+FormeCube *cubeFil = NULL;
+FormeSphere *sphere = NULL;
+
+// variables pour définir le point de vue
+double thetaCam = 0.0;        // angle de rotation de la caméra (coord. sphériques)
+double phiCam = 0.0;          // angle de rotation de la caméra (coord. sphériques)
+double distCam = 0.0;         // distance (coord. sphériques)
+
+// variables d'état
+bool enPerspective = false;   // indique si on est en mode Perspective (true) ou Ortho (false)
+bool enmouvement = false;     // le modèle est en mouvement automatique ou non
+bool afficheAxes = true;      // indique si on affiche les axes
 GLenum modePolygone = GL_FILL; // comment afficher les polygones
 
-#define MONTRER_W 1
-#define FAIRE_TOURNER 1
+// partie 1:
+GLfloat anglePatte = 30.0;    // angle de rotation (en degrés) des pattes
+GLfloat angleBestiole = 0.0;  // angle de rotation (en degrés) de la bestiole
+GLfloat tailleCorps = 1.0;    // {largeur,hauteur,profondeur} du corps
+const GLfloat longPatte = 0.7;      // longueur des pattes
+const GLfloat largPatte = 0.2*longPatte; // largeur des pattes
+glm::vec3 positionBestiole( 0.0, 0.0, 2.0 ); // position courante de la bestiole
+double dimBoite = 10.0;       // la dimension de la boite
 
-#if MONTRER_W
-// pour un W
-float p1[3] = { -4.0,  2.0, -1.0 };
-float p2[3] = { -3.0, -3.0, -0.5 };
-float p3[3] = { -1.0, -3.0,  0.0 };
-float p4[3] = {  0.0,  0.0,  0.0 };
-float p5[3] = {  1.0, -3.0,  0.0 };
-float p6[3] = {  3.0, -3.0, -0.5 };
-float p7[3] = {  4.0,  2.0, -1.0 };
-#else
-// pour une flèche (Voir apprentissage supplémentaire)
-float p1[3] = { -3.0,  1.0,  0.0 };
-float p2[3] = { -3.0, -1.0,  0.0 };
-float p3[3] = {  0.0, -1.0,  0.0 };
-float p4[3] = { -0.5, -2.5,  0.0 };
-float p5[3] = {  3.0,  0.0,  0.0 };
-float p6[3] = { -0.5,  2.5,  0.0 };
-float p7[3] = {  0.0,  1.0,  0.0 };
-#endif
+// partie 2:
+GLuint vao[2] = {0,0};
+GLuint vboCube = 0;
+GLuint vboTheiere = 0;
+GLuint vboConnec = 0;
+
+bool modeLookAt = true;
+int modele = 1;                  // le modèle à afficher
+
+GLdouble thetaInit = 270., phiInit = 80., distInit = 20.;
+
+// vérifier que les angles ne débordent pas les valeurs permises
+void verifierAngles()
+{
+   if ( thetaCam > 360.0 )
+      thetaCam -= 360.0;
+   else if ( thetaCam < 0.0 )
+      thetaCam += 360.0;
+
+   const GLdouble MINPHI = 0.01, MAXPHI = 180.0 - 0.01;
+   if ( phiCam > MAXPHI )
+      phiCam = MAXPHI;
+   else if ( phiCam < MINPHI )
+      phiCam = MINPHI;
+
+   if ( anglePatte > 90.0 )
+      anglePatte = 90.0;
+   else if ( anglePatte < 0.0 )
+      anglePatte = 0.0;
+}
+
+void calculerPhysique( )
+{
+   if ( enmouvement )
+   {
+      static int sens[5] = { +1, +1, +1, +1, +1 };
+      // mouvement en X
+      if ( positionBestiole.x-0.5*tailleCorps <= -0.5*dimBoite ) sens[0] = +1.0;
+      else if ( positionBestiole.x+0.5*tailleCorps >= 0.5*dimBoite ) sens[0] = -1.0;
+      positionBestiole.x += 0.03 * sens[0];
+      // mouvement en Y
+      if ( positionBestiole.y-0.5*tailleCorps <= -0.5*dimBoite ) sens[1] = +1.0;
+      else if ( positionBestiole.y+0.5*tailleCorps >= 0.5*dimBoite ) sens[1] = -1.0;
+      positionBestiole.y += 0.02 * sens[1];
+      // mouvement en Z
+      if ( positionBestiole.z-0.5*tailleCorps <= 0.0 ) sens[2] = +1.0;
+      else if ( positionBestiole.z+0.5*tailleCorps >= dimBoite ) sens[2] = -1.0;
+      positionBestiole.z += 0.05 * sens[2];
+
+      // angle des pattes
+      if ( anglePatte <= 0.0 ) sens[3] = +1.0;
+      else if ( anglePatte >= 90.0 ) sens[3] = -1.0;
+      anglePatte += 1.0 * sens[3];
+
+      // taille du corps
+      if ( tailleCorps <= 0.5 ) sens[4] = +1.0;
+      else if ( tailleCorps >= 2.0 ) sens[4] = -1.0;
+      tailleCorps += 0.01 * sens[4];
+
+      // rotation du corps
+      if ( angleBestiole > 360.0 ) angleBestiole -= 360.0;
+      angleBestiole += 0.5;
+   }
+}
 
 void chargerNuanceurs()
 {
@@ -84,324 +143,242 @@ void chargerNuanceurs()
 
 void initialiser()
 {
+   // positionnement de la caméra: angle et distance de la caméra à la base du bras
+   thetaCam = thetaInit;
+   phiCam = phiInit;
+   distCam = distInit;
+
    // donner la couleur de fond
    glClearColor( 0.0, 0.0, 0.0, 1.0 );
 
-   // activer le mélange de couleur pour bien voir les possibles plis à l'affichage
-   glEnable( GL_BLEND );
-   glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+   // activer les etats openGL
+   glEnable( GL_DEPTH_TEST );
 
    // charger les nuanceurs
    chargerNuanceurs();
 
-   glPointSize( 3.0 );
-   glEnable(GL_DEPTH_TEST);
+   // allouer les objets OpenGL
+   glGenVertexArrays( 2, vao );
+
+   // initialiser le premier VAO (cube)
+   glBindVertexArray( vao[0] );
+
+   /*         +Y                    */
+   /*   3+-----------+2             */
+   /*    |\          |\             */
+   /*    | \         | \            */
+   /*    |  \        |  \           */
+   /*    |  7+-----------+6         */
+   /*    |   |       |   |          */
+   /*    |   |       |   |          */
+   /*   0+---|-------+1  |          */
+   /*     \  |        \  |     +X   */
+   /*      \ |         \ |          */
+   /*       \|          \|          */
+   /*       4+-----------+5         */
+   /*             +Z                */
+
+   // initialisation
+#define p0 -.5, -.5, -.5
+#define p1  .5, -.5, -.5
+#define p2  .5,  .5, -.5
+#define p3 -.5,  .5, -.5
+#define p4 -.5, -.5,  .5
+#define p5  .5, -.5,  .5
+#define p6  .5,  .5,  .5
+#define p7 -.5,  .5,  .5
+   GLfloat sommetsCube[] = { p0, p4,  p1, p5,  p2, p6,  p3, p7,
+                             p1, p2,  p0, p3,  p4, p7,  p5, p6 };
+#undef p0
+#undef p1
+#undef p2
+#undef p3
+#undef p4
+#undef p5
+#undef p6
+#undef p7
+
+   glGenBuffers( 1, &vboCube );
+   glBindBuffer( GL_ARRAY_BUFFER, vboCube );
+   glBufferData( GL_ARRAY_BUFFER, sizeof(sommetsCube), sommetsCube, GL_STATIC_DRAW );
+   // faire le lien avec l'attribut du nuanceur de sommets
+   glVertexAttribPointer( locVertex, 3, GL_FLOAT, GL_FALSE, 0, 0 );
+   glEnableVertexAttribArray(locVertex);
+
+   glBindVertexArray(0);
+
+   // initialiser le second VAO (théière)
+   glBindVertexArray( vao[1] );
+
+   // (partie 2) MODIFICATIONS ICI ...
+   // créer le VBO pour les sommets
+   // ...
+
+   // créer le VBO la connectivité
+   // ...
+
+   glBindVertexArray(0);
+
+   // créer quelques autres formes
+   glUseProgram( progBase );
+   cubeFil = new FormeCube( 1.0, false );
+   sphere = new FormeSphere( 0.25, 8, 8, false );
 }
 
 void conclure()
 {
+   glDeleteBuffers( 1, &vboCube );
+   glDeleteBuffers( 1, &vboTheiere );
+   glDeleteBuffers( 1, &vboConnec );
+   delete cubeFil;
+   delete sphere;
 }
 
-void dessinerAxes() {
-	glColor3f(1.0,1.0,1.0);
-	glBegin(GL_LINES);
-	glVertex3f(-12.0, 0.0,0.0);
-	glVertex3f( 12.0, 0.0,0.0);
-	glVertex3f( -4.0, 8.0,0.0);
-	glVertex3f( -4.0,-8.0,0.0);
-	glVertex3f(  4.0, 8.0,0.0);
-	glVertex3f(  4.0,-8.0,0.0);
-	glEnd();
+// (partie 1) Vous devez vous servir de cette fonction (sans la modifier) pour tracer tous les parallélépipèdes.
+void afficherCube( )
+{
+   // affiche un cube d'arête 1
+   glBindVertexArray( vao[0] );
+   glDrawArrays( GL_TRIANGLE_STRIP, 0, 8 );
+   glDrawArrays( GL_TRIANGLE_STRIP, 8, 8 );
+   glBindVertexArray(0);
+}
+void afficherSphere( )
+{
+   // affiche une sphere de rayon 0.25
+   sphere->afficher();
 }
 
-void dessinerQuads() {
-   glColor3f(1.0,0.0,0.0);
-   glBegin(GL_QUADS);
-#if MONTRER_W
-   glVertex3fv(p1);
-   glVertex3fv(p2);
-   glVertex3fv(p3);
-   glVertex3fv(p4);
-
-   glVertex3fv(p1);
-   glVertex3fv(p4);
-   glVertex3fv(p4);
-   glVertex3fv(p7);
-
-   glVertex3fv(p4);
-   glVertex3fv(p5);
-   glVertex3fv(p6);
-   glVertex3fv(p7);
-#else
-   glVertex3fv(p5);
-   glVertex3fv(p6);
-   glVertex3fv(p7);
-   glVertex3fv(p1);
-
-   glVertex3fv(p1);
-   glVertex3fv(p2);
-   glVertex3fv(p5);
-   glVertex3fv(p5);
-
-   glVertex3fv(p3);
-   glVertex3fv(p4);
-   glVertex3fv(p5);
-   glVertex3fv(p2);
-#endif
-   glEnd();
+// (partie 2) Vous modifierez cette fonction pour utiliser les VBOs
+void afficherTheiere()
+{
+   glBindVertexArray( vao[1] );
+   // (partie 2) MODIFICATIONS ICI ...
+   // vous pouvez utiliser temporairement cette fonction pour la première partie du TP, mais vous ferez mieux dans la seconde partie du TP
+   glBegin( GL_TRIANGLES );
+   for ( unsigned int i = 0 ; i < sizeof(gTeapotConnec)/sizeof(GLuint) ; i++ )
+      glVertex3fv( &(gTeapotSommets[3*gTeapotConnec[i]] ) );
+   glEnd( );
+   glBindVertexArray(0);
 }
 
-void dessinerQuadStrip() {
-   glColor3f(0.0,1.0,1.0);
-   glBegin(GL_QUAD_STRIP);
-#if MONTRER_W
-   glVertex3fv(p2);
-   glVertex3fv(p3);
-   glVertex3fv(p1);
-   glVertex3fv(p4);
-   
-   glVertex3fv(p7);
-   glVertex3fv(p4);
-   
-   glVertex3fv(p6);
-   glVertex3fv(p5);
-#else
-   glVertex3fv(p6);
-   glVertex3fv(p5);
-   glVertex3fv(p7);
-   glVertex3fv(p5);
+void afficherBestiole()
+{
+   matrModel.PushMatrix();{ // sauvegarder la tranformation courante
 
-   glVertex3fv(p1);
-   glVertex3fv(p5);
+      // (partie 1) MODIFICATIONS ICI ...
 
-   glVertex3fv(p2);
-   glVertex3fv(p5);
+      // donner la couleur du corps
+      glVertexAttrib3f( locColor, 0.0, 1.0, 0.0 ); // équivalent au glColor() de OpenGL 2.x
 
-   glVertex3fv(p3);
-   glVertex3fv(p5);
+      // ajouter une ou des transformations afin de tracer le corps à la position courante "positionBestiole[]",
+      // avec l'angle de rotation "angleBestiole" et de la taille "tailleCorps"
 
-   glVertex3fv(p4);
-   glVertex3fv(p5);
-#endif
-   glEnd();
+      // ...
+      matrModel.PushMatrix();{
+         // ...
+         // ==> Avant de tracer, on doit informer la carte graphique des changements faits à la matrice de modélisation
+         glUniformMatrix4fv( locmatrModel, 1, GL_FALSE, matrModel );
+
+         // afficher le corps à la position courante
+         switch ( modele )
+         {
+         default:
+         case 1: // une bestiole (très carrée et plutôt extraterrestre)
+            afficherCube();
+            matrModel.PushMatrix();{
+               // tracer la tête à la bonne position
+               matrModel.Translate( -2.0, 0.0, 0.0 ); // (bidon) À MODIFIER
+               glUniformMatrix4fv( locmatrModel, 1, GL_FALSE, matrModel );
+               // donner la couleur de la tête
+               glVertexAttrib3f( locColor, 1.0, 0.0, 1.0 ); // équivalent au glColor() de OpenGL 2.x
+               afficherSphere();
+            }matrModel.PopMatrix(); glUniformMatrix4fv( locmatrModel, 1, GL_FALSE, matrModel );
+            break;
+         case 2: // une théière
+            matrModel.PushMatrix();{
+               matrModel.Scale( 0.25, 0.25, 0.25 );
+               matrModel.Rotate( 90, 1, 0, 0 );
+               matrModel.Translate( 0, -2, 0 );
+               glUniformMatrix4fv( locmatrModel, 1, GL_FALSE, matrModel );
+               afficherTheiere();
+            }matrModel.PopMatrix(); glUniformMatrix4fv( locmatrModel, 1, GL_FALSE, matrModel );
+            break;
+         }
+      }matrModel.PopMatrix();
+
+      // donner la couleur des pattes
+      glVertexAttrib3f( locColor, 0.5, 0.5, 1.0 ); // équivalent au glColor() de OpenGL 2.x
+
+      // ajouter une ou des transformations afin de tracer les pattes de largeur "largPatte" et longueur "longPatte"
+      // ...
+      matrModel.Translate( 2.0, 0.0, 0.0 ); // (bidon) À MODIFIER
+
+      // ==> Avant de tracer, on doit informer la carte graphique des changements faits à la matrice de modélisation
+      glUniformMatrix4fv( locmatrModel, 1, GL_FALSE, matrModel );
+
+      // afficher les quatre pattes
+      // afficher la première patte
+      afficherCube();
+
+      // déplacer le repère, informer la carte graphique, tracer la seconde patte
+      // ...
+      // déplacer le repère, informer la carte graphique, tracer ...
+      // etc.
+
+   }matrModel.PopMatrix(); // revenir à la transformation sauvegardée
+   glUniformMatrix4fv( locmatrModel, 1, GL_FALSE, matrModel ); // informer ...
 }
 
-void dessinerTriangles() {
-   glColor3f(0.0,1.0,0.0);
-   glBegin(GL_TRIANGLES);
-#if MONTRER_W
-   glVertex3fv(p1);
-   glVertex3fv(p2);
-   glVertex3fv(p3);
-   
-   glVertex3fv(p1);
-   glVertex3fv(p3);
-   glVertex3fv(p4);
-   
-   glVertex3fv(p1);
-   glVertex3fv(p4);
-   glVertex3fv(p7);
-   
-   glVertex3fv(p4);
-   glVertex3fv(p5);
-   glVertex3fv(p7);
-   
-   glVertex3fv(p5);
-   glVertex3fv(p6);
-   glVertex3fv(p7);
-#else
-   glVertex3fv(p5);
-   glVertex3fv(p6);
-   glVertex3fv(p7);
-   
-   glVertex3fv(p5);
-   glVertex3fv(p7);
-   glVertex3fv(p3);
-   
-   glVertex3fv(p5);
-   glVertex3fv(p3);
-   glVertex3fv(p4);
-   
-   glVertex3fv(p3);
-   glVertex3fv(p7);
-   glVertex3fv(p1);
-   
-   glVertex3fv(p3);
-   glVertex3fv(p1);
-   glVertex3fv(p2);
-#endif
-   glEnd();
-}
-
-void dessinerTriangleStrip() {
-   glColor3f(1.0,0.0,1.0);
-   glBegin(GL_TRIANGLE_STRIP);
-#if MONTRER_W
-   glVertex3fv(p2);
-   glVertex3fv(p3);
-   glVertex3fv(p1);
-   
-   glVertex3fv(p4);
-   
-   glVertex3fv(p7);
-   
-   glVertex3fv(p5);
-   
-   glVertex3fv(p6);
-#else
-   glVertex3fv(p6);
-   glVertex3fv(p7);
-   glVertex3fv(p5);
-
-   glVertex3fv(p1);
-
-   glVertex3fv(p2);
-
-   glVertex3fv(p2);
-
-   glVertex3fv(p5);
-
-   glVertex3fv(p3);
-
-   glVertex3fv(p4);
-#endif
-   glEnd();
-}
-
-void dessinerPolygon() {
-   glColor3f(0.0,0.0,1.0);
-   glBegin(GL_POLYGON);
-#if MONTRER_W
-   glVertex3fv(p4);
-   glVertex3fv(p3);
-   glVertex3fv(p2);
-   glVertex3fv(p1);
-   glVertex3fv(p7);
-   glVertex3fv(p6);
-   glVertex3fv(p5);
-#else
-   glVertex3fv(p5);
-   glVertex3fv(p6);
-   glVertex3fv(p7);
-   glVertex3fv(p1);
-   glVertex3fv(p2);
-   glVertex3fv(p3);
-   glVertex3fv(p4);
-#endif
-   glEnd();
-}
-
-void dessinerTriangleFan() {
-   glColor3f(1.0,1.0,0.0);
-   glBegin(GL_TRIANGLE_FAN);
-#if MONTRER_W
-   glVertex3fv(p4);
-   glVertex3fv(p3);
-   glVertex3fv(p2);
-   glVertex3fv(p1);
-   glVertex3fv(p7);
-   glVertex3fv(p6);
-   glVertex3fv(p5);
-#else
-   glVertex3fv(p5);
-   glVertex3fv(p6);
-   glVertex3fv(p7);
-   glVertex3fv(p1);
-   glVertex3fv(p2);
-   glVertex3fv(p3);
-   glVertex3fv(p4);
-#endif
-   glEnd();
+void definirCamera()
+{
+   if ( modeLookAt )
+   {
+      matrVisu.LookAt( distCam*cos(glm::radians(thetaCam))*sin(glm::radians(phiCam)),
+                       distCam*sin(glm::radians(thetaCam))*sin(glm::radians(phiCam)),
+                       distCam*cos(glm::radians(phiCam)),
+                       0., 0., 5.,
+                       0., 0., 6. );
+   }
+   else
+   {
+      matrVisu.LoadIdentity( );
+      // matrVisu.Translate(), matrVisu.Rotate(), ...
+   }
 }
 
 void FenetreTP::afficherScene()
 {
-   glPolygonMode( GL_FRONT_AND_BACK, modePolygone );
-
    // effacer l'ecran et le tampon de profondeur
    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
-#if 1
-   // définir le pipeline graphique
-   // VERSION OpenGL 2.1
-   glMatrixMode( GL_PROJECTION );
-   glLoadIdentity();
-   glOrtho( -12, 12, -8, 8, -10, 10 ); // la taille de la fenêtre
-
-   glMatrixMode( GL_MODELVIEW );
-   glLoadIdentity();
-
-#else
-   // définir le pipeline graphique
-   // VERSION OpenGL 4.x
    glUseProgram( progBase );
 
    // définir le pipeline graphique
-   matrProj.Ortho( -12, 12, -8, 8, -10, 10 ); // la taille de la fenêtre
-   glUniformMatrix4fv( locmatrProj, 1, GL_FALSE, matrProj );
+   matrProj.Perspective( 45.0, (GLdouble) largeur_ / (GLdouble) hauteur_, 0.1, 300.0 );
+   glUniformMatrix4fv( locmatrProj, 1, GL_FALSE, matrProj ); // informer la carte graphique des changements faits à la matrice
 
-   matrVisu.LoadIdentity();
-   glUniformMatrix4fv( locmatrVisu, 1, GL_FALSE, matrVisu );
+   definirCamera();
+   glUniformMatrix4fv( locmatrVisu, 1, GL_FALSE, matrVisu ); // informer la carte graphique des changements faits à la matrice
 
    matrModel.LoadIdentity();
-   glUniformMatrix4fv( locmatrModel, 1, GL_FALSE, matrModel );
-
-   // Attention: Redéfinir "glTranslatef()" ici afin de ne rien changer ensuite
-#define glTranslatef( X, Y, Z )                                         \
-   {                                                                    \
-      matrModel.Translate( (X), (Y), (Z) );                             \
-      glUniformMatrix4fv( locmatrModel, 1, GL_FALSE, matrModel );       \
-   }
-
-#endif
+   glUniformMatrix4fv( locmatrModel, 1, GL_FALSE, matrModel ); // informer la carte graphique des changements faits à la matrice
 
    // afficher les axes
    if ( afficheAxes ) FenetreTP::afficherAxes();
 
-   // exemple: utiliser du rouge opaque
-   glColor3f( 1, 0, 0 );
-   // mieux encore: utiliser du rouge, mais avec un alpha de 0.8 plutôt que 1.0 pour bien voir les possibles plis à l'affichage
-   glColor4f( 1, 0, 0, 0.8 );
+   // tracer la boite englobante
+   glVertexAttrib3f( locColor, 1.0, 0.5, 0.5 ); // équivalent au glColor() de OpenGL 2.x
+   matrModel.PushMatrix();{
+      matrModel.Translate( 0, 0, 0.5*dimBoite );
+      matrModel.Scale( dimBoite, dimBoite, dimBoite );
+      glUniformMatrix4fv( locmatrModel, 1, GL_FALSE, matrModel );
+      cubeFil->afficher();
+   }matrModel.PopMatrix();
 
-   // la fenêtre varie en X de -12 à 12 et en Y de -8 à 8
-   glColor3f( 1, 1, 1 );
-
-   // à modifier  ...
-   dessinerAxes();
-   static GLfloat currOrient = 0.0;
-   currOrient += 1.0;
-   glTranslatef(-8.0, 4.0, 0.0);
-   glRotatef(currOrient,0.0,1.0,0.0);
-
-   dessinerQuads();
-   glRotatef(-currOrient,0.0,1.0,0.0);
-   glTranslatef(8.0, 0.0, 0.0);
-
-   glRotatef(currOrient,0.0,1.0,0.0);
-   dessinerTriangles();
-   glRotatef(-currOrient,0.0,1.0,0.0);
-   glTranslatef(8.0, 0.0, 0.0);
-
-   glRotatef(currOrient,0.0,1.0,0.0);
-   dessinerPolygon();
-   glRotatef(-currOrient,0.0,1.0,0.0);
-   glTranslatef(-16.0, -8.0, 0.0);
-
-   glRotatef(currOrient,0.0,1.0,0.0);
-   dessinerQuadStrip();
-   glRotatef(-currOrient,0.0,1.0,0.0);
-   glTranslatef(8.0, 0.0, 0.0);
-
-   glRotatef(currOrient,0.0,1.0,0.0);
-   dessinerTriangleStrip();
-   glRotatef(-currOrient,0.0,1.0,0.0);
-   glTranslatef(8.0, 0.0, 0.0);
-
-   glRotatef(currOrient,0.0,1.0,0.0);
-   dessinerTriangleFan();
-   glRotatef(-currOrient,0.0,1.0,0.0);
-   glTranslatef(-8.0, 4.0, 0.0);
-
+   // tracer la bestiole à pattes
+   glPolygonMode( GL_FRONT_AND_BACK, modePolygone );
+   afficherBestiole();
 }
 
 void FenetreTP::redimensionner( GLsizei w, GLsizei h )
@@ -428,8 +405,94 @@ void FenetreTP::clavier( TP_touche touche )
       std::cout << "// Recharger nuanceurs" << std::endl;
       break;
 
+   case TP_i: // Réinitiliaser le point de vue
+      phiCam = phiInit; thetaCam = thetaInit; distCam = distInit;
+      break;
+   // case TP_l: // Basculer l'utilisation de LookAt ou de Translate+Rotate pour placer la caméra
+   //    modeLookAt = !modeLookAt;
+   //    std::cout << " modeLookAt=" << modeLookAt << std::endl;
+   //    break;
    case TP_g: // Permuter l'affichage en fil de fer ou plein
       modePolygone = ( modePolygone == GL_FILL ) ? GL_LINE : GL_FILL;
+      break;
+
+   case TP_m: // Choisir le modèle affiché: cube, théière
+      if ( ++modele > 2 ) modele = 1;
+      std::cout << " modele=" << modele << std::endl;
+      break;
+
+   case TP_SOULIGNE:
+   case TP_MOINS: // Reculer la caméra
+      distCam += 0.1;
+      break;
+   case TP_PLUS: // Avancer la caméra
+   case TP_EGAL:
+      if ( distCam > 1.0 )
+         distCam -= 0.1;
+      break;
+
+   case TP_DROITE: // Déplacer la bestiole vers +X
+      if ( positionBestiole.x+0.5*tailleCorps < 0.5*dimBoite ) positionBestiole.x += 0.1;
+      break;
+   case TP_GAUCHE: // Déplacer la bestiole vers -X
+      if ( positionBestiole.x-0.5*tailleCorps > -0.5*dimBoite ) positionBestiole.x -= 0.1;
+      break;
+   case TP_PAGEPREC: // Déplacer la bestiole vers +Y
+      if ( positionBestiole.y+0.5*tailleCorps < 0.5*dimBoite ) positionBestiole.y += 0.1;
+      break;
+   case TP_PAGESUIV: // Déplacer la bestiole vers -Y
+      if ( positionBestiole.y-0.5*tailleCorps > -0.5*dimBoite ) positionBestiole.y -= 0.1;
+      break;
+   case TP_BAS: // Déplacer la bestiole vers +Z
+      if ( positionBestiole.z+0.5*tailleCorps < dimBoite ) positionBestiole.z += 0.1;
+      break;
+   case TP_HAUT: // Déplacer la bestiole vers -Z
+      if ( positionBestiole.z-0.5*tailleCorps > 0.0 ) positionBestiole.z -= 0.1;
+      break;
+
+   case TP_FIN: // Diminuer la taille du corps
+      if ( tailleCorps > 0.5 ) tailleCorps -= 0.1;
+      verifierAngles();
+      std::cout << " tailleCorps=" << tailleCorps << " angleBestiole=" << angleBestiole << " anglePatte=" << anglePatte << std::endl;
+      break;
+   case TP_DEBUT: // Augmenter la taille du corps
+      tailleCorps += 0.1;
+      verifierAngles();
+      std::cout << " tailleCorps=" << tailleCorps << " angleBestiole=" << angleBestiole << " anglePatte=" << anglePatte << std::endl;
+      break;
+
+   case TP_VIRGULE: // Tourner la bestiole dans le sens anti-horaire
+      angleBestiole -= 2.0;
+      std::cout << " tailleCorps=" << tailleCorps << " angleBestiole=" << angleBestiole << " anglePatte=" << anglePatte << std::endl;
+      break;
+   case TP_POINT: // Tourner la bestiole dans le sens horaire
+      angleBestiole += 2.0;
+      std::cout << " tailleCorps=" << tailleCorps << " angleBestiole=" << angleBestiole << " anglePatte=" << anglePatte << std::endl;
+      break;
+
+   case TP_CROCHETGAUCHE: // Diminuer l'angle des pattes
+      anglePatte -= 2.0;
+      verifierAngles();
+      std::cout << " tailleCorps=" << tailleCorps << " angleBestiole=" << angleBestiole << " anglePatte=" << anglePatte << std::endl;
+      break;
+   case TP_CROCHETDROIT: // Augmenter l'angle des pattes
+      anglePatte += 2.0;
+      verifierAngles();
+      std::cout << " tailleCorps=" << tailleCorps << " angleBestiole=" << angleBestiole << " anglePatte=" << anglePatte << std::endl;
+      break;
+
+   case TP_b: // Incrémenter la dimension de la boite
+      dimBoite += 0.05;
+      std::cout << " dimBoite=" << dimBoite << std::endl;
+      break;
+   case TP_h: // Décrémenter la dimension de la boite
+      dimBoite -= 0.05;
+      if ( dimBoite < 1.0 ) dimBoite = 1.0;
+      std::cout << " dimBoite=" << dimBoite << std::endl;
+      break;
+
+   case TP_ESPACE: // Mettre en pause ou reprendre l'animation
+      enmouvement = !enmouvement;
       break;
 
    default:
@@ -439,16 +502,41 @@ void FenetreTP::clavier( TP_touche touche )
    }
 }
 
+int dernierX, dernierY;
+static bool pressed = false;
 void FenetreTP::sourisClic( int button, int state, int x, int y )
 {
+   // button est un parmi { TP_BOUTON_GAUCHE, TP_BOUTON_MILIEU, TP_BOUTON_DROIT }
+   // state  est un parmi { TP_PRESSE, DL_RELEASED }
+   pressed = ( state == TP_PRESSE );
+   switch ( button )
+   {
+   case TP_BOUTON_GAUCHE: // Déplacer (modifier angles) la caméra
+      dernierX = x;
+      dernierY = y;
+      break;
+   }
 }
 
 void FenetreTP::sourisWheel( int x, int y )
 {
+   //const int sens = +1;
 }
 
 void FenetreTP::sourisMouvement( int x, int y )
 {
+   if ( pressed )
+   {
+      int dx = x - dernierX;
+      int dy = y - dernierY;
+      thetaCam -= dx / 3.0;
+      phiCam   -= dy / 3.0;
+
+      dernierX = x;
+      dernierY = y;
+
+      verifierAngles();
+   }
 }
 
 int main( int argc, char *argv[] )
@@ -462,6 +550,9 @@ int main( int argc, char *argv[] )
    bool boucler = true;
    while ( boucler )
    {
+      // mettre à jour la physique
+      calculerPhysique( );
+
       // affichage
       fenetre.afficherScene();
       fenetre.swap();
