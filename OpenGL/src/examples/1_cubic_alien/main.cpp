@@ -212,10 +212,17 @@ void initialiser()
 
    // (partie 2) MODIFICATIONS ICI ...
    // créer le VBO pour les sommets
-   // ...
+   glGenBuffers(1, &vboTheiere);
+   glBindBuffer(GL_ARRAY_BUFFER, vboTheiere);
+   glBufferData(GL_ARRAY_BUFFER, sizeof(gTeapotSommets), gTeapotSommets, GL_STATIC_DRAW);
+   glVertexAttribPointer(locVertex, 3, GL_FLOAT, GL_FALSE, 0, 0);
+   glEnableVertexAttribArray(locVertex);
+   
 
    // créer le VBO la connectivité
-   // ...
+   glGenBuffers(1, &vboConnec);
+   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vboConnec);
+   glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(gTeapotConnec), gTeapotConnec, GL_STATIC_DRAW);
 
    glBindVertexArray(0);
 
@@ -253,12 +260,7 @@ void afficherSphere( )
 void afficherTheiere()
 {
    glBindVertexArray( vao[1] );
-   // (partie 2) MODIFICATIONS ICI ...
-   // vous pouvez utiliser temporairement cette fonction pour la première partie du TP, mais vous ferez mieux dans la seconde partie du TP
-   glBegin( GL_TRIANGLES );
-   for ( unsigned int i = 0 ; i < sizeof(gTeapotConnec)/sizeof(GLuint) ; i++ )
-      glVertex3fv( &(gTeapotSommets[3*gTeapotConnec[i]] ) );
-   glEnd( );
+   glDrawElements(GL_TRIANGLES, sizeof(gTeapotConnec), GL_UNSIGNED_INT, 0);
    glBindVertexArray(0);
 }
 
