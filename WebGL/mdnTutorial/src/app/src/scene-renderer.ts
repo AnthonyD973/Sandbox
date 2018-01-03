@@ -6,7 +6,7 @@ export class SceneRenderer {
 
     private static readonly INSTANCE = new SceneRenderer();
 
-    public readonly gl;
+    public readonly gl: WebGLRenderingContext;
 
     private isRendering = false;
     private animationFrameRequestId = -1;
