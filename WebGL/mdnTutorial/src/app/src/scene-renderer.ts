@@ -14,10 +14,10 @@ export class SceneRenderer {
     protected constructor() {
         const CANVAS: HTMLCanvasElement = document.querySelector("#myCanvas");
         this.gl = CANVAS.getContext("webgl");
-        this.setupGl();
+        this.setupWebGl();
     }
 
-    protected setupGl(): void {
+    protected setupWebGl(): void {
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
     }
 
