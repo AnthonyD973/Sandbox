@@ -1,6 +1,6 @@
 import { SceneRenderer } from "../../scene-renderer";
 
-export class VertexShader {
+export class BasicVertexShader {
 
     public static readonly SOURCE = `
         attribute vec4 vertex;
