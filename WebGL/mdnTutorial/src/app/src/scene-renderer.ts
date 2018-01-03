@@ -6,9 +6,14 @@ export class SceneRenderer {
 
     private static readonly INSTANCE = new SceneRenderer();
 
+    public readonly gl;
+
     private isRendering = false;
 
-    protected constructor() { }
+    protected constructor() {
+        const CANVAS: HTMLCanvasElement = document.querySelector("#myCanvas");
+        this.gl = CANVAS.getContext("webgl");
+    }
 
     public startRendering(): void {
         if (!this.isRendering) {
