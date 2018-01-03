@@ -3,7 +3,7 @@
 // =========================
 
 function main() {
-    const canvas = document.querySelector("#myCanvas");
+    const canvas: HTMLCanvasElement = document.querySelector("#myCanvas");
     const gl = canvas.getContext("webgl");
 
     if (!gl) {
