@@ -1,3 +1,3 @@
-export class AbstractFragmentShader {
+export abstract class AbstractFragmentShader {
 
 }
