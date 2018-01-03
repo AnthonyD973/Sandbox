@@ -1,4 +1,4 @@
-import { SceneRenderer } from "../scene-renderer";
+import { SceneRenderer } from "../../scene-renderer";
 
 export class VertexShader {
 
