@@ -5,7 +5,9 @@ cmake_minimum_required(VERSION 3.5.0)
 #                        GENERAL OPTIONS                        #
 #################################################################
 
-# None
+if (POLICY CMP0004)
+    cmake_policy(SET CMP0004 OLD)
+endif()
 
 #################################################################
 #                         COMPILE OPTIONS                       #
