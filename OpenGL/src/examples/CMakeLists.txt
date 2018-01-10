@@ -1,1 +1,1 @@
-add_subdirectory("0_cubic_alien")
+add_subdirectory("1_cubic_alien")
