@@ -12,7 +12,7 @@ export class SceneRenderer {
     private animationFrameRequestId = -1;
 
     protected constructor() {
-        const CANVAS: HTMLCanvasElement = document.querySelector("#myCanvas");
+        const CANVAS: HTMLCanvasElement = document.querySelector("#myCanvas") as HTMLCanvasElement;
         this.gl = CANVAS.getContext("webgl");
         this.setupWebGl();
     }
