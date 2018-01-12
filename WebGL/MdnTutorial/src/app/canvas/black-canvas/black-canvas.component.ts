@@ -12,7 +12,6 @@ export class BlackCanvasComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
-        console.log(this.myCanvas);
         const gl = this.myCanvas.nativeElement.getContext('webgl');
 
         if (!gl) {
