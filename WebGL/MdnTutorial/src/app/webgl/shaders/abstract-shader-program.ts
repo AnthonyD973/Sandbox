@@ -19,11 +19,11 @@ export abstract class AbstractShaderProgram {
             attributeNames: string[],
             uniformNames: string[]
         ) {
-        this.initialize(gl, vertexShader, fragmentShader);
+        this.createProgram(gl, vertexShader, fragmentShader);
         this.createShaderData(gl, attributeNames, uniformNames);
     }
 
-    private initialize(gl: WebGLRenderingContext, vertexShader: AbstractVertexShader, fragmentShader: AbstractFragmentShader): void {
+    private createProgram(gl: WebGLRenderingContext, vertexShader: AbstractVertexShader, fragmentShader: AbstractFragmentShader): void {
         this.program = gl.createProgram();
         gl.attachShader(this.program, vertexShader);
         gl.attachShader(this.program, fragmentShader);
