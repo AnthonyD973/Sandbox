@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { BlackCanvasComponent } from './webgl/canvas/black-canvas/black-canvas.component';
+import { BlackCanvasComponent } from './webgl/examples/black-canvas/black-canvas.component';
 
 
 @NgModule({
