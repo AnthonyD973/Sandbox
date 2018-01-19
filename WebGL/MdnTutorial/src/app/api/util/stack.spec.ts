@@ -42,4 +42,16 @@ describe('Stack', () => {
         });
     });
 
+    describe('top', () => {
+        it('should return the stack-top value.', () => {
+            stack.push(42);
+            expect(stack.top()).toEqual(42);
+            expect(stack.length).toEqual(1);
+        });
+
+        it('should throw an error if the stack is empty', () => {
+            expect(() => stack.top()).toThrow();
+        });
+    });
+
 });
