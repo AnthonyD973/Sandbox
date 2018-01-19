@@ -16,7 +16,12 @@ export class Stack<T> {
     }
 
     public top(): T {
-        return null;
+        if (this.data.length > 0) {
+            return this.data[this.data.length - 1];
+        }
+        else {
+            throw new Error(`Cannot fetch top: Stack empty`);
+        }
     }
 
     public get length(): number {
