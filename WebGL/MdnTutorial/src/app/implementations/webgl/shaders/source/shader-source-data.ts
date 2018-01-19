@@ -1,5 +1,5 @@
-import { AbstractShaderInput } from './abstract-shader-input';
-import { AbstractShaderOutput } from './abstract-shader-output';
+import { AbstractShaderInput } from '../../../../api/webgl/shaders/source/abstract-shader-input';
+import { AbstractShaderOutput } from '../../../../api/webgl/shaders/source/abstract-shader-output';
 
 export interface ShaderSourceData {
 

@@ -1,5 +1,5 @@
 import { SceneRenderer } from '../../../../scene-renderer';
-import { AbstractVertexShader } from './abstract-vertex-shader';
+import { AbstractVertexShader } from '../../../../api/webgl/shaders/vertex-shaders/abstract-vertex-shader';
 
 export class BasicVertexShader extends AbstractVertexShader {
 
