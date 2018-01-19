@@ -1,4 +1,4 @@
-import { SceneRenderer } from '../../../scene-renderer';
+import { SceneRenderer } from '../../../../scene-renderer';
 import { AbstractVertexShader } from './abstract-vertex-shader';
 
 export class BasicVertexShader extends AbstractVertexShader {
