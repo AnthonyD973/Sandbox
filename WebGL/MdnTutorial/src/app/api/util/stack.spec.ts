@@ -20,6 +20,26 @@ describe('Stack', () => {
 
     it('should be created', () => {
         expect(stack).toBeTruthy();
+        expect(stack.length).toEqual(0);
+    });
+
+    describe('push', () => {
+        it('should push values on the stack', () => {
+            stack.push(0);
+            expect(stack.length).toEqual(1);
+        });
+    });
+
+    describe('pop', () => {
+        it('should pop values from the stack', () => {
+            stack.push(0);
+            expect(stack.pop()).toEqual(0);
+            expect(stack.length).toEqual(0);
+        });
+
+        it('should throw an error if the stack is empty', () => {
+            expect(() => stack.pop()).toThrow();
+        });
     });
 
 });
