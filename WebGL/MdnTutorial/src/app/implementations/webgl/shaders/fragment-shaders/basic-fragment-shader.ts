@@ -1,4 +1,4 @@
-import { AbstractFragmentShader } from '../../../../api/webgl/shaders/fragment-shaders/abstract-fragment-shader';
+import { AbstractFragmentShader } from '../../../../api/shaders/fragment-shaders/abstract-fragment-shader';
 
 export class BasicFragmentShader extends AbstractFragmentShader {
 
