@@ -15,6 +15,10 @@ export class Stack<T> {
         }
     }
 
+    public top(): T {
+        return null;
+    }
+
     public get length(): number {
         return this.data.length;
     }
