@@ -1,6 +1,6 @@
-import { AbstractFragmentShader } from '../../../../api/shaders/fragment-shaders/fragment-shader';
+import { FragmentShader } from '../../../../api/shaders/fragment-shaders/fragment-shader';
 
-export class BasicFragmentShader extends AbstractFragmentShader {
+export class BasicFragmentShader extends FragmentShader {
 
     public static readonly SOURCE = `
         void main() {
