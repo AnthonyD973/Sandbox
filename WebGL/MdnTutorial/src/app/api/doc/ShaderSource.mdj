@@ -1389,7 +1389,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+while(condExpr: ShaderValuedExpression): ShaderWhile",
+											"text": "+while(condExpr: ShaderBooleanValue): ShaderWhile",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -18516,7 +18516,7 @@
 									"isStatic": false,
 									"isLeaf": false,
 									"type": {
-										"$ref": "AAAAAAFhEGPXyKFataM="
+										"$ref": "AAAAAAFhGZjarm9EV/s="
 									},
 									"isReadOnly": false,
 									"isOrdered": false,
