@@ -7,14 +7,14 @@ import { BlackCanvasComponent } from './implementations/webgl/examples/black-can
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    BlackCanvasComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        BlackCanvasComponent
+    ],
+    imports: [
+        BrowserModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
