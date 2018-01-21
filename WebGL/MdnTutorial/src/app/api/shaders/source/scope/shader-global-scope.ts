@@ -1,6 +1,6 @@
 import { ShaderScope } from './shader-scope';
-import { ShaderInput } from './shader-input';
-import { ShaderOutput } from './shader-output';
+import { ShaderInput } from '../expression/values/shader-input';
+import { ShaderOutput } from '../expression/values/shader-output';
 import { ShaderFunction } from './shader-function';
 
 export abstract class ShaderGlobalScope extends ShaderScope {
