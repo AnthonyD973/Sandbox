@@ -1,19 +1,12 @@
 export class SceneRenderer {
 
-    private static readonly INSTANCE = new SceneRenderer();
-
     public readonly gl: WebGLRenderingContext;
 
     private isRendering = false;
     private animationFrameRequestId = -1;
 
-    public static getInstance(): SceneRenderer {
-        return SceneRenderer.INSTANCE;
-    }
-
-    protected constructor() {
-        const CANVAS: HTMLCanvasElement = document.querySelector('#myCanvas') as HTMLCanvasElement;
-        this.gl = CANVAS.getContext('webgl');
+    constructor(gl: WebGLRenderingContext) {
+        this.gl = gl;
         this.setupWebGl();
     }
 
