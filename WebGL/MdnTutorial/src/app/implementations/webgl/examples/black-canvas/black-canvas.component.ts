@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { SceneRenderer } from '../../../../scene-renderer';
 
 @Component({
     selector: 'app-black-canvas',
@@ -9,18 +10,15 @@ export class BlackCanvasComponent implements OnInit {
 
     @ViewChild('myCanvas') public myCanvas: ElementRef;
 
+    private sceneRenderer: SceneRenderer;
+
     constructor() { }
 
     public ngOnInit() {
         const gl: WebGLRenderingContext = this.myCanvas.nativeElement.getContext('webgl');
 
-        if (!gl) {
-            alert('WebGL not supported on your browser.');
-            return;
-        }
-
-        gl.clearColor(0.0, 0.0, 0.0, 1.0);
-        gl.clear(gl.COLOR_BUFFER_BIT);
+        this.sceneRenderer = new SceneRenderer(gl);
+        this.sceneRenderer.startRendering();
     }
 
 }
