@@ -7,11 +7,11 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 })
 export class BlackCanvasComponent implements OnInit {
 
-    @ViewChild('myCanvas') myCanvas: ElementRef;
+    @ViewChild('myCanvas') public myCanvas: ElementRef;
 
     constructor() { }
 
-    ngOnInit() {
+    public ngOnInit() {
         const gl: WebGLRenderingContext = this.myCanvas.nativeElement.getContext('webgl');
 
         if (!gl) {
