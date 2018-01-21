@@ -1,12 +1,12 @@
-import { AbstractVertexShader } from './vertex-shaders/abstract-vertex-shader';
-import { AbstractFragmentShader } from './fragment-shaders/abstract-fragment-shader';
+import { VertexShader } from './vertex-shaders/vertex-shader';
+import { FragmentShader } from './fragment-shaders/fragment-shader';
 
 interface Locations {
     attributes: {};
     uniforms: {};
 }
 
-export abstract class AbstractShaderProgram {
+export abstract class ShaderProgram {
 
     private program: WebGLProgram;
 
@@ -14,8 +14,8 @@ export abstract class AbstractShaderProgram {
 
     constructor(
             gl: WebGLRenderingContext,
-            vertexShader: AbstractVertexShader,
-            fragmentShader: AbstractFragmentShader,
+            vertexShader: VertexShader,
+            fragmentShader: FragmentShader,
             attributeNames: string[],
             uniformNames: string[]
         ) {
@@ -23,7 +23,7 @@ export abstract class AbstractShaderProgram {
         this.createShaderData(gl, attributeNames, uniformNames);
     }
 
-    private createProgram(gl: WebGLRenderingContext, vertexShader: AbstractVertexShader, fragmentShader: AbstractFragmentShader): void {
+    private createProgram(gl: WebGLRenderingContext, vertexShader: VertexShader, fragmentShader: FragmentShader): void {
         this.program = gl.createProgram();
         gl.attachShader(this.program, vertexShader);
         gl.attachShader(this.program, fragmentShader);

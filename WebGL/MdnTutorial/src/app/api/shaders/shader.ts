@@ -1,4 +1,4 @@
-export abstract class AbstractShader {
+export abstract class Shader {
 
     private shader: WebGLShader;
 

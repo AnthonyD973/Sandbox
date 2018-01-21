@@ -1,7 +1,7 @@
 import { SceneRenderer } from '../../../../scene-renderer';
-import { AbstractVertexShader } from '../../../../api/shaders/vertex-shaders/abstract-vertex-shader';
+import { VertexShader } from '../../../../api/shaders/vertex-shaders/vertex-shader';
 
-export class BasicVertexShader extends AbstractVertexShader {
+export class BasicVertexShader extends VertexShader {
 
     public static readonly SOURCE = `
         attribute vec4 vertex;

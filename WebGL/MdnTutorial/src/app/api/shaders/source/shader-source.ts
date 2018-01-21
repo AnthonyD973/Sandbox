@@ -5,7 +5,7 @@ export interface RawShaderSourceData {
 
 }
 
-export abstract class AbstractShaderSource {
+export abstract class ShaderSource {
 
     /**
      * Get the shader's internal source. This should be used for debugging only.
