@@ -1,5 +1,5 @@
-import { ShaderValuedExpression } from '../shader-valued-expression';
+import { ShaderExpression } from '../shader-expression';
 
-export abstract class ShaderFunctionCall extends ShaderValuedExpression {
+export abstract class ShaderFunctionCall extends ShaderExpression {
 
 }
