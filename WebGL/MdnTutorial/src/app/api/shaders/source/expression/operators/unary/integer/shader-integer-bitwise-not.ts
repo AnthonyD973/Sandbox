@@ -1,5 +1,5 @@
 import { ShaderUnaryOperator } from '../../shader-unary-operator';
-import { ShaderIntegerExpression } from '../../../types/shader-integer-expression';
+import { ShaderIntegerExpression } from '../../../generic/shader-integer-expression';
 import { ShaderIntegerUnaryOperatorDefault } from './shader-integer-unary-operator-default';
 
 export abstract class ShaderIntegerBitwiseNot extends ShaderIntegerExpression implements ShaderUnaryOperator {
