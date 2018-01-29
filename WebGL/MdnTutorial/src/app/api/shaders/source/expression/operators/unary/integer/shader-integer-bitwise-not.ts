@@ -4,8 +4,6 @@ import { ShaderIntegerUnaryOperatorDefault } from './shader-integer-unary-operat
 
 export abstract class ShaderIntegerBitwiseNot extends ShaderIntegerExpression implements ShaderUnaryOperator {
 
-    private defaultImplementor = new ShaderIntegerUnaryOperatorDefault();
-
     public abstract parse(): any;
 
 }

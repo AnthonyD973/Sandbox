@@ -4,8 +4,6 @@ import { ShaderVectorUnaryOperatorDefault } from './shader-vector-unary-operator
 
 export abstract class ShaderVectorLogicalNot extends ShaderVectorExpression implements ShaderUnaryOperator {
 
-    private defaultImplementor = new ShaderVectorUnaryOperatorDefault();
-
     public abstract parse(): any;
 
 }

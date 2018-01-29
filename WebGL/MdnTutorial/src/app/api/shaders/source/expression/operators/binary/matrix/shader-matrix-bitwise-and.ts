@@ -4,8 +4,6 @@ import { ShaderMatrixBinaryOperatorDefault } from './shader-matrix-binary-operat
 
 export abstract class ShaderMatrixBitwiseAnd extends ShaderMatrixExpression implements ShaderBinaryOperator {
 
-    private defaultImplementor = new ShaderMatrixBinaryOperatorDefault();
-
     public abstract parse(): any;
 
 }

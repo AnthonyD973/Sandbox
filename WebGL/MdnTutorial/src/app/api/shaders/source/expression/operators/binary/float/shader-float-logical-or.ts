@@ -4,8 +4,6 @@ import { ShaderFloatBinaryOperatorDefault } from './shader-float-binary-operator
 
 export abstract class ShaderFloatLogicalOr extends ShaderFloatExpression implements ShaderBinaryOperator {
 
-    private defaultImplementor = new ShaderFloatBinaryOperatorDefault();
-
     public abstract parse(): any;
 
 }

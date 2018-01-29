@@ -4,8 +4,6 @@ import { ShaderBooleanUnaryOperatorDefault } from './shader-boolean-unary-operat
 
 export abstract class ShaderBooleanBitwiseNot extends ShaderBooleanExpression implements ShaderUnaryOperator {
 
-    private defaultImplementor = new ShaderBooleanUnaryOperatorDefault();
-
     public abstract parse(): any;
 
 }

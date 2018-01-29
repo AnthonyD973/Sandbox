@@ -43,15 +43,13 @@ function createDefaultImplementor() {
     echo "import { ${superclassName} } from '../shader-${BINARY_OR_UNARY}-operator-default';" >> "$file"
     echo "import { ShaderExpression } from '../../../shader-expression';" >> "$file"
     echo "" >> "$file"
-    echo "export class ${classname} implements ${superclassName} {" >> "$file"
+    echo "export abstract class ${classname} implements ${superclassName} {" >> "$file"
     echo "" >> "$file"
     for method in $METHODS
     do
-        echo "    public ${method}(rhs: ShaderExpression): boolean {" >> "$file"
-        echo "        return false;" >> "$file"
-        echo "    }" >> "$file"
-        echo "" >> "$file"
+        echo "    public abstract ${method}(rhs: ShaderExpression): boolean;" >> "$file"
     done 
+    echo "" >> "$file"
     echo "}" >> "$file"
 
     # Echo class name
@@ -80,8 +78,6 @@ function createClasses() {
         echo "import { ${implementorClassName} } from './shader-"$(toDashCase "${TYPE}")"-${BINARY_OR_UNARY}-operator-default';" >> $file;
         echo "" >> $file
         echo "export abstract class ${classname} extends ${superclassName} implements Shader${binaryOrUnaryUcc}Operator {" >> $file
-        echo "" >> $file
-        echo "    private defaultImplementor = new ${implementorClassName}();" >> $file
         echo "" >> $file
         echo "    public abstract parse(): any;" >> $file
         echo "" >> $file

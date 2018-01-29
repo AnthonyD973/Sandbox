@@ -4,8 +4,6 @@ import { ShaderVectorBinaryOperatorDefault } from './shader-vector-binary-operat
 
 export abstract class ShaderVectorMultiply extends ShaderVectorExpression implements ShaderBinaryOperator {
 
-    private defaultImplementor = new ShaderVectorBinaryOperatorDefault();
-
     public abstract parse(): any;
 
 }

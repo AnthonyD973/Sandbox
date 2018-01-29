@@ -4,8 +4,6 @@ import { ShaderBooleanBinaryOperatorDefault } from './shader-boolean-binary-oper
 
 export abstract class ShaderBooleanSubtract extends ShaderBooleanExpression implements ShaderBinaryOperator {
 
-    private defaultImplementor = new ShaderBooleanBinaryOperatorDefault();
-
     public abstract parse(): any;
 
 }

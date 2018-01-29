@@ -4,8 +4,6 @@ import { ShaderMatrixUnaryOperatorDefault } from './shader-matrix-unary-operator
 
 export abstract class ShaderMatrixNegate extends ShaderMatrixExpression implements ShaderUnaryOperator {
 
-    private defaultImplementor = new ShaderMatrixUnaryOperatorDefault();
-
     public abstract parse(): any;
 
 }

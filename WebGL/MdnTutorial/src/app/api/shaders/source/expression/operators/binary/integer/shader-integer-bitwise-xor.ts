@@ -4,8 +4,6 @@ import { ShaderIntegerBinaryOperatorDefault } from './shader-integer-binary-oper
 
 export abstract class ShaderIntegerBitwiseXor extends ShaderIntegerExpression implements ShaderBinaryOperator {
 
-    private defaultImplementor = new ShaderIntegerBinaryOperatorDefault();
-
     public abstract parse(): any;
 
 }

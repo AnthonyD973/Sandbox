@@ -4,8 +4,6 @@ import { ShaderFloatUnaryOperatorDefault } from './shader-float-unary-operator-d
 
 export abstract class ShaderFloatNegate extends ShaderFloatExpression implements ShaderUnaryOperator {
 
-    private defaultImplementor = new ShaderFloatUnaryOperatorDefault();
-
     public abstract parse(): any;
 
 }
