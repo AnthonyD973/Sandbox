@@ -1,6 +1,6 @@
 import { ShaderExpression } from '../../shader-expression';
 
-export interface ShaderUnaryOperationDefault {
+export interface ShaderUnaryOperatorDefault {
 
     canSetIntegerRhsTo(rhs: ShaderExpression): boolean;
     canSetFloatRhsTo(rhs: ShaderExpression): boolean;
