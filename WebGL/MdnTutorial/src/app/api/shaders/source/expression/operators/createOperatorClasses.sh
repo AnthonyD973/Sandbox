@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 
+########################################
+#               FUNCTIONS              #
+########################################
+
 function toUpperCamelCase() {
     # Assume ${1} is in lowerCamelCase
     echo "$(echo ${1:0:1} | awk '{print toupper($0)}')${1:1:999999}"
 }
+
+#################
 
 function toDashCase() {
     # Assume ${1} is in lowerCamelCase
@@ -21,6 +27,8 @@ function toDashCase() {
         print(result);
     }'
 }
+
+#################
 
 function createDefaultImplementor() {
     BINARY_OR_UNARY="${1}"
@@ -50,6 +58,38 @@ function createDefaultImplementor() {
     echo $classname
 }
 
+#################
+
+function createClasses() {
+    BINARY_OR_UNARY="${1}"
+    TYPE="${2}"
+    OPERATORS="${3}"
+
+    binaryOrUnaryUcc=$(toUpperCamelCase ${BINARY_OR_UNARY})
+
+    for op in $OPERATORS
+    do
+        file="shader-"$(toDashCase "${TYPE}")"-"$(toDashCase "${op}")".ts"
+        typeUcc=$(toUpperCamelCase "${TYPE}")
+        classname="Shader${typeUcc}"$(toUpperCamelCase "${op}")
+        superclassName="Shader${typeUcc}Expression"
+
+        >$file
+        echo "import { Shader${binaryOrUnaryUcc}Operator } from '../../shader-${BINARY_OR_UNARY}-operator';" >> $file
+        echo "import { ${superclassName} } from '../../../types/shader-${TYPE}-expression';" >> $file
+        echo "import { ${implementorClassName} } from './shader-"$(toDashCase "${TYPE}")"-${BINARY_OR_UNARY}-operator-default';" >> $file;
+        echo "" >> $file
+        echo "export abstract class ${classname} extends ${superclassName} implements Shader${binaryOrUnaryUcc}Operator {" >> $file
+        echo "" >> $file
+        echo "    private defaultImplementor = new ${implementorClassName}();" >> $file
+        echo "" >> $file
+        echo "    public abstract parse(): any;" >> $file
+        echo "" >> $file
+        echo "}" >> $file
+    done
+
+}
+
 ########################################
 #                SCRIPT                #
 ########################################
@@ -73,26 +113,7 @@ do
     BINARY_METHODS="canSetIntegerRhsTo canSetFloatRhsTo canSetBooleanRhsTo canSetVectorRhsTo canSetMatrixRhsTo"
     implementorClassName=$(createDefaultImplementor binary $type "$BINARY_METHODS")
 
-    for op in $BINARY_OPERATORS
-    do
-        file="shader-"$(toDashCase "${type}")"-"$(toDashCase "${op}")".ts"
-        typeUcc=$(toUpperCamelCase "${type}")
-        classname="Shader${typeUcc}"$(toUpperCamelCase "${op}")
-        superclassName="Shader${typeUcc}Expression"
-
-        >$file
-        echo "import { ShaderBinaryOperator } from '../../shader-binary-operator';" >> $file
-        echo "import { ${superclassName} } from '../../../types/shader-$type-expression';" >> $file
-        echo "import { ${implementorClassName} } from './shader-"$(toDashCase "$type")"-binary-operator-default';" >> $file;
-        echo "" >> $file
-        echo "export abstract class ${classname} extends ${superclassName} implements ShaderBinaryOperator {" >> $file
-        echo "" >> $file
-        echo "    private defaultImplementor = new ${implementorClassName}();" >> $file
-        echo "" >> $file
-        echo "    public abstract parse(): any;" >> $file
-        echo "" >> $file
-        echo "}" >> $file
-    done
+    createClasses binary $type "$BINARY_OPERATORS"
 
     popd
     popd
@@ -110,26 +131,7 @@ do
     UNARY_METHODS="canSetIntegerRhsTo canSetFloatRhsTo canSetBooleanRhsTo canSetVectorRhsTo canSetMatrixRhsTo"
     implementorClassName=$(createDefaultImplementor unary $type "$UNARY_METHODS")
 
-    for op in $UNARY_OPERATORS
-    do
-        file="shader-"$(toDashCase "${type}")"-"$(toDashCase "${op}")".ts"
-        TypeUcc=$(toUpperCamelCase "${type}")
-        classname="Shader${TypeUcc}"$(toUpperCamelCase "${op}")
-        superclassName="Shader${TypeUcc}Expression"
-
-        >$file
-        echo "import { ShaderUnaryOperator } from '../../shader-unary-operator';" >> $file
-        echo "import { ${superclassName} } from '../../../types/shader-$type-expression';" >> $file
-        echo "import { ${implementorClassName} } from './shader-"$(toDashCase "$type")"-unary-operator-default';" >> $file;
-        echo "" >> $file
-        echo "export abstract class ${classname} extends ${superclassName} implements ShaderUnaryOperator {" >> $file
-        echo "" >> $file
-        echo "    private defaultImplementor = new ${implementorClassName}();" >> $file
-        echo "" >> $file
-        echo "    public abstract parse(): any;" >> $file
-        echo "" >> $file
-        echo "}" >> $file
-    done
+    createClasses unary $type "$UNARY_OPERATORS"
 
     popd
     popd
