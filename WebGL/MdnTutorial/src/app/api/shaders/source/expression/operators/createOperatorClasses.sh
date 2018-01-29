@@ -90,50 +90,75 @@ function createClasses() {
 
 }
 
+function askConfirmation() {
+    ans=''
+    echo -n $'WARNING: Running this script will DELETE the classes under "binary/<type>" and "unary/<type>".\nProceed anyway? [y/n] '
+    read ans
+
+    while [[ "$ans" != "y" && "$ans" != "n" ]]
+    do
+        echo -n $'Please type either "y" or "n": '
+        read ans
+    done
+
+    if [[ "$ans" == "y" ]]
+    then
+        echo 'Regenerating classes.'
+    else
+        echo 'Cancelling.'
+        exit 0
+    fi
+}
+
+function runScript() {
+    TYPES="integer float boolean vector matrix"
+    UNARY_OPERATORS="negate bitwiseNot logicalNot"
+    BINARY_OPERATORS="add subtract multiply divide modulo bitwiseAnd bitwiseOr bitwiseXor logicalAnd logicalOr"
+
+    for type in $TYPES
+    do
+
+        #####################
+        # BINARY OPERATIONS #
+        #####################
+
+        pushd binary
+        rm -rf "$type"
+        mkdir "$type"
+        pushd "$type"
+
+        BINARY_METHODS="canSetIntegerRhsTo canSetFloatRhsTo canSetBooleanRhsTo canSetVectorRhsTo canSetMatrixRhsTo"
+        implementorClassName=$(createDefaultImplementor binary $type "$BINARY_METHODS")
+
+        createClasses binary $type "$BINARY_OPERATORS"
+
+        popd
+        popd
+
+        ####################
+        # UNARY OPERATIONS #
+        ####################
+
+        pushd unary
+        rm -rf "$type"
+        mkdir "$type"
+        pushd "$type"
+
+        # Create default implementor
+        UNARY_METHODS="canSetIntegerRhsTo canSetFloatRhsTo canSetBooleanRhsTo canSetVectorRhsTo canSetMatrixRhsTo"
+        implementorClassName=$(createDefaultImplementor unary $type "$UNARY_METHODS")
+
+        createClasses unary $type "$UNARY_OPERATORS"
+
+        popd
+    popd
+
+    done
+}
+
 ########################################
 #                SCRIPT                #
 ########################################
 
-TYPES="integer float boolean vector matrix"
-UNARY_OPERATORS="negate bitwiseNot logicalNot"
-BINARY_OPERATORS="add subtract multiply divide modulo bitwiseAnd bitwiseOr bitwiseXor logicalAnd logicalOr"
-
-for type in $TYPES
-do
-
-    #####################
-    # BINARY OPERATIONS #
-    #####################
-
-    pushd binary
-    rm -rf "$type"
-    mkdir "$type"
-    pushd "$type"
-
-    BINARY_METHODS="canSetIntegerRhsTo canSetFloatRhsTo canSetBooleanRhsTo canSetVectorRhsTo canSetMatrixRhsTo"
-    implementorClassName=$(createDefaultImplementor binary $type "$BINARY_METHODS")
-
-    createClasses binary $type "$BINARY_OPERATORS"
-
-    popd
-    popd
-
-    ####################
-    # UNARY OPERATIONS #
-    ####################
-
-    pushd unary
-    rm -rf "$type"
-    mkdir "$type"
-    pushd "$type"
-
-    # Create default implementor
-    UNARY_METHODS="canSetIntegerRhsTo canSetFloatRhsTo canSetBooleanRhsTo canSetVectorRhsTo canSetMatrixRhsTo"
-    implementorClassName=$(createDefaultImplementor unary $type "$UNARY_METHODS")
-
-    createClasses unary $type "$UNARY_OPERATORS"
-
-    popd
-    popd
-
-done
+askConfirmation
+runScript > /dev/null
