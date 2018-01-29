@@ -1,5 +1,10 @@
 import { ShaderBinaryOperator } from '../../shader-binary-operator';
+import { ShaderVectorBinaryOperator } from '../shader-vector-binary-operator';
 
-export abstract class ShaderVectorSubtract extends ShaderBinaryOperator {
+export abstract class ShaderVectorSubtract implements ShaderVectorBinaryOperator {
+
+    private defaultImplementor = new ShaderVectorBinaryOperatorDefault()
+
+    public abstract parse(): any;
 
 }

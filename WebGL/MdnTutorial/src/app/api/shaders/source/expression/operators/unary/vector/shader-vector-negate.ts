@@ -1,5 +1,10 @@
 import { ShaderUnaryOperator } from '../../shader-unary-operator';
+import { ShaderVectorUnaryOperator } from '../shader-vector-unary-operator';
 
-export abstract class ShaderVectorNegate extends ShaderUnaryOperator {
+export abstract class ShaderVectorNegate implements ShaderVectorUnaryOperator {
+
+    private defaultImplementor = new ShaderVectorUnaryOperatorDefault()
+
+    public abstract parse(): any;
 
 }

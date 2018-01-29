@@ -1,5 +1,10 @@
 import { ShaderUnaryOperator } from '../../shader-unary-operator';
+import { ShaderVectorUnaryOperator } from '../shader-vector-unary-operator';
 
-export abstract class ShaderVectorBitwiseNot extends ShaderUnaryOperator {
+export abstract class ShaderVectorBitwiseNot implements ShaderVectorUnaryOperator {
+
+    private defaultImplementor = new ShaderVectorUnaryOperatorDefault()
+
+    public abstract parse(): any;
 
 }
