@@ -1,9 +1,10 @@
 import { ShaderBinaryOperator } from '../../shader-binary-operator';
-import { ShaderBooleanBinaryOperator } from '../shader-boolean-binary-operator';
+import { ShaderBooleanExpression } from '../../../types/shader-boolean-expression';
+import { ShaderBooleanBinaryOperatorDefault } from './shader-boolean-binary-operator-default';
 
-export abstract class ShaderBooleanDivide implements ShaderBooleanBinaryOperator {
+export abstract class ShaderBooleanDivide extends ShaderBooleanExpression implements ShaderBinaryOperator {
 
-    private defaultImplementor = new ShaderBooleanBinaryOperatorDefault()
+    private defaultImplementor = new ShaderBooleanBinaryOperatorDefault();
 
     public abstract parse(): any;
 

@@ -1,9 +1,10 @@
 import { ShaderUnaryOperator } from '../../shader-unary-operator';
-import { ShaderFloatUnaryOperator } from '../shader-float-unary-operator';
+import { ShaderFloatExpression } from '../../../types/shader-float-expression';
+import { ShaderFloatUnaryOperatorDefault } from './shader-float-unary-operator-default';
 
-export abstract class ShaderFloatLogicalNot implements ShaderFloatUnaryOperator {
+export abstract class ShaderFloatLogicalNot extends ShaderFloatExpression implements ShaderUnaryOperator {
 
-    private defaultImplementor = new ShaderFloatUnaryOperatorDefault()
+    private defaultImplementor = new ShaderFloatUnaryOperatorDefault();
 
     public abstract parse(): any;
 

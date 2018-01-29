@@ -1,9 +1,10 @@
 import { ShaderBinaryOperator } from '../../shader-binary-operator';
-import { ShaderVectorBinaryOperator } from '../shader-vector-binary-operator';
+import { ShaderVectorExpression } from '../../../types/shader-vector-expression';
+import { ShaderVectorBinaryOperatorDefault } from './shader-vector-binary-operator-default';
 
-export abstract class ShaderVectorDivide implements ShaderVectorBinaryOperator {
+export abstract class ShaderVectorDivide extends ShaderVectorExpression implements ShaderBinaryOperator {
 
-    private defaultImplementor = new ShaderVectorBinaryOperatorDefault()
+    private defaultImplementor = new ShaderVectorBinaryOperatorDefault();
 
     public abstract parse(): any;
 

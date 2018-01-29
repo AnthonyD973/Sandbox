@@ -1,9 +1,10 @@
 import { ShaderBinaryOperator } from '../../shader-binary-operator';
-import { ShaderIntegerBinaryOperator } from '../shader-integer-binary-operator';
+import { ShaderIntegerExpression } from '../../../types/shader-integer-expression';
+import { ShaderIntegerBinaryOperatorDefault } from './shader-integer-binary-operator-default';
 
-export abstract class ShaderIntegerAdd implements ShaderIntegerBinaryOperator {
+export abstract class ShaderIntegerAdd extends ShaderIntegerExpression implements ShaderBinaryOperator {
 
-    private defaultImplementor = new ShaderIntegerBinaryOperatorDefault()
+    private defaultImplementor = new ShaderIntegerBinaryOperatorDefault();
 
     public abstract parse(): any;
 

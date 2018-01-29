@@ -1,9 +1,10 @@
 import { ShaderUnaryOperator } from '../../shader-unary-operator';
-import { ShaderBooleanUnaryOperator } from '../shader-boolean-unary-operator';
+import { ShaderBooleanExpression } from '../../../types/shader-boolean-expression';
+import { ShaderBooleanUnaryOperatorDefault } from './shader-boolean-unary-operator-default';
 
-export abstract class ShaderBooleanNegate implements ShaderBooleanUnaryOperator {
+export abstract class ShaderBooleanNegate extends ShaderBooleanExpression implements ShaderUnaryOperator {
 
-    private defaultImplementor = new ShaderBooleanUnaryOperatorDefault()
+    private defaultImplementor = new ShaderBooleanUnaryOperatorDefault();
 
     public abstract parse(): any;
 

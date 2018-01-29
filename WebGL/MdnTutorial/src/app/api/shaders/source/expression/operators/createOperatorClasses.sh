@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
-function upperFirstChar() {
+function toUpperCamelCase() {
+    # Assume ${1} is in lowerCamelCase
     echo "$(echo ${1:0:1} | awk '{print toupper($0)}')${1:1:999999}"
 }
 
 function toDashCase() {
+    # Assume ${1} is in lowerCamelCase
     echo $1 | awk '{
         split($0, chars, "");
         result=""
@@ -26,8 +28,8 @@ function createDefaultImplementor() {
     METHODS="${3}"
 
     file="shader-${type}-${BINARY_OR_UNARY}-operator-default.ts"
-    classname="Shader"$(upperFirstChar "${type}")$(upperFirstChar ${BINARY_OR_UNARY})"OperatorDefault"
-    superclassName="Shader"$(upperFirstChar ${BINARY_OR_UNARY})"OperatorDefault"
+    classname="Shader"$(toUpperCamelCase "${type}")$(toUpperCamelCase ${BINARY_OR_UNARY})"OperatorDefault"
+    superclassName="Shader"$(toUpperCamelCase ${BINARY_OR_UNARY})"OperatorDefault"
 
     >"${file}"
     echo "import { ${superclassName} } from '../shader-${BINARY_OR_UNARY}-operator-default';" >> "$file"
@@ -48,6 +50,8 @@ function createDefaultImplementor() {
     echo $classname
 }
 
+########################################
+#                SCRIPT                #
 ########################################
 
 TYPES="integer float boolean vector matrix"
@@ -72,16 +76,18 @@ do
     for op in $BINARY_OPERATORS
     do
         file="shader-"$(toDashCase "${type}")"-"$(toDashCase "${op}")".ts"
-        upperType=$(upperFirstChar "${type}")
-        classname="Shader${upperType}"$(upperFirstChar "${op}")
+        typeUcc=$(toUpperCamelCase "${type}")
+        classname="Shader${typeUcc}"$(toUpperCamelCase "${op}")
+        superclassName="Shader${typeUcc}Expression"
 
         >$file
         echo "import { ShaderBinaryOperator } from '../../shader-binary-operator';" >> $file
-        echo "import { Shader${upperType}BinaryOperator } from '../shader-"$(toDashCase "$type")"-binary-operator';" >> $file;
+        echo "import { ${superclassName} } from '../../../types/shader-$type-expression';" >> $file
+        echo "import { ${implementorClassName} } from './shader-"$(toDashCase "$type")"-binary-operator-default';" >> $file;
         echo "" >> $file
-        echo "export abstract class ${classname} implements Shader${upperType}BinaryOperator {" >> $file
+        echo "export abstract class ${classname} extends ${superclassName} implements ShaderBinaryOperator {" >> $file
         echo "" >> $file
-        echo "    private defaultImplementor = new ${implementorClassName}()" >> $file
+        echo "    private defaultImplementor = new ${implementorClassName}();" >> $file
         echo "" >> $file
         echo "    public abstract parse(): any;" >> $file
         echo "" >> $file
@@ -107,16 +113,18 @@ do
     for op in $UNARY_OPERATORS
     do
         file="shader-"$(toDashCase "${type}")"-"$(toDashCase "${op}")".ts"
-        upperType=$(upperFirstChar "${type}")
-        classname="Shader${upperType}"$(upperFirstChar "${op}")
+        TypeUcc=$(toUpperCamelCase "${type}")
+        classname="Shader${TypeUcc}"$(toUpperCamelCase "${op}")
+        superclassName="Shader${TypeUcc}Expression"
 
         >$file
         echo "import { ShaderUnaryOperator } from '../../shader-unary-operator';" >> $file
-        echo "import { Shader${upperType}UnaryOperator } from '../shader-"$(toDashCase "$type")"-unary-operator';" >> $file;
+        echo "import { ${superclassName} } from '../../../types/shader-$type-expression';" >> $file
+        echo "import { ${implementorClassName} } from './shader-"$(toDashCase "$type")"-unary-operator-default';" >> $file;
         echo "" >> $file
-        echo "export abstract class ${classname} implements Shader${upperType}UnaryOperator {" >> $file
+        echo "export abstract class ${classname} extends ${superclassName} implements ShaderUnaryOperator {" >> $file
         echo "" >> $file
-        echo "    private defaultImplementor = new ${implementorClassName}()" >> $file
+        echo "    private defaultImplementor = new ${implementorClassName}();" >> $file
         echo "" >> $file
         echo "    public abstract parse(): any;" >> $file
         echo "" >> $file

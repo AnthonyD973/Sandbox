@@ -1,9 +1,10 @@
 import { ShaderBinaryOperator } from '../../shader-binary-operator';
-import { ShaderMatrixBinaryOperator } from '../shader-matrix-binary-operator';
+import { ShaderMatrixExpression } from '../../../types/shader-matrix-expression';
+import { ShaderMatrixBinaryOperatorDefault } from './shader-matrix-binary-operator-default';
 
-export abstract class ShaderMatrixLogicalOr implements ShaderMatrixBinaryOperator {
+export abstract class ShaderMatrixLogicalOr extends ShaderMatrixExpression implements ShaderBinaryOperator {
 
-    private defaultImplementor = new ShaderMatrixBinaryOperatorDefault()
+    private defaultImplementor = new ShaderMatrixBinaryOperatorDefault();
 
     public abstract parse(): any;
 

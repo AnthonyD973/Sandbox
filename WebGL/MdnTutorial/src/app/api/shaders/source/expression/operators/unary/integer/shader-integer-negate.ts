@@ -1,9 +1,10 @@
 import { ShaderUnaryOperator } from '../../shader-unary-operator';
-import { ShaderIntegerUnaryOperator } from '../shader-integer-unary-operator';
+import { ShaderIntegerExpression } from '../../../types/shader-integer-expression';
+import { ShaderIntegerUnaryOperatorDefault } from './shader-integer-unary-operator-default';
 
-export abstract class ShaderIntegerNegate implements ShaderIntegerUnaryOperator {
+export abstract class ShaderIntegerNegate extends ShaderIntegerExpression implements ShaderUnaryOperator {
 
-    private defaultImplementor = new ShaderIntegerUnaryOperatorDefault()
+    private defaultImplementor = new ShaderIntegerUnaryOperatorDefault();
 
     public abstract parse(): any;
 

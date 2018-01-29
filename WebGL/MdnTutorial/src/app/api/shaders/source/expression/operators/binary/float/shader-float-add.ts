@@ -1,9 +1,10 @@
 import { ShaderBinaryOperator } from '../../shader-binary-operator';
-import { ShaderFloatBinaryOperator } from '../shader-float-binary-operator';
+import { ShaderFloatExpression } from '../../../types/shader-float-expression';
+import { ShaderFloatBinaryOperatorDefault } from './shader-float-binary-operator-default';
 
-export abstract class ShaderFloatAdd implements ShaderFloatBinaryOperator {
+export abstract class ShaderFloatAdd extends ShaderFloatExpression implements ShaderBinaryOperator {
 
-    private defaultImplementor = new ShaderFloatBinaryOperatorDefault()
+    private defaultImplementor = new ShaderFloatBinaryOperatorDefault();
 
     public abstract parse(): any;
 
