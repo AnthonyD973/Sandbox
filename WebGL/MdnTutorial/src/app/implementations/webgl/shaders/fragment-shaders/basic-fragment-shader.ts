@@ -1,4 +1,4 @@
-import { FragmentShader } from '../../../../api/shaders/fragment-shaders/fragment-shader';
+import { FragmentShader } from '../../../../api/shaders/fragment-shader';
 
 export class BasicFragmentShader extends FragmentShader {
 

@@ -1,4 +1,4 @@
-import { AbstractShader } from '../abstract-shader';
+import { AbstractShader } from './abstract-shader';
 
 export abstract class FragmentShader extends AbstractShader {
 

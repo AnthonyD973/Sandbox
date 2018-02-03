@@ -1,5 +1,5 @@
-import { VertexShader } from './vertex-shaders/vertex-shader';
-import { FragmentShader } from './fragment-shaders/fragment-shader';
+import { VertexShader } from './vertex-shader';
+import { FragmentShader } from './fragment-shader';
 
 interface Locations {
     attributes: {};

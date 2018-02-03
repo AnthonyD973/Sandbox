@@ -1,5 +1,5 @@
 import { SceneRenderer } from '../../../../scene-renderer';
-import { VertexShader } from '../../../../api/shaders/vertex-shaders/vertex-shader';
+import { VertexShader } from '../../../../api/shaders/vertex-shader';
 
 export class BasicVertexShader extends VertexShader {
 
