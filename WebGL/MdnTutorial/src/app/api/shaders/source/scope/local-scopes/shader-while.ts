@@ -1,5 +1,5 @@
 import { ShaderLocalScope } from '../shader-local-scope';
 
-export abstract class ShaderFor extends ShaderLocalScope {
+export abstract class ShaderWhile extends ShaderLocalScope {
 
 }
