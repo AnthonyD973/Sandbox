@@ -1,3 +1,5 @@
-export abstract class FragmentShader {
+import { AbstractShader } from '../abstract-shader';
+
+export abstract class FragmentShader extends AbstractShader {
 
 }
