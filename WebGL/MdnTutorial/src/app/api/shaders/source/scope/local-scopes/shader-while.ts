@@ -5,8 +5,8 @@ export abstract class ShaderWhile extends ShaderLocalScope {
 
     public condExpr: ShaderExpression;
 
-    constructor(condExpr: ShaderExpression) {
-        super();
+    constructor(parent: ShaderScope, condExpr: ShaderExpression) {
+        super(parent);
         this.condExpr = condExpr;
     }
 
