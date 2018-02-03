@@ -5,8 +5,11 @@ import { ShaderFunction } from './local-scopes/shader-function';
 
 export abstract class ShaderGlobalScope extends ShaderScope {
 
-    public abstract createFunction(): ShaderFunction;
+    public readonly inputs = new Map<string, ShaderInput>();
+    public readonly outputs = new Map<string, ShaderOutput>();
+    public readonly functions = new Map<string, ShaderFunction>();
 
+    public abstract createFunction(): ShaderFunction;
     public abstract createInput(): ShaderInput;
     public abstract createOutput(): ShaderOutput;
 
