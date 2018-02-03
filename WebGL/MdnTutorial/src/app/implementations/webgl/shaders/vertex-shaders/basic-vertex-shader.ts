@@ -14,4 +14,8 @@ export class BasicVertexShader extends VertexShader {
         }
     `;
 
+    public parse(): string {
+        return BasicVertexShader.SOURCE;
+    }
+
 }
