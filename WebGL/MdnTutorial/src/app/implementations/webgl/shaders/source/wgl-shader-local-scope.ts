@@ -1,6 +1,6 @@
 import { ShaderLocalScope } from '../../../../api/shaders/source/scope/shader-local-scope';
 
-export class WglShaderLocalScope extends ShaderLocalScope {
+export abstract class WglShaderLocalScope extends ShaderLocalScope {
 
     public parse(): string {
         return null;
