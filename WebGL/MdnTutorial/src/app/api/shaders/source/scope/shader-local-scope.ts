@@ -12,7 +12,7 @@ export abstract class ShaderLocalScope extends ShaderScope {
         this.parent = parent;
     }
 
-    public abstract end(): ShaderLocalScope;
+    public abstract end(): void;
     public abstract if(condExpr: ShaderExpression): ShaderLocalScope;
     public abstract for(initExpr: ShaderExpression, condExpr: ShaderExpression, loopExpr: ShaderExpression): ShaderFor;
     public abstract while(condExpr: ShaderExpression): ShaderWhile;
