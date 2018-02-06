@@ -8,6 +8,10 @@ export abstract class WglShaderLocalScope implements ShaderLocalScope {
 
     public abstract get scopeName(): string;
 
+    constructor(parent: WglShaderLocalScope) {
+        this.parent = parent;
+    }
+
     public parse(): string {
         return null;
     }
