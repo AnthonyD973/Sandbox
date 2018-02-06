@@ -1,5 +1,5 @@
-import { ShaderLocalScope } from '../../../../api/shaders/source/scope/shader-local-scope';
-import { WglError } from '../../util/wgl-error';
+import { ShaderLocalScope } from '../../../../../api/shaders/source/scope/shader-local-scope';
+import { WglError } from '../../../util/wgl-error';
 
 export abstract class WglShaderLocalScope implements ShaderLocalScope {
 

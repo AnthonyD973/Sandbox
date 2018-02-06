@@ -1,7 +1,7 @@
-import { ShaderGlobalScope } from '../../../../api/shaders/source/scope/shader-global-scope';
-import { ShaderInput } from '../../../../api/shaders/source/expression/lvalues/shader-input';
-import { ShaderOutput } from '../../../../api/shaders/source/expression/lvalues/shader-output';
-import { ShaderFunction } from '../../../../api/shaders/source/scope/local-scopes/shader-function';
+import { ShaderGlobalScope } from '../../../../../api/shaders/source/scope/shader-global-scope';
+import { ShaderInput } from '../../../../../api/shaders/source/expression/lvalues/shader-input';
+import { ShaderOutput } from '../../../../../api/shaders/source/expression/lvalues/shader-output';
+import { ShaderFunction } from '../../../../../api/shaders/source/scope/local-scopes/shader-function';
 
 export class WglShaderGlobalScope implements ShaderGlobalScope {
 

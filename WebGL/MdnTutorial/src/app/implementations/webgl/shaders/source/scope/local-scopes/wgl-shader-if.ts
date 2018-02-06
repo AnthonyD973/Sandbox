@@ -1,5 +1,5 @@
 import { WglShaderLocalScope } from '../wgl-shader-local-scope';
-import { ShaderIf } from '../../../../../api/shaders/source/scope/local-scopes/shader-if';
+import { ShaderIf } from '../../../../../../api/shaders/source/scope/local-scopes/shader-if';
 
 export abstract class WglShaderIf extends WglShaderLocalScope implements ShaderIf {
 
