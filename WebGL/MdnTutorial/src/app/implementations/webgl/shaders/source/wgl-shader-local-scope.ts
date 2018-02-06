@@ -36,7 +36,7 @@ export abstract class WglShaderLocalScope implements ShaderLocalScope {
 
     }
 
-    private checkIfEnded(): void {
+    protected checkIfEnded(): void {
         if (this.hasEnded) {
             throw new WglError(`Scope already ended`);
         }
