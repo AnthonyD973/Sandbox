@@ -1,19 +1,13 @@
 import { ShaderExpression } from '../shader-expression';
 import { ShaderExpressionType } from '../shader-expression-type';
 
-export abstract class ShaderVariable extends ShaderExpression {
+export interface ShaderVariable extends ShaderExpression {
 
-    public readonly name: string;
-    public readonly type: ShaderExpressionType;
+    readonly name: string;
+    readonly type: ShaderExpressionType;
 
-    constructor(name: string, type: ShaderExpressionType) {
-        super();
-        this.name = name;
-        this.type = type;
-    }
+    parse(): any;
 
-    public abstract parse(): any;
-
-    public abstract assign(value: ShaderExpression): ShaderExpression;
+    assign(value: ShaderExpression): ShaderExpression;
 
 }

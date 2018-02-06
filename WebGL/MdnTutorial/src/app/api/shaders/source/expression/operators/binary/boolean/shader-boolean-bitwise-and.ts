@@ -2,8 +2,6 @@ import { ShaderBinaryOperator } from '../../shader-binary-operator';
 import { ShaderBooleanExpression } from '../../../generic/shader-boolean-expression';
 import { ShaderBooleanBinaryOperatorDefault } from './shader-boolean-binary-operator-default';
 
-export abstract class ShaderBooleanBitwiseAnd extends ShaderBooleanExpression implements ShaderBinaryOperator {
-
-    public abstract parse(): any;
+export interface ShaderBooleanBitwiseAnd extends ShaderBooleanExpression, ShaderBinaryOperator {
 
 }

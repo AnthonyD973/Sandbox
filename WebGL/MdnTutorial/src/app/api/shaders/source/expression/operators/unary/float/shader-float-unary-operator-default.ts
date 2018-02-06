@@ -1,12 +1,12 @@
 import { ShaderUnaryOperatorDefault } from '../shader-unary-operator-default';
 import { ShaderExpression } from '../../../shader-expression';
 
-export abstract class ShaderFloatUnaryOperatorDefault implements ShaderUnaryOperatorDefault {
+export interface ShaderFloatUnaryOperatorDefault extends ShaderUnaryOperatorDefault {
 
-    public abstract canSetIntegerRhsTo(rhs: ShaderExpression): boolean;
-    public abstract canSetFloatRhsTo(rhs: ShaderExpression): boolean;
-    public abstract canSetBooleanRhsTo(rhs: ShaderExpression): boolean;
-    public abstract canSetVectorRhsTo(rhs: ShaderExpression): boolean;
-    public abstract canSetMatrixRhsTo(rhs: ShaderExpression): boolean;
+    canSetIntegerRhsTo(rhs: ShaderExpression): boolean;
+    canSetFloatRhsTo(rhs: ShaderExpression): boolean;
+    canSetBooleanRhsTo(rhs: ShaderExpression): boolean;
+    canSetVectorRhsTo(rhs: ShaderExpression): boolean;
+    canSetMatrixRhsTo(rhs: ShaderExpression): boolean;
 
 }

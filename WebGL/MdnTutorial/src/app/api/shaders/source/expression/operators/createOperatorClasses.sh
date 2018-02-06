@@ -36,29 +36,29 @@ function createDefaultImplementor() {
     METHODS="${3}"
 
     file="shader-${type}-${BINARY_OR_UNARY}-operator-default.ts"
-    classname="Shader"$(toUpperCamelCase "${type}")$(toUpperCamelCase ${BINARY_OR_UNARY})"OperatorDefault"
-    superclassName="Shader"$(toUpperCamelCase ${BINARY_OR_UNARY})"OperatorDefault"
+    interfacename="Shader"$(toUpperCamelCase "${type}")$(toUpperCamelCase ${BINARY_OR_UNARY})"OperatorDefault"
+    superinterfaceName="Shader"$(toUpperCamelCase ${BINARY_OR_UNARY})"OperatorDefault"
 
     >"${file}"
-    echo "import { ${superclassName} } from '../shader-${BINARY_OR_UNARY}-operator-default';" >> "$file"
+    echo "import { ${superinterfaceName} } from '../shader-${BINARY_OR_UNARY}-operator-default';" >> "$file"
     echo "import { ShaderExpression } from '../../../shader-expression';" >> "$file"
     echo "" >> "$file"
-    echo "export abstract class ${classname} implements ${superclassName} {" >> "$file"
+    echo "export interface ${interfacename} extends ${superinterfaceName} {" >> "$file"
     echo "" >> "$file"
     for method in $METHODS
     do
-        echo "    public abstract ${method}(rhs: ShaderExpression): boolean;" >> "$file"
+        echo "    ${method}(rhs: ShaderExpression): boolean;" >> "$file"
     done 
     echo "" >> "$file"
     echo "}" >> "$file"
 
-    # Echo class name
-    echo $classname
+    # Echo interface name
+    echo $interfacename
 }
 
 #################
 
-function createClasses() {
+function createinterfaces() {
     BINARY_OR_UNARY="${1}"
     TYPE="${2}"
     OPERATORS="${3}"
@@ -69,17 +69,15 @@ function createClasses() {
     do
         file="shader-"$(toDashCase "${TYPE}")"-"$(toDashCase "${op}")".ts"
         typeUcc=$(toUpperCamelCase "${TYPE}")
-        classname="Shader${typeUcc}"$(toUpperCamelCase "${op}")
-        superclassName="Shader${typeUcc}Expression"
+        interfacename="Shader${typeUcc}"$(toUpperCamelCase "${op}")
+        superinterfaceName="Shader${typeUcc}Expression"
 
         >$file
         echo "import { Shader${binaryOrUnaryUcc}Operator } from '../../shader-${BINARY_OR_UNARY}-operator';" >> $file
-        echo "import { ${superclassName} } from '../../../types/shader-${TYPE}-expression';" >> $file
-        echo "import { ${implementorClassName} } from './shader-"$(toDashCase "${TYPE}")"-${BINARY_OR_UNARY}-operator-default';" >> $file;
+        echo "import { ${superinterfaceName} } from '../../../generic/shader-${TYPE}-expression';" >> $file
+        echo "import { ${implementorinterfaceName} } from './shader-"$(toDashCase "${TYPE}")"-${BINARY_OR_UNARY}-operator-default';" >> $file;
         echo "" >> $file
-        echo "export abstract class ${classname} extends ${superclassName} implements Shader${binaryOrUnaryUcc}Operator {" >> $file
-        echo "" >> $file
-        echo "    public abstract parse(): any;" >> $file
+        echo "export interface ${interfacename} extends ${superinterfaceName}, Shader${binaryOrUnaryUcc}Operator {" >> $file
         echo "" >> $file
         echo "}" >> $file
     done
@@ -88,7 +86,7 @@ function createClasses() {
 
 function askConfirmation() {
     ans=''
-    echo -n $'WARNING: Running this script will DELETE the classes under "binary/<type>" and "unary/<type>".\nProceed anyway? [y/n] '
+    echo -n $'WARNING: Running this script will DELETE the interfaces under "binary/<type>" and "unary/<type>".\nProceed anyway? [y/n] '
     read ans
 
     while [[ "$ans" != "y" && "$ans" != "n" ]]
@@ -99,7 +97,7 @@ function askConfirmation() {
 
     if [[ "$ans" == "y" ]]
     then
-        echo 'Regenerating classes.'
+        echo 'Regenerating interfaces.'
     else
         echo 'Cancelling.'
         exit 0
@@ -124,9 +122,9 @@ function runScript() {
         pushd "$type"
 
         BINARY_METHODS="canSetIntegerRhsTo canSetFloatRhsTo canSetBooleanRhsTo canSetVectorRhsTo canSetMatrixRhsTo"
-        implementorClassName=$(createDefaultImplementor binary $type "$BINARY_METHODS")
+        implementorinterfaceName=$(createDefaultImplementor binary $type "$BINARY_METHODS")
 
-        createClasses binary $type "$BINARY_OPERATORS"
+        createinterfaces binary $type "$BINARY_OPERATORS"
 
         popd
         popd
@@ -142,9 +140,9 @@ function runScript() {
 
         # Create default implementor
         UNARY_METHODS="canSetIntegerRhsTo canSetFloatRhsTo canSetBooleanRhsTo canSetVectorRhsTo canSetMatrixRhsTo"
-        implementorClassName=$(createDefaultImplementor unary $type "$UNARY_METHODS")
+        implementorinterfaceName=$(createDefaultImplementor unary $type "$UNARY_METHODS")
 
-        createClasses unary $type "$UNARY_OPERATORS"
+        createinterfaces unary $type "$UNARY_OPERATORS"
 
         popd
     popd

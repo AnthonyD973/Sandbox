@@ -1,5 +1,5 @@
 import { ShaderExpressionType } from '../shader-expression-type';
 
-export abstract class ShaderMatrixType extends ShaderExpressionType {
+export interface ShaderMatrixType extends ShaderExpressionType {
 
 }

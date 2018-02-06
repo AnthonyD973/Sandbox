@@ -1,10 +1,8 @@
 import { ShaderParsable } from '../shader-parsable';
 import { ShaderExpressionType } from './shader-expression-type';
 
-export abstract class ShaderExpression implements ShaderParsable {
+export interface ShaderExpression extends ShaderParsable {
 
-    public readonly type: ShaderExpressionType;
-
-    public abstract parse(): any;
+    readonly type: ShaderExpressionType;
 
 }

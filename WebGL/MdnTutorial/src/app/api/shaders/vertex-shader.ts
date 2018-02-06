@@ -1,5 +1,5 @@
-import { AbstractShader } from './abstract-shader';
+import { Shader } from './shader';
 
-export abstract class VertexShader extends AbstractShader {
+export interface VertexShader extends Shader {
 
 }

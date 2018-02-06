@@ -1,8 +1,8 @@
 import { ShaderExpressionType } from '../shader-expression-type';
 
-export abstract class ShaderFunctionSignature extends ShaderExpressionType {
+export interface ShaderFunctionSignature extends ShaderExpressionType {
 
-    public readonly params: ShaderExpressionType[];
-    public readonly return: ShaderExpressionType;
+    readonly params: ShaderExpressionType[];
+    readonly return: ShaderExpressionType;
 
 }

@@ -1,5 +1,5 @@
 import { ShaderExpression } from '../shader-expression';
 
-export abstract class ShaderFloatExpression extends ShaderExpression {
+export interface ShaderFloatExpression extends ShaderExpression {
 
 }
