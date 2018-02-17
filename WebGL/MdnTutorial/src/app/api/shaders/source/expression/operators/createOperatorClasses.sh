@@ -6,7 +6,7 @@
 
 function toUpperCamelCase() {
     # Assume ${1} is in lowerCamelCase
-    echo "$(echo ${1:0:1} | awk '{print toupper($0)}')${1:1:999999}"
+    echo "$(echo ${1:0:1} | awk '{print toupper($0)}')${1:1}"
 }
 
 #################
