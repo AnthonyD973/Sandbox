@@ -87,7 +87,7 @@ function createinterfaces() {
 #################
 
 function checkArgs() {
-    if [ ! "$#" -eq 1 ]; then
+    if [ ! "$#" -lt 1 ]; then
         usage
         exit -1
     # For personal reference :
@@ -96,14 +96,27 @@ function checkArgs() {
     # The '[' program essentially just allows to use some operators.
     elif ! (echo "$1" | grep -P '(class|interface)'); then
         exit -1
-    fi  
+    fi
+
+    for argn in {1..$#}; do
+        if [ "${argn[0]}" == "-d" ]; then
+            if [ ! "$#" -eq "$argn" ]; then
+                dir = "${$((argn + 1))[0]}"
+            else
+                echo "Missing directory for -d"
+                exit -1
+            fi
+        fi
+    done
+
+    echo $dir
 }
 
 #################
 
 function usage() {
     echo "Usage:"
-    echo "    ${0} <class|interface> [prefix]"
+    echo "    ${0} <class|interface> [-d <directory>] [prefix]"
 }
 
 #################
@@ -131,6 +144,13 @@ function askConfirmation() {
 #################
 
 function runScript() {
+    if [ "$dir" != "" ]; then
+        if [ ! -d "$dir" ]; then
+            mkdir -p "$dir"
+        fi
+        cd "$dir"
+    fi
+
     TYPES="integer float boolean vector matrix"
     UNARY_OPERATORS="negate bitwiseNot logicalNot"
     BINARY_OPERATORS="add subtract multiply divide modulo bitwiseAnd bitwiseOr bitwiseXor logicalAnd logicalOr"
@@ -180,7 +200,7 @@ function runScript() {
 #                SCRIPT                #
 ########################################
 
-checkArgs
+DIR=$(checkArgs)
 CLASS_OR_INTERFACE="${1}"
 PREFIX="${2}"
 
