@@ -84,25 +84,51 @@ function createinterfaces() {
 
 }
 
+#################
+
+function checkArgs() {
+    if [ ! "$#" -eq 1 ]; then
+        usage
+        exit -1
+    # For personal reference :
+    # Means: Take the result ($?) of the grep command, and reverse it.
+    # If the result ($?) is 0, then, do something.
+    # The '[' program essentially just allows to use some operators.
+    elif ! (echo "$1" | grep -P '(class|interface)'); then
+        exit -1
+    fi  
+}
+
+#################
+
+function usage() {
+    echo "Usage:"
+    echo "    ${0} <class|interface> [prefix]"
+}
+
+#################
+
 function askConfirmation() {
     ans=''
     echo -n $'WARNING: Running this script will DELETE the interfaces under "binary/<type>" and "unary/<type>".\nProceed anyway? [y/n] '
     read ans
 
-    while [[ "$ans" != "y" && "$ans" != "n" ]]
+    while [ "$ans" != "y" ] && [ "$ans" != "n" ]
     do
         echo -n $'Please type either "y" or "n": '
         read ans
     done
 
-    if [[ "$ans" == "y" ]]
+    if [ "$ans" == "y" ]
     then
         echo 'Regenerating interfaces.'
     else
         echo 'Cancelling.'
-        exit 0
+        exit -1
     fi
 }
+
+#################
 
 function runScript() {
     TYPES="integer float boolean vector matrix"
@@ -124,7 +150,7 @@ function runScript() {
         BINARY_METHODS="canSetIntegerRhsTo canSetFloatRhsTo canSetBooleanRhsTo canSetVectorRhsTo canSetMatrixRhsTo"
         implementorinterfaceName=$(createDefaultImplementor binary $type "$BINARY_METHODS")
 
-        createinterfaces binary $type "$BINARY_OPERATORS"
+        createinterfaces binary "$type" "$BINARY_OPERATORS"
 
         popd
         popd
@@ -142,7 +168,7 @@ function runScript() {
         UNARY_METHODS="canSetIntegerRhsTo canSetFloatRhsTo canSetBooleanRhsTo canSetVectorRhsTo canSetMatrixRhsTo"
         implementorinterfaceName=$(createDefaultImplementor unary $type "$UNARY_METHODS")
 
-        createinterfaces unary $type "$UNARY_OPERATORS"
+        createinterfaces unary "$type" "$UNARY_OPERATORS"
 
         popd
     popd
@@ -153,6 +179,10 @@ function runScript() {
 ########################################
 #                SCRIPT                #
 ########################################
+
+checkArgs
+CLASS_OR_INTERFACE="${1}"
+PREFIX="${2}"
 
 askConfirmation
 runScript > /dev/null
