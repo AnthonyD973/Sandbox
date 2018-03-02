@@ -50,7 +50,12 @@ function createClass() {
 
         >$file
         echo "import { ${expressionInterface} } from '../../../../../../../../api/shaders/source/expression/generic/shader-${TYPE}-expression';" >> $file
-        echo "import { ${operatorInterface} } from '../../../../../../../../api/shaders/source/expression/operators/${BINARY_OR_UNARY}/${TYPE}/shader-${TYPE}-${opDashCase}';" >> $file
+        local operatorImport="import { ${operatorInterface} } from '../../../../../../../../api/shaders/source/expression/operators/${BINARY_OR_UNARY}/${TYPE}/shader-${TYPE}-${opDashCase}';"
+        if [ $(echo -n "$operatorImport" | wc -c) -ge 140 ]; then
+            # Make TSLint stop complaining
+            echo "// tslint:disable-next-line:max-line-length" >> $file
+        fi
+        echo "$operatorImport" >> $file
         echo "import { ShaderExpressionType } from '../../../../../../../../api/shaders/source/expression/shader-expression-type';" >> $file;
         echo "import { ${expressionTypeClass} } from '../../../types/${prefix}-shader-${TYPE}-type';" >> $file
         echo "" >> $file

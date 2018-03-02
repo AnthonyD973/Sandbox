@@ -1,4 +1,5 @@
 import { ShaderMatrixExpression } from '../../../../../../../../api/shaders/source/expression/generic/shader-matrix-expression';
+// tslint:disable-next-line:max-line-length
 import { ShaderMatrixBitwiseNot } from '../../../../../../../../api/shaders/source/expression/operators/unary/matrix/shader-matrix-bitwise-not';
 import { ShaderExpressionType } from '../../../../../../../../api/shaders/source/expression/shader-expression-type';
 import { WglShaderMatrixType } from '../../../types/wgl-shader-matrix-type';
