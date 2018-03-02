@@ -46,15 +46,21 @@ function createClass() {
         local className="${prefixUpper}Shader${typeUcc}${opUcc}"
         local expressionInterface="Shader${typeUcc}Expression"
         local operatorInterface="Shader${typeUcc}${opUcc}"
+        local expressionTypeClass="${prefixUpper}Shader${typeUcc}Type"
 
         >$file
         echo "import { ${expressionInterface} } from '../../../../../../../../api/shaders/source/expression/generic/shader-${TYPE}-expression';" >> $file
         echo "import { ${operatorInterface} } from '../../../../../../../../api/shaders/source/expression/operators/${BINARY_OR_UNARY}/${TYPE}/shader-${TYPE}-${opDashCase}';" >> $file
         echo "import { ShaderExpressionType } from '../../../../../../../../api/shaders/source/expression/shader-expression-type';" >> $file;
+        echo "import { ${expressionTypeClass} } from '../../../types/${prefix}-shader-${TYPE}-type';" >> $file
         echo "" >> $file
         echo "export class ${className} implements ${expressionInterface}, ${operatorInterface} {" >> $file
         echo "" >> $file
         echo "    public readonly type: ShaderExpressionType;" >> $file
+        echo "" >> $file
+        echo "    constructor() {" >> $file
+        echo "        this.type = new ${expressionTypeClass}();" >> $file
+        echo "    }" >> $file
         echo "" >> $file
         echo "    public parse(): any {" >> $file
         echo "        return null;" >> $file
@@ -68,7 +74,7 @@ function createClass() {
 #################
 
 function makeBuildFor() {
-    local BUILD=$1
+    local BUILD="$1"
 
     case $BUILD in
 
