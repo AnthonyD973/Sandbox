@@ -11,7 +11,7 @@ export class WglShaderMatrixLogicalNot implements ShaderMatrixExpression, Shader
     public readonly expr: ShaderMatrixExpression;
 
     constructor(expr: ShaderMatrixExpression) {
-        this.type = new WglShaderMatrixType();
+        this.type = expr.type;
         this.expr = expr;
     }
 

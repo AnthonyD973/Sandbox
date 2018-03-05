@@ -10,7 +10,7 @@ export class WglShaderIntegerNegate implements ShaderIntegerExpression, ShaderIn
     public readonly expr: ShaderIntegerExpression;
 
     constructor(expr: ShaderIntegerExpression) {
-        this.type = new WglShaderIntegerType();
+        this.type = expr.type;
         this.expr = expr;
     }
 

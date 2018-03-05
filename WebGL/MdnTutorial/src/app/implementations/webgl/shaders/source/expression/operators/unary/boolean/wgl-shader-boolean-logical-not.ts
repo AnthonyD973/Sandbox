@@ -11,7 +11,7 @@ export class WglShaderBooleanLogicalNot implements ShaderBooleanExpression, Shad
     public readonly expr: ShaderBooleanExpression;
 
     constructor(expr: ShaderBooleanExpression) {
-        this.type = new WglShaderBooleanType();
+        this.type = expr.type;
         this.expr = expr;
     }
 

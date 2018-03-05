@@ -7,4 +7,6 @@ export interface ShaderMatrixDims {
 
 export interface ShaderMatrixType extends ShaderExpressionType {
 
+    readonly dims: ShaderMatrixDims;
+
 }

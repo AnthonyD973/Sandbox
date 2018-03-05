@@ -10,7 +10,7 @@ export class WglShaderFloatNegate implements ShaderFloatExpression, ShaderFloatN
     public readonly expr: ShaderFloatExpression;
 
     constructor(expr: ShaderFloatExpression) {
-        this.type = new WglShaderFloatType();
+        this.type = expr.type;
         this.expr = expr;
     }
 

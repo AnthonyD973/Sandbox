@@ -11,7 +11,13 @@ export class WglShaderBooleanModulo implements ShaderBooleanExpression, ShaderBo
     public readonly rhs: ShaderBooleanExpression;
 
     constructor(lhs: ShaderBooleanExpression, rhs: ShaderBooleanExpression) {
-        this.type = new WglShaderBooleanType();
+        if (lhs.type.matches(rhs.type)) {
+            this.type = lhs.type;
+        }
+        else {
+            throw new Error(`Types of left-hand side and right-hand side of binary operation do not match`);
+        }
+
         this.lhs = lhs;
         this.rhs = rhs;
     }

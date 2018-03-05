@@ -69,7 +69,13 @@ function createClass() {
                 echo "    public readonly rhs: ${expressionInterface};" >> $file
                 echo "" >> $file
                 echo "    constructor(lhs: ${expressionInterface}, rhs: ${expressionInterface}) {" >> $file
-                echo "        this.type = new ${expressionTypeClass}();" >> $file
+                echo "        if (lhs.type.matches(rhs.type)) {" >> $file
+                echo "            this.type = lhs.type;" >> $file
+                echo "        }" >> $file
+                echo "        else {" >> $file
+                echo "            throw new Error(\`Types of left-hand side and right-hand side of binary operation do not match\`);" >> $file
+                echo "        }" >> $file
+                echo "" >> $file
                 echo "        this.lhs = lhs;" >> $file
                 echo "        this.rhs = rhs;" >> $file
                 ;;
@@ -77,7 +83,7 @@ function createClass() {
                 echo "    public readonly expr: ${expressionInterface};" >> $file
                 echo "" >> $file
                 echo "    constructor(expr: ${expressionInterface}) {" >> $file
-                echo "        this.type = new ${expressionTypeClass}();" >> $file
+                echo "        this.type = expr.type;" >> $file
                 echo "        this.expr = expr;" >> $file
                 ;;
             *)

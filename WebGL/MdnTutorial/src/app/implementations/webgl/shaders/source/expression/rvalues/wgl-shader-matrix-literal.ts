@@ -5,8 +5,8 @@ export class WglShaderMatrixLiteral implements ShaderMatrixLiteral {
 
     public readonly type: WglShaderMatrixType;
 
-    constructor() {
-        this.type = new WglShaderMatrixType();
+    constructor(values: number[][], numRows: number, numCols: number) {
+        this.type = new WglShaderMatrixType(numRows, numCols);
     }
 
     public parse(): string {

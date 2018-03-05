@@ -11,7 +11,7 @@ export class WglShaderVectorLogicalNot implements ShaderVectorExpression, Shader
     public readonly expr: ShaderVectorExpression;
 
     constructor(expr: ShaderVectorExpression) {
-        this.type = new WglShaderVectorType();
+        this.type = expr.type;
         this.expr = expr;
     }
 

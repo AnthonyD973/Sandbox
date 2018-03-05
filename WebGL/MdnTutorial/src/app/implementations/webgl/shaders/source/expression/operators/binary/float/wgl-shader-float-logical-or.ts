@@ -12,7 +12,13 @@ export class WglShaderFloatLogicalOr implements ShaderFloatExpression, ShaderFlo
     public readonly rhs: ShaderFloatExpression;
 
     constructor(lhs: ShaderFloatExpression, rhs: ShaderFloatExpression) {
-        this.type = new WglShaderFloatType();
+        if (lhs.type.matches(rhs.type)) {
+            this.type = lhs.type;
+        }
+        else {
+            throw new Error(`Types of left-hand side and right-hand side of binary operation do not match`);
+        }
+
         this.lhs = lhs;
         this.rhs = rhs;
     }

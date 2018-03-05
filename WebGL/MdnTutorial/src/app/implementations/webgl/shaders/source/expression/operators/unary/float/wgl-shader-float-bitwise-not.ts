@@ -11,7 +11,7 @@ export class WglShaderFloatBitwiseNot implements ShaderFloatExpression, ShaderFl
     public readonly expr: ShaderFloatExpression;
 
     constructor(expr: ShaderFloatExpression) {
-        this.type = new WglShaderFloatType();
+        this.type = expr.type;
         this.expr = expr;
     }
 
