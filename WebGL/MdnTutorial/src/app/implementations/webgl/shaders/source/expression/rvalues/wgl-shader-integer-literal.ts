@@ -3,11 +3,11 @@ import { WglShaderIntegerType } from '../types/wgl-shader-integer-type';
 
 export class WglShaderIntegerLiteral implements ShaderIntegerLiteral {
 
-    public readonly value: Number;
+    public readonly value: number;
     public readonly type: WglShaderIntegerType;
 
-    constructor(value: Number) {
-        this.value = value;
+    constructor(value: number) {
+        this.value = Math.floor(value);
         this.type = new WglShaderIntegerType();
     }
 
