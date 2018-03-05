@@ -8,8 +8,11 @@ export class WglShaderIntegerLogicalNot implements ShaderIntegerExpression, Shad
 
     public readonly type: ShaderExpressionType;
 
-    constructor() {
+    public readonly expr: ShaderIntegerExpression;
+
+    constructor(expr: ShaderIntegerExpression) {
         this.type = new WglShaderIntegerType();
+        this.expr = expr;
     }
 
     public parse(): any {

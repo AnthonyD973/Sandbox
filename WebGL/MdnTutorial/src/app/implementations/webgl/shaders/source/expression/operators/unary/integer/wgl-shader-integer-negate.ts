@@ -7,8 +7,11 @@ export class WglShaderIntegerNegate implements ShaderIntegerExpression, ShaderIn
 
     public readonly type: ShaderExpressionType;
 
-    constructor() {
+    public readonly expr: ShaderIntegerExpression;
+
+    constructor(expr: ShaderIntegerExpression) {
         this.type = new WglShaderIntegerType();
+        this.expr = expr;
     }
 
     public parse(): any {

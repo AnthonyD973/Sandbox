@@ -8,8 +8,13 @@ export class WglShaderBooleanLogicalOr implements ShaderBooleanExpression, Shade
 
     public readonly type: ShaderExpressionType;
 
-    constructor() {
+    public readonly lhs: ShaderBooleanExpression;
+    public readonly rhs: ShaderBooleanExpression;
+
+    constructor(lhs: ShaderBooleanExpression, rhs: ShaderBooleanExpression) {
         this.type = new WglShaderBooleanType();
+        this.lhs = lhs;
+        this.rhs = rhs;
     }
 
     public parse(): any {

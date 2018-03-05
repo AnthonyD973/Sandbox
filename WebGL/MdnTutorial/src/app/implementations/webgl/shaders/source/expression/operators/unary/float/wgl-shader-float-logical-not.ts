@@ -8,8 +8,11 @@ export class WglShaderFloatLogicalNot implements ShaderFloatExpression, ShaderFl
 
     public readonly type: ShaderExpressionType;
 
-    constructor() {
+    public readonly expr: ShaderFloatExpression;
+
+    constructor(expr: ShaderFloatExpression) {
         this.type = new WglShaderFloatType();
+        this.expr = expr;
     }
 
     public parse(): any {

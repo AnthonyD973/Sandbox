@@ -8,8 +8,13 @@ export class WglShaderMatrixBitwiseOr implements ShaderMatrixExpression, ShaderM
 
     public readonly type: ShaderExpressionType;
 
-    constructor() {
+    public readonly lhs: ShaderMatrixExpression;
+    public readonly rhs: ShaderMatrixExpression;
+
+    constructor(lhs: ShaderMatrixExpression, rhs: ShaderMatrixExpression) {
         this.type = new WglShaderMatrixType();
+        this.lhs = lhs;
+        this.rhs = rhs;
     }
 
     public parse(): any {

@@ -7,8 +7,11 @@ export class WglShaderVectorNegate implements ShaderVectorExpression, ShaderVect
 
     public readonly type: ShaderExpressionType;
 
-    constructor() {
+    public readonly expr: ShaderVectorExpression;
+
+    constructor(expr: ShaderVectorExpression) {
         this.type = new WglShaderVectorType();
+        this.expr = expr;
     }
 
     public parse(): any {

@@ -7,8 +7,11 @@ export class WglShaderMatrixNegate implements ShaderMatrixExpression, ShaderMatr
 
     public readonly type: ShaderExpressionType;
 
-    constructor() {
+    public readonly expr: ShaderMatrixExpression;
+
+    constructor(expr: ShaderMatrixExpression) {
         this.type = new WglShaderMatrixType();
+        this.expr = expr;
     }
 
     public parse(): any {

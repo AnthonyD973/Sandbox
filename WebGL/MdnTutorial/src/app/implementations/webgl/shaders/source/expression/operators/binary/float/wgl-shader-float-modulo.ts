@@ -7,8 +7,13 @@ export class WglShaderFloatModulo implements ShaderFloatExpression, ShaderFloatM
 
     public readonly type: ShaderExpressionType;
 
-    constructor() {
+    public readonly lhs: ShaderFloatExpression;
+    public readonly rhs: ShaderFloatExpression;
+
+    constructor(lhs: ShaderFloatExpression, rhs: ShaderFloatExpression) {
         this.type = new WglShaderFloatType();
+        this.lhs = lhs;
+        this.rhs = rhs;
     }
 
     public parse(): any {

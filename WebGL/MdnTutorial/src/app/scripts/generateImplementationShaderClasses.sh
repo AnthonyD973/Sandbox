@@ -63,8 +63,28 @@ function createClass() {
         echo "" >> $file
         echo "    public readonly type: ShaderExpressionType;" >> $file
         echo "" >> $file
-        echo "    constructor() {" >> $file
-        echo "        this.type = new ${expressionTypeClass}();" >> $file
+        case $BINARY_OR_UNARY in
+            binary)
+                echo "    public readonly lhs: ${expressionInterface};" >> $file
+                echo "    public readonly rhs: ${expressionInterface};" >> $file
+                echo "" >> $file
+                echo "    constructor(lhs: ${expressionInterface}, rhs: ${expressionInterface}) {" >> $file
+                echo "        this.type = new ${expressionTypeClass}();" >> $file
+                echo "        this.lhs = lhs;" >> $file
+                echo "        this.rhs = rhs;" >> $file
+                ;;
+            unary)
+                echo "    public readonly expr: ${expressionInterface};" >> $file
+                echo "" >> $file
+                echo "    constructor(expr: ${expressionInterface}) {" >> $file
+                echo "        this.type = new ${expressionTypeClass}();" >> $file
+                echo "        this.expr = expr;" >> $file
+                ;;
+            *)
+                >&2 echo "BUG in bash script"
+                exit -1
+                ;;
+        esac
         echo "    }" >> $file
         echo "" >> $file
         echo "    public parse(): any {" >> $file

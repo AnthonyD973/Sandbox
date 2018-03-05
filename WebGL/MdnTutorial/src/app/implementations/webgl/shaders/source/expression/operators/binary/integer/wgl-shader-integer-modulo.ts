@@ -7,8 +7,13 @@ export class WglShaderIntegerModulo implements ShaderIntegerExpression, ShaderIn
 
     public readonly type: ShaderExpressionType;
 
-    constructor() {
+    public readonly lhs: ShaderIntegerExpression;
+    public readonly rhs: ShaderIntegerExpression;
+
+    constructor(lhs: ShaderIntegerExpression, rhs: ShaderIntegerExpression) {
         this.type = new WglShaderIntegerType();
+        this.lhs = lhs;
+        this.rhs = rhs;
     }
 
     public parse(): any {

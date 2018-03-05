@@ -7,8 +7,13 @@ export class WglShaderVectorDivide implements ShaderVectorExpression, ShaderVect
 
     public readonly type: ShaderExpressionType;
 
-    constructor() {
+    public readonly lhs: ShaderVectorExpression;
+    public readonly rhs: ShaderVectorExpression;
+
+    constructor(lhs: ShaderVectorExpression, rhs: ShaderVectorExpression) {
         this.type = new WglShaderVectorType();
+        this.lhs = lhs;
+        this.rhs = rhs;
     }
 
     public parse(): any {

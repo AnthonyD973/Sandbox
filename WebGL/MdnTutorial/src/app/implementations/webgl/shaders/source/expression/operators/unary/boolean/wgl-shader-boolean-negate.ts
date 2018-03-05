@@ -7,8 +7,11 @@ export class WglShaderBooleanNegate implements ShaderBooleanExpression, ShaderBo
 
     public readonly type: ShaderExpressionType;
 
-    constructor() {
+    public readonly expr: ShaderBooleanExpression;
+
+    constructor(expr: ShaderBooleanExpression) {
         this.type = new WglShaderBooleanType();
+        this.expr = expr;
     }
 
     public parse(): any {
