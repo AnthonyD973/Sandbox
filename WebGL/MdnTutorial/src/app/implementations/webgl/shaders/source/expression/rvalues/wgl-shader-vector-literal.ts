@@ -8,7 +8,7 @@ export class WglShaderVectorLiteral implements ShaderVectorLiteral {
 
     constructor(value: Number[]) {
         this.value = value.slice();
-        this.type = new WglShaderVectorType();
+        this.type = new WglShaderVectorType(value.length);
     }
 
     public parse(): string {

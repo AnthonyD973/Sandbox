@@ -3,6 +3,12 @@ import { ShaderExpressionType } from '../../../../../../api/shaders/source/expre
 
 export class WglShaderVectorType implements ShaderVectorType {
 
+    public readonly dim: number;
+
+    constructor(dim: number) {
+        this.dim = dim;
+    }
+
     public parse(): string {
         return null;
     }
