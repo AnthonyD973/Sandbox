@@ -3,9 +3,11 @@ import { WglShaderVectorType } from '../types/wgl-shader-vector-type';
 
 export class WglShaderVectorLiteral implements ShaderVectorLiteral {
 
+    public readonly value: Number[];
     public readonly type: WglShaderVectorType;
 
-    constructor() {
+    constructor(value: Number[]) {
+        this.value = value.slice();
         this.type = new WglShaderVectorType();
     }
 

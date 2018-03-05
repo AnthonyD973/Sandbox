@@ -3,9 +3,11 @@ import { WglShaderBooleanType } from '../types/wgl-shader-boolean-type';
 
 export class WglShaderBooleanLiteral implements ShaderBooleanLiteral {
 
+    public readonly value: boolean;
     public readonly type: WglShaderBooleanType;
 
-    constructor() {
+    constructor(value: boolean) {
+        this.value = value;
         this.type = new WglShaderBooleanType();
     }
 
