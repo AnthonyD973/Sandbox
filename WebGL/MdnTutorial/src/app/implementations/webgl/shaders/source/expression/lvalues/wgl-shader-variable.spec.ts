@@ -38,13 +38,4 @@ describe('WglShaderVariable', () => {
         });
     });
 
-    describe('assign', () => {
-        it('should assign a value into a variable', () => {
-            const expr = new WglShaderIntegerLiteral();
-            const assignment = var1.assign(expr);
-            expect(assignment.type).toEqual(expr.type);
-            expect(assignment.assignedExpression).toBe(expr);
-        });
-    });
-
 });

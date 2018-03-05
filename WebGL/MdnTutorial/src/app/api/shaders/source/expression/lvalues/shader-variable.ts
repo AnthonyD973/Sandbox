@@ -8,6 +8,4 @@ export interface ShaderVariable extends ShaderExpression {
 
     parse(): any;
 
-    assign(value: ShaderExpression): ShaderExpression;
-
 }

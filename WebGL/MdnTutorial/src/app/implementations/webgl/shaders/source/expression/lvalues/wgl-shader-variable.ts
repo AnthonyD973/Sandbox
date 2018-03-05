@@ -17,8 +17,4 @@ export class WglShaderVariable implements ShaderVariable {
         return null;
     }
 
-    public assign(value: ShaderExpression): WglShaderAssignment {
-        return null;
-    }
-
 }
