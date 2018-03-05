@@ -1,5 +1,5 @@
-import { ShaderExpression } from '../../../../../../../api/shaders/source/expression/shader-expression';
-import { ShaderExpressionType } from '../../../../../../../api/shaders/source/expression/shader-expression-type';
+import { ShaderExpression } from '../../../../api/shaders/source/expression/shader-expression';
+import { ShaderExpressionType } from '../../../../api/shaders/source/expression/shader-expression-type';
 
 export class WglShaderTestingExpression implements ShaderExpression {
 
