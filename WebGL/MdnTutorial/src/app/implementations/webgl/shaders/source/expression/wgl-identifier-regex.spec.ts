@@ -21,7 +21,7 @@ describe('WglIdentifierRegex', () => {
         expect(regex.test('a_')).toBe(true);
     });
 
-    it('should not match nonvalid WebGL indentifiers', () => {
+    it('should not match invalid WebGL indentifiers', () => {
         expect(regex.test('')).toBe(false);
         expect(regex.test('8_')).toBe(false);
         expect(regex.test('8a')).toBe(false);
