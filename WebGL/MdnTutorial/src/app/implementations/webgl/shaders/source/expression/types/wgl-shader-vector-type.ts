@@ -1,12 +1,18 @@
 import { ShaderVectorType } from '../../../../../../api/shaders/source/expression/types/shader-vector-type';
 import { ShaderExpressionType } from '../../../../../../api/shaders/source/expression/shader-expression-type';
+import { WglShaderConfig as Cfg } from '../../../util/wgl-shader-config';
 
 export class WglShaderVectorType implements ShaderVectorType {
 
     public readonly dim: number;
 
     constructor(dim: number) {
-        this.dim = dim;
+        if (dim >= Cfg.DIM_MIN && dim <= Cfg.DIM_MAX) {
+            this.dim = dim;
+        }
+        else {
+            throw new Error(`Vector dimension (${dim}) is invalid`);
+        }
     }
 
     public parse(): string {

@@ -1,12 +1,18 @@
 import { ShaderMatrixType, ShaderMatrixDims } from '../../../../../../api/shaders/source/expression/types/shader-matrix-type';
 import { ShaderExpressionType } from '../../../../../../api/shaders/source/expression/shader-expression-type';
+import { WglShaderConfig as Cfg } from '../../../util/wgl-shader-config';
 
 export class WglShaderMatrixType implements ShaderMatrixType {
 
     public readonly dims: ShaderMatrixDims;
 
     constructor(rows: number, cols: number) {
-        this.dims = { rows: rows, cols: cols };
+        if (rows >= Cfg.DIM_MIN && rows <= Cfg.DIM_MAX && cols >= Cfg.DIM_MIN && cols <= Cfg.DIM_MAX) {
+            this.dims = { rows: rows, cols: cols };
+        }
+        else {
+            throw new Error(`Matrix dimensions (${rows}x${cols}) are invalid`);
+        }
     }
 
     public parse(): string {
