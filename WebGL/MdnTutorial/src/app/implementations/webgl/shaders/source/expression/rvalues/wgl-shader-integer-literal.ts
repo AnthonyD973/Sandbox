@@ -12,7 +12,7 @@ export class WglShaderIntegerLiteral implements ShaderIntegerLiteral {
     }
 
     public parse(): string {
-        return null;
+        return String(this.value);
     }
 
 }

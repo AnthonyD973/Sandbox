@@ -32,7 +32,7 @@ describe('WglShaderVectorLiteral', () => {
 
         it('should make use of the simple GLSL vector literal syntax when all values are identical', () => {
             const v = new WglShaderVectorLiteral([1.0, 1.0, 1.0]);
-            expect(v.parse()).toMatch(/^vec3\(1\.0\)$/);
+            expect(v.parse()).toMatch(/^vec3\(1\.0?\)$/);
         });
 
     });

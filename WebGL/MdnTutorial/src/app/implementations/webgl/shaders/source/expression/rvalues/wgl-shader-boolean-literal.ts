@@ -1,5 +1,6 @@
 import { ShaderBooleanLiteral } from '../../../../../../api/shaders/source/expression/rvalues/shader-boolean-literal';
 import { WglShaderBooleanType } from '../types/wgl-shader-boolean-type';
+import { WglShaderPrimitiveParser as PParser } from '../../../util/wgl-shader-primitive-parser';
 
 export class WglShaderBooleanLiteral implements ShaderBooleanLiteral {
 
@@ -12,7 +13,7 @@ export class WglShaderBooleanLiteral implements ShaderBooleanLiteral {
     }
 
     public parse(): string {
-        return null;
+        return PParser.parseBoolean(this.value);
     }
 
 }

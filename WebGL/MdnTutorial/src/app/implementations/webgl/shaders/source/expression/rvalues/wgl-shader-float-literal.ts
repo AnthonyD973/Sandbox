@@ -3,16 +3,21 @@ import { WglShaderFloatType } from '../types/wgl-shader-float-type';
 
 export class WglShaderFloatLiteral implements ShaderFloatLiteral {
 
-    public readonly value: Number;
+    public readonly value: number;
     public readonly type: WglShaderFloatType;
 
-    constructor(value: Number) {
+    constructor(value: number) {
         this.value = value;
         this.type = new WglShaderFloatType();
     }
 
     public parse(): string {
-        return null;
+        let parsedString = String(this.value);
+        const containsDotRegex = /\./;
+        if (!containsDotRegex.test(parsedString)) {
+            parsedString = parsedString + '.';
+        }
+        return parsedString;
     }
 
 }
