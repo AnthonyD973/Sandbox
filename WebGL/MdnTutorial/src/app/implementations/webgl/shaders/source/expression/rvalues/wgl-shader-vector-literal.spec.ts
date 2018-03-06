@@ -16,11 +16,11 @@ describe('WglShaderVectorLiteral', () => {
     it('should be created', () => {
         expect(vector2).toBeTruthy();
         expect(vector2.type).toEqual(new WglShaderVectorType(2));
-        expect(vector2.value).toEqual([Math.PI, -Math.PI]);
+        expect(vector2.values).toEqual([Math.PI, -Math.PI]);
 
         expect(vector4).toBeTruthy();
         expect(vector4.type).toEqual(new WglShaderVectorType(4));
-        expect(vector4.value).toEqual([1.2, 2.1, -5.28, 2.78]);
+        expect(vector4.values).toEqual([1.2, 2.1, -5.28, 2.78]);
     });
 
     describe('parse', () => {

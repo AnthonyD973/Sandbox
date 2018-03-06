@@ -6,27 +6,27 @@ const SEP = ', ';
 
 export class WglShaderVectorLiteral implements ShaderVectorLiteral {
 
-    public readonly value: number[];
+    public readonly values: number[];
     public readonly type: WglShaderVectorType;
 
-    constructor(value: number[]) {
-        this.value = value.slice();
-        this.type = new WglShaderVectorType(value.length);
+    constructor(values: number[]) {
+        this.values = values.slice();
+        this.type = new WglShaderVectorType(values.length);
     }
 
     public parse(): string {
         let parsedString = 'vec' + this.type.dim + '(';
 
-        const haveSameValue = this.value.every(value => value === this.value[0]);
+        const haveSameValue = this.values.every(value => value === this.values[0]);
 
         if (!haveSameValue) {
-            this.value.forEach(value => {
+            this.values.forEach(value => {
                 parsedString += PParser.parseFloat(value) + SEP;
             });
             parsedString = parsedString.slice(0, parsedString.length - SEP.length);
         }
         else {
-            parsedString += String(PParser.parseFloat(this.value[0]));
+            parsedString += String(PParser.parseFloat(this.values[0]));
         }
 
         parsedString += ')';
