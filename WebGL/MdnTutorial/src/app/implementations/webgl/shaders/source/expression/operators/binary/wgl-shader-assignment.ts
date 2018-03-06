@@ -3,6 +3,8 @@ import { ShaderExpressionType } from '../../../../../../../api/shaders/source/ex
 import { ShaderExpression } from '../../../../../../../api/shaders/source/expression/shader-expression';
 import { WglShaderVariable } from '../../lvalues/wgl-shader-variable';
 
+const OPERATOR = '=';
+
 export class WglShaderAssignment implements ShaderAssignment {
 
     public readonly type: ShaderExpressionType;
@@ -16,7 +18,7 @@ export class WglShaderAssignment implements ShaderAssignment {
     }
 
     public parse(): string {
-        return null;
+        return this.type.parse() + ' ' + this.assignee.name + ' ' + OPERATOR + ' ' + this.assignedExpression.parse();
     }
 
 }
