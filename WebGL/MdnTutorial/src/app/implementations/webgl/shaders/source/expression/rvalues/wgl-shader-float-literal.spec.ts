@@ -21,4 +21,14 @@ describe('WglShaderFloatLiteral', () => {
         expect(floatPi.value).toEqual(Math.PI);
     });
 
+    describe('parse', () => {
+
+        it('should work correctly', () => {
+            expect(float0.parse()).toMatch(/^0\.0?$/);
+            expect(floatPi.parse()).toMatch(/^3\.141592/);
+            expect(new WglShaderFloatLiteral(-2.58)).toMatch('-2.58');
+        });
+
+    });
+
 });

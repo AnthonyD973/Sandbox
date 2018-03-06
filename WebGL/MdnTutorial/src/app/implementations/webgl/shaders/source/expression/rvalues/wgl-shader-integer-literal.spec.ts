@@ -25,4 +25,13 @@ describe('WglShaderIntegerLiteral', () => {
         expect(i2.value).toEqual(-3);
     });
 
+    describe('parse', () => {
+
+        it('should work correctly', () => {
+            expect(integer10.parse()).toEqual('10');
+            expect(new WglShaderIntegerLiteral(-3.14).parse()).toEqual('-3');
+        });
+
+    });
+
 });

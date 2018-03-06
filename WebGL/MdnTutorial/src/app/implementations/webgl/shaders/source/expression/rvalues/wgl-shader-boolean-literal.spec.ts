@@ -21,4 +21,13 @@ describe('WglShaderBooleanLiteral', () => {
         expect(boolTrue.value).toEqual(true);
     });
 
+    describe('parse', () => {
+
+        it('should work correctly', () => {
+            expect(boolFalse.parse()).toEqual('false');
+            expect(boolTrue.parse()).toEqual('true');
+        });
+
+    });
+
 });
