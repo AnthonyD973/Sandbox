@@ -4,7 +4,7 @@ import { ShaderExpressionType } from '../../../../../../api/shaders/source/expre
 export class WglShaderBooleanType implements ShaderBooleanType {
 
     public parse(): string {
-        return null;
+        return 'bool';
     }
 
     public matches(that: ShaderExpressionType): boolean {

@@ -10,7 +10,10 @@ export class WglShaderMatrixType implements ShaderMatrixType {
     }
 
     public parse(): string {
-        return null;
+        const suffix = this.dims.rows !== this.dims.cols
+                     ? String(this.dims.rows) + String(this.dims.cols)
+                     : String(this.dims.rows);
+        return 'mat' + suffix;
     }
 
     public matches(that: ShaderExpressionType): boolean {

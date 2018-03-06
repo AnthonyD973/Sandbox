@@ -4,7 +4,7 @@ import { ShaderExpressionType } from '../../../../../../api/shaders/source/expre
 export class WglShaderIntegerType implements ShaderIntegerType {
 
     public parse(): string {
-        return null;
+        return 'int';
     }
 
     public matches(that: ShaderExpressionType): boolean {

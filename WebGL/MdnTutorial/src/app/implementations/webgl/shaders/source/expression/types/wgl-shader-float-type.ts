@@ -4,7 +4,7 @@ import { ShaderExpressionType } from '../../../../../../api/shaders/source/expre
 export class WglShaderFloatType implements ShaderFloatType {
 
     public parse(): string {
-        return null;
+        return 'float';
     }
 
     public matches(that: ShaderExpressionType): boolean {

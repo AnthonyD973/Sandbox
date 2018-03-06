@@ -10,7 +10,7 @@ export class WglShaderVectorType implements ShaderVectorType {
     }
 
     public parse(): string {
-        return null;
+        return 'vec' + String(this.dim);
     }
 
     public matches(that: ShaderExpressionType): boolean {
