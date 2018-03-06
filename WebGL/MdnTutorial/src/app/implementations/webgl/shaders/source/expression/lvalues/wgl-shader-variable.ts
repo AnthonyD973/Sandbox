@@ -2,17 +2,15 @@ import { ShaderVariable } from '../../../../../../api/shaders/source/expression/
 import { ShaderExpressionType } from '../../../../../../api/shaders/source/expression/shader-expression-type';
 import { ShaderExpression } from '../../../../../../api/shaders/source/expression/shader-expression';
 import { WglShaderAssignment } from '../operators/binary/wgl-shader-assignment';
-import { WglIdentifierRegex } from '../wgl-identifier-regex';
+import { WglShaderConfig as Cfg } from '../../../util/wgl-shader-config';
 
 export class WglShaderVariable implements ShaderVariable {
-
-    protected static readonly identifierRegex = new WglIdentifierRegex();
 
     public readonly name: string;
     public readonly type: ShaderExpressionType;
 
     constructor(name: string, type: ShaderExpressionType) {
-        if (name !== null && WglShaderVariable.identifierRegex.test(name)) {
+        if (name !== null && Cfg.IDENTIFIER_REGEX.test(name)) {
             this.name = name;
             this.type = type;
         }
