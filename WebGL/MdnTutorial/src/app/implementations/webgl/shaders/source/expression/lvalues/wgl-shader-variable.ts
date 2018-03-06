@@ -15,7 +15,12 @@ export class WglShaderVariable implements ShaderVariable {
             this.type = type;
         }
         else {
-            throw new Error(`Name "${name}" is an invalid identifier for a variable`);
+            if (name === null) {
+                throw new Error(`Identifier name is null`);
+            }
+            else {
+                throw new Error(`Name "${name}" is an invalid identifier for a variable`);
+            }
         }
     }
 
