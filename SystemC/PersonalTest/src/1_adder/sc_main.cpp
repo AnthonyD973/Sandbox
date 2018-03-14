@@ -8,7 +8,7 @@ int sc_main(int argc, char** argv) {
     sc_buffer< sc_dt::sc_uint<4> > b;
     sc_buffer< sc_dt::sc_uint<5> > sum;
 
-    Adder adder("a1");
+    Adder<4> adder("a1");
 
     adder.m_a(a);
     adder.m_b(b);
