@@ -30,6 +30,8 @@ Top<VEC_WIDTH>::Top(::sc_core::sc_module_name name) {
 
 template<uint8_t VEC_WIDTH>
 void Top<VEC_WIDTH>::stimulate() {
+    wait(1, SC_NS);
+
     while (true) {
         m_a.write(rand());
         m_b.write(rand());
