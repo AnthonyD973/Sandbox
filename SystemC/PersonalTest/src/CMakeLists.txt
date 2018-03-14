@@ -13,4 +13,4 @@ link_libraries("${SYSTEMC_LIB}")
 # =                           ADDING SUBDIRECTORIES                            =
 # ==============================================================================
 
-# add_subdirectory(adder)
+add_subdirectory(adder)
