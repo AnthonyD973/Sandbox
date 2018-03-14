@@ -22,3 +22,4 @@ link_libraries("${SYSTEMC_LIB}")
 # ==============================================================================
 
 add_subdirectory(1_adder)
+add_subdirectory(2_ram)
