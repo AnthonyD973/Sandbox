@@ -23,7 +23,8 @@ Top<VEC_WIDTH>::Top(::sc_core::sc_module_name name) {
     std::cout << "Constructing Top module \"" << name << "\"" << std::endl;
 
     SC_THREAD(stimulate);
-    
+    SC_METHOD(checkSum);
+    sensitive << m_sum;
 }
 
 
