@@ -3,12 +3,14 @@
 
 #include "adder.h"
 
-int sc_main(int argc, char** argv) {
-    sc_buffer< sc_dt::sc_uint<4> > a;
-    sc_buffer< sc_dt::sc_uint<4> > b;
-    sc_buffer< sc_dt::sc_uint<5> > sum;
+constexpr uint8_t ADDER_WIDTH = 4;
 
-    Adder<4> adder("a1");
+int sc_main(int argc, char** argv) {
+    sc_buffer< sc_dt::sc_uint<ADDER_WIDTH> > a;
+    sc_buffer< sc_dt::sc_uint<ADDER_WIDTH> > b;
+    sc_buffer< sc_dt::sc_uint<ADDER_WIDTH + 1> > sum;
+
+    Adder<ADDER_WIDTH> adder("a1");
 
     adder.m_a(a);
     adder.m_b(b);
