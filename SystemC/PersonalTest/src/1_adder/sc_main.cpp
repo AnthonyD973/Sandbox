@@ -15,8 +15,11 @@ int sc_main(int argc, char** argv) {
     sc_buffer< sc_dt::sc_uint<ADDER_WIDTH> > b;
     sc_buffer< sc_dt::sc_uint<ADDER_WIDTH + 1> > sum;
 
-    Adder<ADDER_WIDTH> adder("a1");
+    Top<ADDER_WIDTH> top("t1");
+    top.m_a(a);
+    top.m_b(b);
 
+    Adder<ADDER_WIDTH> adder("a1");
     adder.m_a(a);
     adder.m_b(b);
     adder.m_sum(sum);
