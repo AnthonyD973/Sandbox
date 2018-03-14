@@ -3,14 +3,7 @@
 #include <unordered_map>
 #include <cinttypes>
 
-namespace std {
-    template<int ADDR_SIZE>
-    struct hash< sc_dt::sc_uint<ADDR_SIZE> > {
-        uint64_t operator()(const sc_dt::sc_uint<ADDR_SIZE>& val) const {
-            return static_cast<uint64_t>(val);
-        }
-    };
-}
+#include "sc_uint_hash.h"
 
 template<int ADDR_SIZE, int WORD_SIZE, int MEM_SIZE = 1 << ADDR_SIZE>
 SC_MODULE(Top) {
