@@ -12,7 +12,7 @@ public:
     SC_CTOR(Top);
 
     void stimulate();
-    void checkSum() const;
+    void checkSum();
 
 };
 
@@ -39,7 +39,7 @@ void Top<VEC_WIDTH>::stimulate() {
 
 
 template<uint8_t VEC_WIDTH>
-void Top<VEC_WIDTH>::checkSum() const {
+void Top<VEC_WIDTH>::checkSum() {
     sc_dt::sc_uint<VEC_WIDTH + 1> sum = m_a.read() + m_b.read();
     if (sum != m_sum.read()) {
         std::cerr << "TEST ERROR: Got " << m_a.read() << " + " << m_b.read() << " = " << m_sum.read() << std::endl;
