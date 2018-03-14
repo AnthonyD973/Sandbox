@@ -18,11 +18,13 @@ int sc_main(int argc, char** argv) {
     Top<ADDER_WIDTH> top("t1");
     top.m_a(a);
     top.m_b(b);
+    top.m_sum(sum);
 
     Adder<ADDER_WIDTH> adder("a1");
     adder.m_a(a);
     adder.m_b(b);
     adder.m_sum(sum);
 
+    sc_start(100, SC_NS);
     return 0;
 }
