@@ -32,6 +32,7 @@ void Top<VEC_WIDTH>::stimulate() {
     while (true) {
         m_a.write(rand());
         m_b.write(rand());
+        wait(10, SC_NS);
     }
 }
 
