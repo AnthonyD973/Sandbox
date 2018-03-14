@@ -7,10 +7,11 @@ project(PersonalTest)
 # ==============================================================================
 
 find_library(systemc SYSTEMC_LIB)
-link_libraries("$SYSTEMC_LIB")
+
+# link_libraries("$SYSTEMC_LIB")
 
 # ==============================================================================
 # =                           ADDING SUBDIRECTORIES                            =
 # ==============================================================================
 
-add_subdirectory(adder)
+# add_subdirectory(adder)
