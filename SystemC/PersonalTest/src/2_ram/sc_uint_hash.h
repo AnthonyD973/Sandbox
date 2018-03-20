@@ -1,5 +1,8 @@
 #include <systemc.h>
 
+#ifndef SC_UINT_HASH
+#define SC_UINT_HASH
+
 namespace std {
     template<int ADDR_SIZE>
     struct hash< sc_dt::sc_uint<ADDR_SIZE> > {
@@ -8,3 +11,5 @@ namespace std {
         }
     };
 }
+
+#endif // !SC_UINT_HASH
