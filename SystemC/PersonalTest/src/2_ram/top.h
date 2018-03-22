@@ -21,7 +21,9 @@ public:
 
 private:
     void checkValue(const sc_dt::sc_uint<ADDR_SIZE>& addr);
+
     sc_dt::sc_uint<WORD_SIZE> getRamValue(const sc_dt::sc_uint<ADDR_SIZE>& addr);
+    void setRamValue(const sc_dt::sc_uint<ADDR_SIZE>& addr, const sc_dt::sc_uint<WORD_SIZE>& val);
 
 private:
 
@@ -47,9 +49,7 @@ void Top<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::populateRam() {
     const unsigned int MAX_WRITES = MEM_SIZE / 2;
     for (unsigned int i = 0; i < rand() % MAX_WRITES; ++i) {
         sc_dt::sc_uint<ADDR_SIZE> addr = rand();
-        m_addr.write(addr);
-        m_data.write(m_valueGenerator.getVal(addr));
-        wait(m_done.posedge_event());
+        setRamValue(addr, m_valueGenerator.getVal(addr));
     }
 
     m_startVerify.notify();
@@ -81,4 +81,12 @@ sc_dt::sc_uint<WORD_SIZE> Top<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::getRamValue(const
     m_read.write(true);
     wait(m_done.posedge_event());
     return m_data.read();
+}
+
+template<int ADDR_SIZE, int WORD_SIZE, int MEM_SIZE>
+void Top<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::setRamValue(const sc_dt::sc_uint<ADDR_SIZE>& addr, const sc_dt::sc_uint<WORD_SIZE>& val) {
+    m_addr.write(addr);
+    m_data.write(val);
+    m_read.write(false);
+    wait(m_done.posedge_event());
 }
