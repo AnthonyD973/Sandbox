@@ -9,7 +9,7 @@ SC_MODULE(Top) {
 
 public:
 
-    sc_core::sc_inout< sc_dt::sc_uint<WORD_SIZE> >              m_val;
+    sc_core::sc_inout< sc_dt::sc_uint<WORD_SIZE> >              m_data;
     sc_core::sc_in<bool>                                        m_done;
     sc_core::sc_out<bool>                                       m_read; // READ : 1 ; WRITE : 0
     sc_core::sc_out< sc_dt::sc_uint<ADDR_SIZE> >                m_addr;
@@ -22,7 +22,7 @@ public:
 private:
 
     sc_core::sc_event                                           m_startVerify;
-    RamValueGenerator<ADDR_SIZE, WORD_SIZE>                     m_valueGenerator;
+    RamValueGenerator<ADDR_SIZE, WORD_SIZE>                     m_dataueGenerator;
 
 };
 
@@ -44,7 +44,7 @@ void Top<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::populateRam() {
     for (unsigned int i = 0; i < rand() % MAX_WRITES; ++i) {
         sc_dt::sc_uint<ADDR_SIZE> addr = rand();
         m_addr.write(addr);
-        m_val.write(m_valueGenerator.getVal(addr));
+        m_data.write(m_dataueGenerator.getVal(addr));
         wait(m_done.posedge_event());
     }
 }
