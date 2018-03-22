@@ -44,8 +44,11 @@ sc_dt::sc_uint<WORD_SIZE> RamValueGenerator<ADDR_SIZE, WORD_SIZE>::getVal(const 
 
 template<int ADDR_SIZE, int WORD_SIZE>
 sc_dt::sc_uint<WORD_SIZE> RamValueGenerator<ADDR_SIZE, WORD_SIZE>::getValOrDefault(const sc_dt::sc_uint<ADDR_SIZE>& addr) const {
-    if (m_gottenAddresses.find(addr)) {
+    if (m_gottenAddresses.find(addr) != m_gottenAddresses.end()) {
         return valueAt(addr);
+    }
+    else {
+        return 0;
     }
 }
 
