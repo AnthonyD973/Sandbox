@@ -20,6 +20,10 @@ public:
     void verifyRam();
 
 private:
+    void checkValue(const sc_dt::sc_uint<ADDR_SIZE>& addr);
+    sc_dt::sc_uint<WORD_SIZE> getRamValue(const sc_dt::sc_uint<ADDR_SIZE>& addr);
+
+private:
 
     sc_core::sc_event                                           m_startVerify;
     RamValueGenerator<ADDR_SIZE, WORD_SIZE>                     m_valueGenerator;
@@ -58,13 +62,23 @@ void Top<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::verifyRam() {
         wait(m_startVerify);
 
         for (sc_dt::sc_uint<ADDR_SIZE> addr = 0; addr < MEM_SIZE; ++addr) {
-            m_addr.write(addr);
-            m_read.write(true);
-            wait(m_done.posedge_event());
-            if (m_valueGenerator.getValOrDefault(addr) != m_data.read()) {
-                std::cerr << "Got " << addr << "->" << m_data.read() <<
-                    " instead of " << m_valueGenerator.getValOrDefault(addr) << "." << std::endl;
-            }
+            checkValue(addr);
         }
     }
+}
+
+template<int ADDR_SIZE, int WORD_SIZE, int MEM_SIZE>
+void Top<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::checkValue(const sc_dt::sc_uint<ADDR_SIZE>& addr) {
+    if (m_valueGenerator.getValOrDefault(addr) != getRamValue(addr)) {
+        std::cerr << "Got " << addr << "->" << m_data.read() <<
+            " instead of " << m_valueGenerator.getValOrDefault(addr) << "." << std::endl;
+    }
+}
+
+template<int ADDR_SIZE, int WORD_SIZE, int MEM_SIZE>
+sc_dt::sc_uint<WORD_SIZE> Top<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::getRamValue(const sc_dt::sc_uint<ADDR_SIZE>& addr) {
+    m_addr.write(addr);
+    m_read.write(true);
+    wait(m_done.posedge_event());
+    return m_data.read();
 }
