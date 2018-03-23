@@ -12,6 +12,7 @@ int sc_main(int argc, char** argv) {
     sc_buffer< sc_dt::sc_uint<WORD_SIZE>, sc_core::sc_writer_policy::SC_MANY_WRITERS> data;
     sc_buffer<bool> read;
     sc_buffer<bool> done;
+    sc_buffer<bool> go;
 
     Top<ADDR_SIZE, WORD_SIZE, MEM_SIZE> top("t1");
     top.m_addr(addr);
@@ -24,6 +25,7 @@ int sc_main(int argc, char** argv) {
     ram.m_data(data);
     ram.m_read(read);
     ram.m_done(done);
+    ram.m_go(go);
     
     sc_start(200, SC_NS);
     return 0;
