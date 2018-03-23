@@ -14,6 +14,12 @@ int sc_main(int argc, char** argv) {
     sc_buffer<bool> done;
     sc_buffer<bool> go;
 
+    addr.write(0);
+    data.write(0);
+    read.write(0);
+    done.write(0);
+    go  .write(0);
+
     Top<ADDR_SIZE, WORD_SIZE, MEM_SIZE> top("t1");
     top.m_addr(addr);
     top.m_data(data);
