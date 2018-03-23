@@ -1,6 +1,7 @@
 #include <systemc.h>
 
 #include "top.h"
+#include "ram.h"
 
 constexpr int ADDR_SIZE = 16;
 constexpr int WORD_SIZE = 16;
@@ -17,6 +18,12 @@ int sc_main(int argc, char** argv) {
     top.m_data(data);
     top.m_read(read);
     top.m_done(done);
+
+    Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE> ram;
+    ram.m_addr(addr);
+    ram.m_data(data);
+    ram.m_read(read);
+    ram.m_done(done);
     
     sc_start(200, SC_NS);
     return 0;
