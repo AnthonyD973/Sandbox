@@ -9,7 +9,7 @@ constexpr int MEM_SIZE  = 65536;
 
 int sc_main(int argc, char** argv) {
     sc_buffer< sc_dt::sc_uint<ADDR_SIZE> > addr;
-    sc_buffer< sc_dt::sc_uint<WORD_SIZE> > data;
+    sc_buffer< sc_dt::sc_uint<WORD_SIZE>, sc_core::sc_writer_policy::SC_MANY_WRITERS> data;
     sc_buffer<bool> read;
     sc_buffer<bool> done;
 
