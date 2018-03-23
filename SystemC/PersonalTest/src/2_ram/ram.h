@@ -3,6 +3,7 @@
 
 #include <systemc.h>
 #include <iostream>
+#include <sstream>
 
 template <int ADDR_SIZE, int WORD_SIZE, int MEM_SIZE = 1 << ADDR_SIZE>
 SC_MODULE(Ram) {
@@ -21,6 +22,9 @@ public:
     void performIO();
     void performRead();
     void performWrite();
+
+private:
+    bool checkAddressBounds(const sc_dt::sc_uint<ADDR_SIZE>& addr) const;
 
 private:
     sc_dt::sc_uint<WORD_SIZE> m_mem[MEM_SIZE];
@@ -67,12 +71,23 @@ void Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::performIO() {
 
 template<int ADDR_SIZE, int WORD_SIZE, int MEM_SIZE>
 void Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::performRead() {
-    std::cout << "Read\n";
+    
 }
 
 template<int ADDR_SIZE, int WORD_SIZE, int MEM_SIZE>
 void Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::performWrite() {
     std::cout << "Write\n";
 }
+
+template<int ADDR_SIZE, int WORD_SIZE, int MEM_SIZE>
+bool Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::checkAddressBounds(const sc_dt::sc_uint<ADDR_SIZE>& addr) const {
+    if (addr < MEM_SIZE) {
+        return true;
+    }
+    else {
+        std::cerr << "Address " << addr << " is not valid." << std::endl;
+        return false;
+    }
+ }
 
 #endif // RAM_H
