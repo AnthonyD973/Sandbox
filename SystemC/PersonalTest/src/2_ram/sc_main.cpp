@@ -19,7 +19,7 @@ int sc_main(int argc, char** argv) {
     top.m_read(read);
     top.m_done(done);
 
-    Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE> ram;
+    Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE> ram("ram1");
     ram.m_addr(addr);
     ram.m_data(data);
     ram.m_read(read);
