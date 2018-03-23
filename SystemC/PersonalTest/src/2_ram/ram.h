@@ -6,23 +6,31 @@
 
 template <int ADDR_SIZE, int WORD_SIZE, int MEM_SIZE = 1 << ADDR_SIZE>
 SC_MODULE(Ram) {
-public:
 
+public:
     sc_core::sc_inout< sc_dt::sc_uint<WORD_SIZE> >              m_data;
     sc_core::sc_in< sc_dt::sc_uint<ADDR_SIZE> >                 m_addr;
     sc_core::sc_in<bool>                                        m_read; // READ : 1 ; WRITE : 0
     sc_core::sc_out<bool>                                       m_done;
     sc_core::sc_in<bool>                                        m_go;
 
+public:
     SC_CTOR(Ram);
 
     void clear();
     void performIO();
+    void performRead();
+    void performWrite();
 
 private:
     sc_dt::sc_uint<WORD_SIZE> m_mem[MEM_SIZE];
 
+    sc_event m_readEvent;
+    sc_event m_writeEvent;
+
 };
+
+////////////////////////////////////////////////////////////////////////////////
 
 template<int ADDR_SIZE, int WORD_SIZE, int MEM_SIZE>
 Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::Ram(::sc_core::sc_module_name name) {
@@ -30,6 +38,12 @@ Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::Ram(::sc_core::sc_module_name name) {
 
     SC_METHOD(performIO);
     sensitive << m_go.pos();
+
+    SC_METHOD(performRead);
+    sensitive << m_readEvent;
+
+    SC_METHOD(performWrite);
+    sensitive << m_writeEvent;
 
     clear();
 }
@@ -49,6 +63,16 @@ void Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::performIO() {
     else {
         // write
     }
+}
+
+template<int ADDR_SIZE, int WORD_SIZE, int MEM_SIZE>
+void Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::performRead() {
+    std::cout << "Read\n";
+}
+
+template<int ADDR_SIZE, int WORD_SIZE, int MEM_SIZE>
+void Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::performWrite() {
+    std::cout << "Write\n";
 }
 
 #endif // RAM_H
