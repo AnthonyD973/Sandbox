@@ -82,8 +82,7 @@ void Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::performRead() {
     if (checkAddressBounds(addr)) {
         m_data.write(m_mem[addr]);
         m_done.write(true);
-        wait();
-        m_done.write(false);
+        m_clearDoneSignal.write(true);
     }
 }
 
@@ -94,8 +93,7 @@ void Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::performWrite() {
         sc_dt::sc_uint<WORD_SIZE> data = m_data.read();
         m_mem[addr] = data;
         m_done.write(true);
-        wait();
-        m_done.write(false);
+        m_clearDoneSignal.write(true);
     }
 }
 
@@ -112,7 +110,7 @@ bool Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::checkAddressBounds(const sc_dt::sc_uin
 
 template<int ADDR_SIZE, int WORD_SIZE, int MEM_SIZE>
 void Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::clearDone() {
-    m_done.write(0);
+    m_done.write(false);
 }
 
 #endif // RAM_H
