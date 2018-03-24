@@ -71,7 +71,13 @@ void Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::performIO() {
 
 template<int ADDR_SIZE, int WORD_SIZE, int MEM_SIZE>
 void Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::performRead() {
-    
+    sc_dt::sc_uint<ADDR_SIZE> addr = m_addr.read();
+    if (checkAddressBounds(addr)) {
+        m_data.write(m_mem[addr]);
+        m_done.write(true);
+        wait();
+        m_done.write(false);
+    }
 }
 
 template<int ADDR_SIZE, int WORD_SIZE, int MEM_SIZE>
