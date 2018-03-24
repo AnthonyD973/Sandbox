@@ -62,10 +62,10 @@ void Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::clear() {
 template<int ADDR_SIZE, int WORD_SIZE, int MEM_SIZE>
 void Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::performIO() {
     if (m_read.read()) {
-        // read
+        m_readEvent.notify();
     }
     else {
-        // write
+        m_writeEvent.notify();
     }
 }
 
