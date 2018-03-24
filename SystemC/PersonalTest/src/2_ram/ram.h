@@ -27,10 +27,10 @@ private:
     bool checkAddressBounds(const sc_dt::sc_uint<ADDR_SIZE>& addr) const;
 
 private:
-    sc_dt::sc_uint<WORD_SIZE> m_mem[MEM_SIZE];
+    sc_dt::sc_uint<WORD_SIZE>                                   m_mem[MEM_SIZE];
 
-    sc_event m_readEvent;
-    sc_event m_writeEvent;
+    sc_event                                                    m_readEvent;
+    sc_event                                                    m_writeEvent;
 
 };
 
@@ -82,7 +82,14 @@ void Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::performRead() {
 
 template<int ADDR_SIZE, int WORD_SIZE, int MEM_SIZE>
 void Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::performWrite() {
-    std::cout << "Write\n";
+    sc_dt::sc_uint<ADDR_SIZE> addr = m_addr.read();
+    if (checkAddressBounds(addr)) {
+        sc_dt::sc_uint<WORD_SIZE> data = m_data.read();
+        m_mem[addr] = data;
+        m_done.write(true);
+        wait();
+        m_done.write(false);
+    }
 }
 
 template<int ADDR_SIZE, int WORD_SIZE, int MEM_SIZE>
