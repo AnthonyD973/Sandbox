@@ -19,9 +19,12 @@ public:
     SC_CTOR(Ram);
 
     void clear();
+
     void performIO();
     void performRead();
     void performWrite();
+
+    void clearDone();
 
 private:
     bool checkAddressBounds(const sc_dt::sc_uint<ADDR_SIZE>& addr) const;
@@ -29,8 +32,9 @@ private:
 private:
     sc_dt::sc_uint<WORD_SIZE>                                   m_mem[MEM_SIZE];
 
-    sc_event                                                    m_readEvent;
-    sc_event                                                    m_writeEvent;
+    sc_core::sc_event                                           m_readEvent;
+    sc_core::sc_event                                           m_writeEvent;
+    sc_core::sc_signal<bool>                                    m_clearDoneSignal;
 
 };
 
@@ -48,6 +52,9 @@ Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::Ram(::sc_core::sc_module_name name) {
 
     SC_METHOD(performWrite);
     sensitive << m_writeEvent;
+
+    SC_METHOD(clearDone);
+    sensitive << m_clearDoneSignal;
 
     clear();
 }
@@ -101,6 +108,11 @@ bool Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::checkAddressBounds(const sc_dt::sc_uin
         std::cerr << "Address " << addr << " is not valid." << std::endl;
         return false;
     }
- }
+}
+
+template<int ADDR_SIZE, int WORD_SIZE, int MEM_SIZE>
+void Ram<ADDR_SIZE, WORD_SIZE, MEM_SIZE>::clearDone() {
+    m_done.write(0);
+}
 
 #endif // RAM_H
