@@ -1,5 +1,5 @@
 import { Visitee } from './visitee';
 
-export interface Visitor<V extends Visitee> {
+export interface Visitor<Ret, V extends Visitee<Ret>> {
 
 }
