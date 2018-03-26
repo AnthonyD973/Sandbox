@@ -1,6 +1,8 @@
 build/
 *.dir/
 
+.vscode/
+
 **/*.out
 **/lib*.a
 
