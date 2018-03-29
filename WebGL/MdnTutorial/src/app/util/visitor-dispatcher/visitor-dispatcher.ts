@@ -1,7 +1,7 @@
 import { Visitor } from './visitor';
 import { Visitee } from './visitee';
 
-type Operation<T> = ((v1, v2) => T)[][];
+export type Operation<T> = ((v1: Visitee<number>, v2: Visitee<number>) => T);
 
 export class VisitorDispatcher
     <
