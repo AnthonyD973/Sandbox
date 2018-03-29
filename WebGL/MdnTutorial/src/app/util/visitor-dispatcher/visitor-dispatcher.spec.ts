@@ -85,6 +85,16 @@ describe('VisitorDispatcher', () => {
     let v2v: V2Visitor;
 
     beforeEach(() => {
+        v10 = new V10();
+        v11 = new V11();
+        v12 = new V12();
+        v20 = new V20();
+        v21 = new V21();
+        v22 = new V22();
+        v1v = new V1Visitor();
+        v2v = new V2Visitor();
+
+        // Create visitor dispatcher
         const fFactory = (v1ClassNumber: number, v2ClassNumber: number) => (v1: V1, v2: V2) => `V1${v1ClassNumber}+V2${v2ClassNumber}`;
         const NUM_V1_CLASSES = 3;
         const NUM_V2_CLASSES = 3;
@@ -95,17 +105,9 @@ describe('VisitorDispatcher', () => {
                 const operation = fFactory(i, j);
                 line.push(operation);
             }
+            operations.push(line);
         }
-        vd  = new VisitorDispatcher(operations, v1v, v2v);
-
-        v10 = new V10();
-        v11 = new V11();
-        v12 = new V12();
-        v20 = new V20();
-        v21 = new V21();
-        v22 = new V22();
-        v1v = new V1Visitor();
-        v2v = new V2Visitor();
+        vd  = new VisitorDispatcher('testOperation', operations, v1v, v2v);
     });
 
     it('should be created', () => {
