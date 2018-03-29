@@ -14,7 +14,7 @@ export class VisitorDispatcher
 
     private operations: Operation<Ret>[][];
 
-    public VisitorDispatcher(operations: Operation<Ret>[][]) {
+    public constructor(operations: Operation<Ret>[][]) {
         this.operations = operations;
     }
 
