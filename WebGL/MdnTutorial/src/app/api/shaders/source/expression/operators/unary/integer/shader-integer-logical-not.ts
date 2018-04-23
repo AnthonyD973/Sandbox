@@ -1,7 +1,0 @@
-import { ShaderUnaryOperator } from '../../shader-unary-operator';
-import { ShaderIntegerExpression } from '../../../generic/shader-integer-expression';
-import { ShaderIntegerUnaryOperatorDefault } from './shader-integer-unary-operator-default';
-
-export interface ShaderIntegerLogicalNot extends ShaderIntegerExpression, ShaderUnaryOperator {
-
-}

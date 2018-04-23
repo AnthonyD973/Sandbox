@@ -1,5 +1,6 @@
 import { ShaderBooleanType } from '../../../../../../api/shaders/source/expression/types/shader-boolean-type';
 import { ShaderExpressionType } from '../../../../../../api/shaders/source/expression/shader-expression-type';
+import { ShaderExpressionTypeVisitor } from '../../../../../../api/shaders/source/expression/shader-expression-type-visitor';
 
 export class WglShaderBooleanType implements ShaderBooleanType {
 
@@ -9,6 +10,10 @@ export class WglShaderBooleanType implements ShaderBooleanType {
 
     public matches(that: ShaderExpressionType): boolean {
         return null;
+    }
+
+    public acceptVisitor(v: ShaderExpressionTypeVisitor): number {
+        return v.visitBoolean(this);
     }
 
 }

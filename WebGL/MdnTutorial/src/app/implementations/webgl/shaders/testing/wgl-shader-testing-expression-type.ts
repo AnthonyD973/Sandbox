@@ -1,4 +1,5 @@
 import { ShaderExpressionType } from '../../../../api/shaders/source/expression/shader-expression-type';
+import { ShaderExpressionTypeVisitor } from '../../../../api/shaders/source/expression/shader-expression-type-visitor';
 
 export class WglShaderTestingExpressionType implements ShaderExpressionType {
 
@@ -28,6 +29,10 @@ export class WglShaderTestingExpressionType implements ShaderExpressionType {
 
     public parse(): string {
         return this.parsedString;
+    }
+
+    public acceptVisitor(v: ShaderExpressionTypeVisitor): number {
+        return v.visitFloat(this);
     }
 
 }

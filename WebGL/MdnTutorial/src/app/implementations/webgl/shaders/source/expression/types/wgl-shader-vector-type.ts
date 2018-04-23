@@ -1,6 +1,7 @@
 import { ShaderVectorType } from '../../../../../../api/shaders/source/expression/types/shader-vector-type';
 import { ShaderExpressionType } from '../../../../../../api/shaders/source/expression/shader-expression-type';
 import { WglShaderConfig as Cfg } from '../../../util/wgl-shader-config';
+import { ShaderExpressionTypeVisitor } from '../../../../../../api/shaders/source/expression/shader-expression-type-visitor';
 
 export class WglShaderVectorType implements ShaderVectorType {
 
@@ -21,6 +22,10 @@ export class WglShaderVectorType implements ShaderVectorType {
 
     public matches(that: ShaderExpressionType): boolean {
         return null;
+    }
+
+    public acceptVisitor(v: ShaderExpressionTypeVisitor): number {
+        return v.visitVector(this);
     }
 
 }

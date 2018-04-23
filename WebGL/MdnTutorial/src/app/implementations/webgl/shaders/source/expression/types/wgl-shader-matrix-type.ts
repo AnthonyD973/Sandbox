@@ -1,6 +1,7 @@
 import { ShaderMatrixType, ShaderMatrixDims } from '../../../../../../api/shaders/source/expression/types/shader-matrix-type';
 import { ShaderExpressionType } from '../../../../../../api/shaders/source/expression/shader-expression-type';
 import { WglShaderConfig as Cfg } from '../../../util/wgl-shader-config';
+import { ShaderExpressionTypeVisitor } from '../../../../../../api/shaders/source/expression/shader-expression-type-visitor';
 
 export class WglShaderMatrixType implements ShaderMatrixType {
 
@@ -24,6 +25,10 @@ export class WglShaderMatrixType implements ShaderMatrixType {
 
     public matches(that: ShaderExpressionType): boolean {
         return null;
+    }
+
+    public acceptVisitor(v: ShaderExpressionTypeVisitor): number {
+        return v.visitMatrix(this);
     }
 
 }
