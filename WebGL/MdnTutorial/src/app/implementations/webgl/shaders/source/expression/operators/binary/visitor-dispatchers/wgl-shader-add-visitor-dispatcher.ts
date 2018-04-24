@@ -21,11 +21,19 @@ export class WglShaderAddVisitorDispatcher extends WglShaderVisitorDispatcher {
 
     protected makeOperations(operations: Operation<void>[][]): void {
         const mValid =
-            (v1: ShaderMatrixType, v2: ShaderMatrixType) =>
-                v1.dims.rows === v2.dims.rows && v1.dims.cols === v2.dims.cols;
+            (v1: ShaderMatrixType, v2: ShaderMatrixType) => {
+                const isValid = v1.dims.rows === v2.dims.rows && v1.dims.cols === v2.dims.cols;
+                if (!isValid) {
+                    this.n(v1, v2);
+                }
+            };
         const vValid =
-            (v1: ShaderVectorType, v2: ShaderVectorType) =>
-                v1.dim === v2.dim;
+            (v1: ShaderVectorType, v2: ShaderVectorType) => {
+                const isValid = v1.dim === v2.dim;
+                if (!isValid) {
+                    this.n(v1, v2);
+                }
+            };
 
         //                 BOOL,  FLOAT,    INT,    MAT,    VEC
         const boolean = [this.y, this.y, this.y, this.n, this.n]; // BOOLEAN
