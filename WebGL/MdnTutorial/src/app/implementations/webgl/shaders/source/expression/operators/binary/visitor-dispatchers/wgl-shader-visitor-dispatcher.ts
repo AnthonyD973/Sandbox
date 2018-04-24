@@ -19,10 +19,12 @@ export abstract class WglShaderVisitorDispatcher
         );
     }
 
-    public y(v1: ShaderBinaryOperator, v2: ShaderBinaryOperator): void {
+    // "Yes". Means the operation on v1 and v2 is valid.
+    public y(v1: ShaderExpressionType, v2: ShaderExpressionType): void {
     }
 
-    public n(v1: ShaderBinaryOperator, v2: ShaderBinaryOperator): void {
+    // "No". Means the operation on v1 and v2 is invalid.
+    public n(v1: ShaderExpressionType, v2: ShaderExpressionType): void {
         throw new Error(`Operation "${this.operationName}" is invalid on given types`);
     }
 
