@@ -12,7 +12,7 @@ export class VisitorDispatcher
         V2Visitor extends Visitor<number, V2>
     > {
 
-    private operationName: string;
+    protected readonly operationName: string;
     private operations: Operation<Ret>[][];
     private v1Visitor: V1Visitor;
     private v2Visitor: V2Visitor;
