@@ -1,8 +1,6 @@
 import { ShaderExpressionType } from '../shader-expression-type';
-import { ShaderMatrixDims } from './shader-matrix-type';
+import { ShaderMatrixDims, ShaderMatrixType } from './shader-matrix-type';
 
-export interface ShaderVectorType extends ShaderExpressionType {
-
-    readonly dims: ShaderMatrixDims;
+export interface ShaderVectorType extends ShaderMatrixType {
 
 }
