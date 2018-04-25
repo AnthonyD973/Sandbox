@@ -46,7 +46,7 @@ export abstract class WglShaderVisitorDispatcher
     }
 
     private vInternal(v1: ShaderVectorType, v2: ShaderVectorType): void {
-        const isValid = v1.dim === v2.dim;
+        const isValid = v1.dims === v2.dims;
         if (!isValid) {
             this.n(v1, v2);
         }

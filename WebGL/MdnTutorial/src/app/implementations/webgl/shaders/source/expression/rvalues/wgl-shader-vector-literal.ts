@@ -15,7 +15,7 @@ export class WglShaderVectorLiteral implements ShaderVectorLiteral {
     }
 
     public parse(): string {
-        let parsedString = 'vec' + this.type.dim + '(';
+        let parsedString = 'vec' + this.type.dims.rows + '(';
 
         const haveSameValue = this.values.every(value => value === this.values[0]);
 
