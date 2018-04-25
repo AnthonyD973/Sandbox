@@ -3,6 +3,4 @@ import { Visitee } from '../../../../util/visitor-dispatcher/visitee';
 
 export interface ShaderExpressionType extends Visitee<number>, ShaderParsable {
 
-    matches(that: ShaderExpressionType): boolean;
-
 }
