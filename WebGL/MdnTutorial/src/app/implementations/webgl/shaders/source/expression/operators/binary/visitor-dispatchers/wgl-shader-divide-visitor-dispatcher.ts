@@ -7,18 +7,24 @@ const OP_NAME = 'divide';
 
 export class WglShaderDivideVisitorDispatcher extends WglShaderVisitorDispatcher {
 
-    public static readonly operations: Operation<number>[][] = [
-        [], // BOOLEAN
-        [], // FLOAT
-        [], // INTEGER
-        [], // MATRIX
-        [], // VECTOR
-    ];
-
     constructor() {
+        const operations: Operation<void>[][] = [];
         super(
             OP_NAME,
-            WglShaderDivideVisitorDispatcher.operations
+            operations
         );
+        this.makeOperations(operations);
     }
+
+    protected makeOperations(operations: Operation<void>[][]): void {
+        //                 BOOL,  FLOAT,    INT,    MAT,    VEC
+        const boolean = [this.y, this.y, this.y, this.n, this.n]; // BOOLEAN
+        const float   = [this.y, this.y, this.y, this.n, this.n]; // FLOAT
+        const int     = [this.y, this.y, this.y, this.n, this.n]; // INTEGER
+        const matrix  = [this.y, this.y, this.y, this.n, this.n]; // MATRIX
+        const vector  = [this.y, this.y, this.y, this.n, this.v]; // VECTOR
+
+        operations.push(boolean, float, int, matrix, vector);
+    }
+
 }
