@@ -28,7 +28,5 @@ export class WglShaderAddVisitorDispatcher extends WglShaderVisitorDispatcher {
         const vector  = [this.n, this.n, this.n, this.n, this.v]; // VECTOR
 
         operations.push(boolean, float, int, matrix, vector);
-
-        console.log(operations);
     }
 }
