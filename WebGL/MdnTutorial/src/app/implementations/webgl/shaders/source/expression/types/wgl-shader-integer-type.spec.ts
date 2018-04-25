@@ -22,17 +22,4 @@ describe('WglShaderIntegerType', () => {
         });
     });
 
-    describe('matches', () => {
-        it('should match the integer type', () => {
-            expect(intT.matches(new WglShaderIntegerType())).toBe(true);
-        });
-
-        it('should not match non-integer types', () => {
-            expect(intT.matches(new WglShaderBooleanType())).toBe(false);
-            expect(intT.matches(new WglShaderFloatType())).toBe(false);
-            expect(intT.matches(new WglShaderVectorType(1))).toBe(false);
-            expect(intT.matches(new WglShaderMatrixType(2, 3))).toBe(false);
-        });
-    });
-
 });

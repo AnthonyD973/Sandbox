@@ -22,17 +22,4 @@ describe('WglShaderBooleanType', () => {
         });
     });
 
-    describe('matches', () => {
-        it('should match the boolean type', () => {
-            expect(boolT.matches(new WglShaderBooleanType())).toBe(true);
-        });
-
-        it('should not match non-boolean types', () => {
-            expect(boolT.matches(new WglShaderFloatType())).toBe(false);
-            expect(boolT.matches(new WglShaderIntegerType())).toBe(false);
-            expect(boolT.matches(new WglShaderMatrixType(2, 3))).toBe(false);
-            expect(boolT.matches(new WglShaderVectorType(1))).toBe(false);
-        });
-    });
-
 });

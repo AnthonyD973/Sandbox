@@ -34,28 +34,4 @@ describe('WglShaderVectorType', () => {
         });
     });
 
-    describe('matches', () => {
-        it('should match the vector type if it is of the same dimensions', () => {
-            expect(vec4T.matches(new WglShaderVectorType(4))).toBe(true);
-            expect(vec2T.matches(new WglShaderVectorType(3))).toBe(true);
-        });
-
-        it('should not match the vector type if it is of difference dimensions', () => {
-            expect(vec4T.matches(new WglShaderVectorType(3))).toBe(false);
-            expect(vec4T.matches(new WglShaderVectorType(2))).toBe(false);
-            expect(vec2T.matches(new WglShaderVectorType(4))).toBe(false);
-            expect(vec2T.matches(new WglShaderVectorType(3))).toBe(false);
-
-            expect(vec2T.matches(new WglShaderVectorType(0))).toBe(false);
-            expect(vec2T.matches(new WglShaderVectorType(5))).toBe(false);
-        });
-
-        it('should not match non-vector types', () => {
-            expect(vec4T.matches(new WglShaderBooleanType(    ))).toBe(false);
-            expect(vec4T.matches(new WglShaderFloatType  (    ))).toBe(false);
-            expect(vec4T.matches(new WglShaderIntegerType(    ))).toBe(false);
-            expect(vec4T.matches(new WglShaderMatrixType (3, 2))).toBe(false);
-        });
-    });
-
 });
