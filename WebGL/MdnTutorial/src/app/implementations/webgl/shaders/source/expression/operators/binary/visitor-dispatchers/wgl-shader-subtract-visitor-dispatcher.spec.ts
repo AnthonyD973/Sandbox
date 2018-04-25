@@ -1,5 +1,5 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { WglShaderAddVisitorDispatcher } from './wgl-shader-add-visitor-dispatcher';
+import { WglShaderSubtractVisitorDispatcher } from './wgl-shader-subtract-visitor-dispatcher';
 import { ShaderBooleanExpression } from '../../../../../../../../api/shaders/source/expression/generic/shader-boolean-expression';
 import { ShaderFloatExpression } from '../../../../../../../../api/shaders/source/expression/generic/shader-float-expression';
 import { ShaderIntegerExpression } from '../../../../../../../../api/shaders/source/expression/generic/shader-integer-expression';
@@ -11,15 +11,15 @@ import { WglShaderIntegerLiteral } from '../../../rvalues/wgl-shader-integer-lit
 import { WglShaderMatrixLiteral } from '../../../rvalues/wgl-shader-matrix-literal';
 import { WglShaderVectorLiteral } from '../../../rvalues/wgl-shader-vector-literal';
 
-describe(WglShaderAddVisitorDispatcher.name, () => {
+describe(WglShaderSubtractVisitorDispatcher.name, () => {
 
     beforeEach(() => TestBed.configureTestingModule({
         providers: [
-            WglShaderAddVisitorDispatcher
+            WglShaderSubtractVisitorDispatcher
         ]
     }));
 
-    let vd: WglShaderAddVisitorDispatcher;
+    let vd: WglShaderSubtractVisitorDispatcher;
     let b: ShaderBooleanExpression;
     let f: ShaderFloatExpression;
     let i: ShaderIntegerExpression;
@@ -29,7 +29,7 @@ describe(WglShaderAddVisitorDispatcher.name, () => {
     let v2: ShaderVectorExpression;
     let v3: ShaderVectorExpression;
 
-    beforeEach(inject([WglShaderAddVisitorDispatcher], (injVd) => {
+    beforeEach(inject([WglShaderSubtractVisitorDispatcher], (injVd) => {
         vd = injVd;
         b = new WglShaderBooleanLiteral(true);
         f = new WglShaderFloatLiteral(3.14);

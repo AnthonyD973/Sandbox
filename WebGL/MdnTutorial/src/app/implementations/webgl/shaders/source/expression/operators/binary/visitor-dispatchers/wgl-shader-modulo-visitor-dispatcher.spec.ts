@@ -1,5 +1,5 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { WglShaderAddVisitorDispatcher } from './wgl-shader-add-visitor-dispatcher';
+import { WglShaderModuloVisitorDispatcher } from './wgl-shader-modulo-visitor-dispatcher';
 import { ShaderBooleanExpression } from '../../../../../../../../api/shaders/source/expression/generic/shader-boolean-expression';
 import { ShaderFloatExpression } from '../../../../../../../../api/shaders/source/expression/generic/shader-float-expression';
 import { ShaderIntegerExpression } from '../../../../../../../../api/shaders/source/expression/generic/shader-integer-expression';
@@ -11,44 +11,31 @@ import { WglShaderIntegerLiteral } from '../../../rvalues/wgl-shader-integer-lit
 import { WglShaderMatrixLiteral } from '../../../rvalues/wgl-shader-matrix-literal';
 import { WglShaderVectorLiteral } from '../../../rvalues/wgl-shader-vector-literal';
 
-describe(WglShaderAddVisitorDispatcher.name, () => {
+describe(WglShaderModuloVisitorDispatcher.name, () => {
 
     beforeEach(() => TestBed.configureTestingModule({
         providers: [
-            WglShaderAddVisitorDispatcher
+            WglShaderModuloVisitorDispatcher
         ]
     }));
 
-    let vd: WglShaderAddVisitorDispatcher;
+    let vd: WglShaderModuloVisitorDispatcher;
     let b: ShaderBooleanExpression;
     let f: ShaderFloatExpression;
     let i: ShaderIntegerExpression;
-    let m23: ShaderMatrixExpression;
-    let m32: ShaderMatrixExpression;
     let m3: ShaderMatrixExpression;
-    let v2: ShaderVectorExpression;
     let v3: ShaderVectorExpression;
 
-    beforeEach(inject([WglShaderAddVisitorDispatcher], (injVd) => {
+    beforeEach(inject([WglShaderModuloVisitorDispatcher], (injVd) => {
         vd = injVd;
         b = new WglShaderBooleanLiteral(true);
         f = new WglShaderFloatLiteral(3.14);
         i = new WglShaderIntegerLiteral(-5);
-        m32 = new WglShaderMatrixLiteral([
-            [1, 2],
-            [3, 4],
-            [5, 6]
-        ], 3, 2);
-        m23 = new WglShaderMatrixLiteral([
-            [1, 2, 3],
-            [4, 5, 6],
-        ], 2, 3);
         m3 = new WglShaderMatrixLiteral([
             [1, 2, 3],
             [4, 5, 6],
             [7, 8, 9],
         ], 3, 3);
-        v2 = new WglShaderVectorLiteral([1, 2]);
         v3 = new WglShaderVectorLiteral([1, 2, 3]);
     }));
 
@@ -68,37 +55,29 @@ describe(WglShaderAddVisitorDispatcher.name, () => {
         vd.visit(i.type, b.type);
         vd.visit(i.type, f.type);
         vd.visit(i.type, i.type);
-
-        vd.visit(m32.type, m32.type);
-        vd.visit(m23.type, m23.type);
-        vd.visit(m3.type, m3.type);
-
-        vd.visit(v2.type, v2.type);
-        vd.visit(v3.type, v3.type);
     });
 
     it('should refuse the operation between types for which it cannot be applied', () => {
-        expect(() => vd.visit(b.type, m23.type)).toThrow();
-        expect(() => vd.visit(b.type, v2.type)).toThrow();
+        expect(() => vd.visit(b.type, m3.type)).toThrow();
+        expect(() => vd.visit(b.type, v3.type)).toThrow();
 
-        expect(() => vd.visit(f.type, m23.type)).toThrow();
-        expect(() => vd.visit(f.type, v2.type)).toThrow();
+        expect(() => vd.visit(f.type, m3.type)).toThrow();
+        expect(() => vd.visit(f.type, v3.type)).toThrow();
 
-        expect(() => vd.visit(i.type, m23.type)).toThrow();
-        expect(() => vd.visit(i.type, v2.type)).toThrow();
+        expect(() => vd.visit(i.type, m3.type)).toThrow();
+        expect(() => vd.visit(i.type, v3.type)).toThrow();
 
-        expect(() => vd.visit(m23.type, m32.type)).toThrow();
-        expect(() => vd.visit(m23.type, m3.type)).toThrow();
-        expect(() => vd.visit(m32.type, m23.type)).toThrow();
-        expect(() => vd.visit(m32.type, m3.type)).toThrow();
-        expect(() => vd.visit(m3.type, m23.type)).toThrow();
-        expect(() => vd.visit(m3.type, m32.type)).toThrow();
-        expect(() => vd.visit(m3.type, v2.type)).toThrow();
+        expect(() => vd.visit(m3.type, b.type)).toThrow();
+        expect(() => vd.visit(m3.type, f.type)).toThrow();
+        expect(() => vd.visit(m3.type, i.type)).toThrow();
+        expect(() => vd.visit(m3.type, m3.type)).toThrow();
+        expect(() => vd.visit(m3.type, v3.type)).toThrow();
 
-        expect(() => vd.visit(v2.type, v3.type)).toThrow();
-        expect(() => vd.visit(v2.type, m23.type)).toThrow();
-        expect(() => vd.visit(v3.type, v2.type)).toThrow();
-        expect(() => vd.visit(v3.type, m23.type)).toThrow();
+        expect(() => vd.visit(v3.type, b.type)).toThrow();
+        expect(() => vd.visit(v3.type, f.type)).toThrow();
+        expect(() => vd.visit(v3.type, i.type)).toThrow();
+        expect(() => vd.visit(v3.type, m3.type)).toThrow();
+        expect(() => vd.visit(v3.type, v3.type)).toThrow();
     });
 
 });
