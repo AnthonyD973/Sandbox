@@ -12,6 +12,12 @@ export abstract class WglShaderVisitorDispatcher
             void, ShaderExpressionType, ShaderExpressionType, WglShaderExpressionTypeVisitor, WglShaderExpressionTypeVisitor
         > {
 
+    // "Matrix". Asserts whether the matrices' dimensions are equal.
+    protected readonly m: Operation<void>;
+
+    // "Vector". Asserts whether the vectors' dimensions are equal.
+    protected readonly v: Operation<void>;
+
     constructor(opName: string, operations: Operation<void>[][]) {
         super(
             opName,
@@ -19,6 +25,8 @@ export abstract class WglShaderVisitorDispatcher
             new WglShaderExpressionTypeVisitor(),
             new WglShaderExpressionTypeVisitor()
         );
+        this.m = this.mInternal.bind(this);
+        this.v = this.vInternal.bind(this);
     }
 
     // "Yes". Means the operation on v1 and v2 is valid.
@@ -30,25 +38,17 @@ export abstract class WglShaderVisitorDispatcher
         throw new Error(`Operation "${this.operationName}" is invalid on given types`);
     }
 
-    // "Matrix". Asserts whether the matrices' dimensions are equal.
-    protected m(v1: ShaderMatrixType, v2: ShaderMatrixType): void {
+    private mInternal(v1: ShaderMatrixType, v2: ShaderMatrixType): void {
         const isValid = v1.dims.rows === v2.dims.rows && v1.dims.cols === v2.dims.cols;
         if (!isValid) {
             this.n(v1, v2);
         }
-        else {
-            this.y(v1, v2);
-        }
     }
 
-    // "Vector". Asserts whether the vectors' dimensions are equal.
-    protected v(v1: ShaderVectorType, v2: ShaderVectorType): void {
+    private vInternal(v1: ShaderVectorType, v2: ShaderVectorType): void {
         const isValid = v1.dim === v2.dim;
         if (!isValid) {
             this.n(v1, v2);
-        }
-        else {
-            this.y(v1, v2);
         }
     }
 
