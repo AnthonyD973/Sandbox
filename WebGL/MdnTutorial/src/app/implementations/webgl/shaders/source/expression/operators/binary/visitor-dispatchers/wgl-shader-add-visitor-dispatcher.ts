@@ -29,4 +29,5 @@ export class WglShaderAddVisitorDispatcher extends WglShaderVisitorDispatcher {
 
         operations.push(boolean, float, int, matrix, vector);
     }
+
 }
