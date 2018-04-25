@@ -8,10 +8,6 @@ export class WglShaderFloatType implements ShaderFloatType {
         return 'float';
     }
 
-    public matches(that: ShaderExpressionType): boolean {
-        return null;
-    }
-
     public acceptVisitor(v: ShaderExpressionTypeVisitor): number {
         return v.visitFloat(this);
     }

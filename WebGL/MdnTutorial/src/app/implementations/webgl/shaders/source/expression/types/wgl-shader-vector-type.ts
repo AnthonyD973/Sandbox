@@ -20,10 +20,6 @@ export class WglShaderVectorType implements ShaderVectorType {
         return 'vec' + String(this.dim);
     }
 
-    public matches(that: ShaderExpressionType): boolean {
-        return null;
-    }
-
     public acceptVisitor(v: ShaderExpressionTypeVisitor): number {
         return v.visitVector(this);
     }

@@ -23,10 +23,6 @@ export class WglShaderMatrixType implements ShaderMatrixType {
         return 'mat' + suffix;
     }
 
-    public matches(that: ShaderExpressionType): boolean {
-        return null;
-    }
-
     public acceptVisitor(v: ShaderExpressionTypeVisitor): number {
         return v.visitMatrix(this);
     }

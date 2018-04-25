@@ -8,10 +8,6 @@ export class WglShaderBooleanType implements ShaderBooleanType {
         return 'bool';
     }
 
-    public matches(that: ShaderExpressionType): boolean {
-        return null;
-    }
-
     public acceptVisitor(v: ShaderExpressionTypeVisitor): number {
         return v.visitBoolean(this);
     }

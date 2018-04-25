@@ -8,10 +8,6 @@ export class WglShaderIntegerType implements ShaderIntegerType {
         return 'int';
     }
 
-    public matches(that: ShaderExpressionType): boolean {
-        return null;
-    }
-
     public acceptVisitor(v: ShaderExpressionTypeVisitor): number {
         return v.visitInteger(this);
     }
