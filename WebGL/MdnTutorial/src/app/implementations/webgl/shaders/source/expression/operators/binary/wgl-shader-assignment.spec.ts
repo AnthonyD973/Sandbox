@@ -5,6 +5,7 @@ import { WglShaderFloatLiteral } from '../../rvalues/wgl-shader-float-literal';
 import { WglShaderFloatType } from '../../types/wgl-shader-float-type';
 import { WglShaderLiteralSamples } from '../../../../testing/wgl-shader-literal-samples';
 import { ShaderExpressionType } from '../../../../../../../api/shaders/source/expression/shader-expression-type';
+import { WglShaderTestingUtil } from '../../../../testing/wgl-shader-testing-util';
 
 describe('WglShaderAssignment', () => {
 
@@ -44,9 +45,9 @@ describe('WglShaderAssignment', () => {
                 {typeVar: s.iNeg.type,  expr: s.fPi},
                 {typeVar: s.iNeg.type,  expr: s.iNeg},
 
-                {typeVar: s.m23.type,   expr: s.bTrue},
-                {typeVar: s.m32.type,   expr: s.fPi},
-                {typeVar: s.m3.type,    expr: s.iNeg},
+                {typeVar: s.m23.type,   expr: s.m23},
+                {typeVar: s.m32.type,   expr: s.m32},
+                {typeVar: s.m3.type,    expr: s.m3},
 
                 {typeVar: s.v2.type,    expr: s.v2},
                 {typeVar: s.v3.type,    expr: s.v3}
@@ -55,8 +56,9 @@ describe('WglShaderAssignment', () => {
             testCases.forEach((testCase, index) => {
                 const assignee = new WglShaderVariable('var', testCase.typeVar);
                 const operation = new WglShaderAssignment(assignee, testCase.expr);
+                const parseRegex = WglShaderTestingUtil.escapeRegexCharacters(testCase.expr.parse());
                 expect(
-                    operation.parse()).toMatch(new RegExp(testCase.typeVar.parse() + '\\s+var\\s*=\\s*' + testCase.expr.parse()),
+                    operation.parse()).toMatch(new RegExp(testCase.typeVar.parse() + '\\s+var\\s*=\\s*' + parseRegex),
                     'Error at test case #' + index
                 );
             });
@@ -73,6 +75,9 @@ describe('WglShaderAssignment', () => {
                 {typeVar: s.iNeg.type,  expr: s.m23},
                 {typeVar: s.iNeg.type,  expr: s.v2},
 
+                {typeVar: s.m23.type,   expr: s.bTrue},
+                {typeVar: s.m23.type,   expr: s.fPi},
+                {typeVar: s.m23.type,   expr: s.iNeg},
                 {typeVar: s.m23.type,   expr: s.m32},
                 {typeVar: s.m23.type,   expr: s.m3},
                 {typeVar: s.m32.type,   expr: s.m23},
