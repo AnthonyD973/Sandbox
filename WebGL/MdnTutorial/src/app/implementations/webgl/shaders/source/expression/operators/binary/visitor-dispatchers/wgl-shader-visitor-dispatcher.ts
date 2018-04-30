@@ -21,6 +21,12 @@ export abstract class WglShaderVisitorDispatcher
     // "Vector". Asserts whether the vectors' dimensions are equal.
     protected readonly v: Operation<void>;
 
+    // "Yes". Means the operation on v1 and v2 is valid.
+    protected readonly y: Operation<void>;
+
+    // "No". Means the operation on v1 and v2 is invalid.
+    protected readonly n: Operation<void>;
+
     constructor(opName: string, operations: Operation<void>[][]) {
         super(
             opName,
@@ -28,17 +34,17 @@ export abstract class WglShaderVisitorDispatcher
             new WglShaderExpressionTypeVisitor(),
             new WglShaderExpressionTypeVisitor()
         );
+        this.y  = this.yInternal .bind(this);
+        this.n  = this.nInternal .bind(this);
         this.m  = this.mInternal .bind(this);
         this.mm = this.mmInternal.bind(this);
         this.v  = this.vInternal .bind(this);
     }
 
-    // "Yes". Means the operation on v1 and v2 is valid.
-    public y(v1: ShaderExpressionType, v2: ShaderExpressionType): void {
+    private yInternal(v1: ShaderExpressionType, v2: ShaderExpressionType): void {
     }
 
-    // "No". Means the operation on v1 and v2 is invalid.
-    public n(v1: ShaderExpressionType, v2: ShaderExpressionType): void {
+    private nInternal(v1: ShaderExpressionType, v2: ShaderExpressionType): void {
         throw new Error(`Operation "${this.operationName}" is invalid on given types`);
     }
 
