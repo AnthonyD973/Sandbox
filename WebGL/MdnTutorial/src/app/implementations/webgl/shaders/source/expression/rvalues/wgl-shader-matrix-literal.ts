@@ -10,7 +10,7 @@ export class WglShaderMatrixLiteral implements ShaderMatrixLiteral {
     }
 
     public parse(): string {
-        return null;
+        return this.type.parse() + '()';
     }
 
 }
