@@ -7,7 +7,7 @@ import { WglShaderLiteralSamples } from '../../../../testing/wgl-shader-literal-
 import { ShaderExpressionType } from '../../../../../../../api/shaders/source/expression/shader-expression-type';
 import { WglShaderTestingUtil } from '../../../../testing/wgl-shader-testing-util';
 
-describe('WglShaderAssignment', () => {
+describe(WglShaderAssignment.name, () => {
 
     let type: WglShaderFloatType;
     let expr: ShaderExpression;
@@ -31,7 +31,7 @@ describe('WglShaderAssignment', () => {
 
     describe('parse', () => {
 
-        it('should execute with valid types', () => {
+        it('should produce valid results with valid types', () => {
             const testCases: {typeVar: ShaderExpressionType, expr: ShaderExpression}[] = [
                 {typeVar: s.bTrue.type, expr: s.bTrue},
                 {typeVar: s.bTrue.type, expr: s.fPi},
