@@ -10,21 +10,10 @@ export class WglShaderLiteralSamples {
     public readonly fPi   = new WglShaderFloatLiteral(3.14);
     public readonly iPos  = new WglShaderIntegerLiteral(5);
     public readonly iNeg  = new WglShaderIntegerLiteral(-5);
-    public readonly m32 = new WglShaderMatrixLiteral([
-        [1, 2],
-        [3, 4],
-        [5, 6]
-    ], 3, 2);
-    public readonly m23 = new WglShaderMatrixLiteral([
-        [1, 2, 3],
-        [4, 5, 6],
-    ], 2, 3);
-    public readonly m3 = new WglShaderMatrixLiteral([
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 9],
-    ], 3, 3);
-    public readonly v2 = new WglShaderVectorLiteral([1, 2]);
-    public readonly v3 = new WglShaderVectorLiteral([1, 2, 3]);
+    public readonly m32   = new WglShaderMatrixLiteral(3, 2);
+    public readonly m23   = new WglShaderMatrixLiteral(2, 3);
+    public readonly m3    = new WglShaderMatrixLiteral(3, 3);
+    public readonly v2    = new WglShaderVectorLiteral([1, 2]);
+    public readonly v3    = new WglShaderVectorLiteral([1, 2, 3]);
 
 }

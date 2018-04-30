@@ -5,7 +5,7 @@ export class WglShaderMatrixLiteral implements ShaderMatrixLiteral {
 
     public readonly type: WglShaderMatrixType;
 
-    constructor(values: number[][], numRows: number, numCols: number) {
+    constructor(numRows: number, numCols: number) {
         this.type = new WglShaderMatrixType(numRows, numCols);
     }
 
