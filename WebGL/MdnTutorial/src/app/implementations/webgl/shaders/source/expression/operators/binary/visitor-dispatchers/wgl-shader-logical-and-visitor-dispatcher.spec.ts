@@ -10,6 +10,7 @@ import { WglShaderFloatLiteral } from '../../../rvalues/wgl-shader-float-literal
 import { WglShaderIntegerLiteral } from '../../../rvalues/wgl-shader-integer-literal';
 import { WglShaderMatrixLiteral } from '../../../rvalues/wgl-shader-matrix-literal';
 import { WglShaderVectorLiteral } from '../../../rvalues/wgl-shader-vector-literal';
+import { WglShaderLiteralSamples } from '../../../../../testing/wgl-shader-literal-samples';
 
 describe(WglShaderLogicalAndVisitorDispatcher.name, () => {
 
@@ -20,23 +21,11 @@ describe(WglShaderLogicalAndVisitorDispatcher.name, () => {
     }));
 
     let vd: WglShaderLogicalAndVisitorDispatcher;
-    let b: ShaderBooleanExpression;
-    let f: ShaderFloatExpression;
-    let i: ShaderIntegerExpression;
-    let m3: ShaderMatrixExpression;
-    let v3: ShaderVectorExpression;
+    let s: WglShaderLiteralSamples;
 
     beforeEach(inject([WglShaderLogicalAndVisitorDispatcher], (injVd) => {
         vd = injVd;
-        b = new WglShaderBooleanLiteral(true);
-        f = new WglShaderFloatLiteral(3.14);
-        i = new WglShaderIntegerLiteral(-5);
-        m3 = new WglShaderMatrixLiteral([
-            [1, 2, 3],
-            [4, 5, 6],
-            [7, 8, 9],
-        ], 3, 3);
-        v3 = new WglShaderVectorLiteral([1, 2, 3]);
+        s = new WglShaderLiteralSamples();
     }));
 
     it('should be created', () => {
@@ -44,40 +33,40 @@ describe(WglShaderLogicalAndVisitorDispatcher.name, () => {
     });
 
     it('should accept the operation between types for which it can be applied', () => {
-        vd.visit(b.type, b.type);
-        vd.visit(b.type, f.type);
-        vd.visit(b.type, i.type);
+        vd.visit(s.bTrue.type, s.bTrue.type);
+        vd.visit(s.bTrue.type, s.fPi.type);
+        vd.visit(s.bTrue.type, s.iNeg.type);
 
-        vd.visit(f.type, b.type);
-        vd.visit(f.type, f.type);
-        vd.visit(f.type, i.type);
+        vd.visit(s.fPi.type, s.bTrue.type);
+        vd.visit(s.fPi.type, s.fPi.type);
+        vd.visit(s.fPi.type, s.iNeg.type);
 
-        vd.visit(i.type, b.type);
-        vd.visit(i.type, f.type);
-        vd.visit(i.type, i.type);
+        vd.visit(s.iNeg.type, s.bTrue.type);
+        vd.visit(s.iNeg.type, s.fPi.type);
+        vd.visit(s.iNeg.type, s.iNeg.type);
     });
 
     it('should refuse the operation between types for which it cannot be applied', () => {
-        expect(() => vd.visit(b.type, m3.type)).toThrow();
-        expect(() => vd.visit(b.type, v3.type)).toThrow();
+        expect(() => vd.visit(s.bTrue.type, s.m3.type)).toThrow();
+        expect(() => vd.visit(s.bTrue.type, s.v3.type)).toThrow();
 
-        expect(() => vd.visit(f.type, m3.type)).toThrow();
-        expect(() => vd.visit(f.type, v3.type)).toThrow();
+        expect(() => vd.visit(s.fPi.type, s.m3.type)).toThrow();
+        expect(() => vd.visit(s.fPi.type, s.v3.type)).toThrow();
 
-        expect(() => vd.visit(i.type, m3.type)).toThrow();
-        expect(() => vd.visit(i.type, v3.type)).toThrow();
+        expect(() => vd.visit(s.iNeg.type, s.m3.type)).toThrow();
+        expect(() => vd.visit(s.iNeg.type, s.v3.type)).toThrow();
 
-        expect(() => vd.visit(m3.type, b.type)).toThrow();
-        expect(() => vd.visit(m3.type, f.type)).toThrow();
-        expect(() => vd.visit(m3.type, i.type)).toThrow();
-        expect(() => vd.visit(m3.type, m3.type)).toThrow();
-        expect(() => vd.visit(m3.type, v3.type)).toThrow();
+        expect(() => vd.visit(s.m3.type, s.bTrue.type)).toThrow();
+        expect(() => vd.visit(s.m3.type, s.fPi.type)).toThrow();
+        expect(() => vd.visit(s.m3.type, s.iNeg.type)).toThrow();
+        expect(() => vd.visit(s.m3.type, s.m3.type)).toThrow();
+        expect(() => vd.visit(s.m3.type, s.v3.type)).toThrow();
 
-        expect(() => vd.visit(v3.type, b.type)).toThrow();
-        expect(() => vd.visit(v3.type, f.type)).toThrow();
-        expect(() => vd.visit(v3.type, i.type)).toThrow();
-        expect(() => vd.visit(v3.type, m3.type)).toThrow();
-        expect(() => vd.visit(v3.type, v3.type)).toThrow();
+        expect(() => vd.visit(s.v3.type, s.bTrue.type)).toThrow();
+        expect(() => vd.visit(s.v3.type, s.fPi.type)).toThrow();
+        expect(() => vd.visit(s.v3.type, s.iNeg.type)).toThrow();
+        expect(() => vd.visit(s.v3.type, s.m3.type)).toThrow();
+        expect(() => vd.visit(s.v3.type, s.v3.type)).toThrow();
     });
 
 });
