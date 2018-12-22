@@ -1,0 +1,5 @@
+/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/CMakeFiles/rebuild_cache.dir
+/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/CMakeFiles/edit_cache.dir
+/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/CMakeFiles/AwsChecksums.dir
+/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/CMakeFiles/AwsCEventStream.dir
+/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/CMakeFiles/AwsCCommon.dir

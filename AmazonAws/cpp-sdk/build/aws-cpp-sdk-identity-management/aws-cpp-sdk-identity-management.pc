@@ -1,0 +1,10 @@
+includedir=/usr/local/include
+libdir=/usr/local/lib
+
+Name: aws-cpp-sdk-identity-management
+Description: High-level C++ SDK for identity management against AWS
+Version: 1.7.25
+Cflags: -I${includedir} -fno-exceptions -std=c++11
+Libs: -L${libdir} -laws-cpp-sdk-identity-management 
+Libs.private: -lpthread -lcurl -lcrypto -lssl -lz
+Requires:  aws-cpp-sdk-cognito-identity aws-cpp-sdk-sts aws-cpp-sdk-core

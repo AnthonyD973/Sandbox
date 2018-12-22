@@ -1,0 +1,465 @@
+# Install script for directory: /home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive
+
+# Set the install prefix
+if(NOT DEFINED CMAKE_INSTALL_PREFIX)
+  set(CMAKE_INSTALL_PREFIX "/usr/local")
+endif()
+string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
+
+# Set the install configuration name.
+if(NOT DEFINED CMAKE_INSTALL_CONFIG_NAME)
+  if(BUILD_TYPE)
+    string(REGEX REPLACE "^[^A-Za-z0-9_]+" ""
+           CMAKE_INSTALL_CONFIG_NAME "${BUILD_TYPE}")
+  else()
+    set(CMAKE_INSTALL_CONFIG_NAME "")
+  endif()
+  message(STATUS "Install configuration: \"${CMAKE_INSTALL_CONFIG_NAME}\"")
+endif()
+
+# Set the component getting installed.
+if(NOT CMAKE_INSTALL_COMPONENT)
+  if(COMPONENT)
+    message(STATUS "Install component: \"${COMPONENT}\"")
+    set(CMAKE_INSTALL_COMPONENT "${COMPONENT}")
+  else()
+    set(CMAKE_INSTALL_COMPONENT)
+  endif()
+endif()
+
+# Install shared libraries without execute permission?
+if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
+  set(CMAKE_INSTALL_SO_NO_EXE "1")
+endif()
+
+# Is this installation the result of a crosscompile?
+if(NOT DEFINED CMAKE_CROSSCOMPILING)
+  set(CMAKE_CROSSCOMPILING "FALSE")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libaws-cpp-sdk-medialive.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libaws-cpp-sdk-medialive.so")
+    file(RPATH_CHECK
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libaws-cpp-sdk-medialive.so"
+         RPATH "")
+  endif()
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-medialive/libaws-cpp-sdk-medialive.so")
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libaws-cpp-sdk-medialive.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libaws-cpp-sdk-medialive.so")
+    file(RPATH_CHANGE
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libaws-cpp-sdk-medialive.so"
+         OLD_RPATH "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-core:/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/install/lib:"
+         NEW_RPATH "")
+    if(CMAKE_INSTALL_DO_STRIP)
+      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libaws-cpp-sdk-medialive.so")
+    endif()
+  endif()
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-medialive/aws-cpp-sdk-medialive.pc")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/aws/medialive" TYPE FILE FILES
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/MediaLiveClient.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/MediaLiveEndpoint.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/MediaLiveErrorMarshaller.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/MediaLiveErrors.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/MediaLiveRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/MediaLive_EXPORTS.h"
+    )
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/aws/medialive/model" TYPE FILE FILES
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AacCodingMode.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AacInputType.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AacProfile.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AacRateControlMode.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AacRawFormat.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AacSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AacSpec.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AacVbrQuality.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Ac3BitstreamMode.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Ac3CodingMode.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Ac3DrcProfile.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Ac3LfeFilter.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Ac3MetadataControl.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Ac3Settings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AfdSignaling.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ArchiveContainerSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ArchiveGroupSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ArchiveOutputSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AribDestinationSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AribSourceSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AudioChannelMapping.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AudioCodecSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AudioDescription.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AudioDescriptionAudioTypeControl.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AudioDescriptionLanguageCodeControl.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AudioLanguageSelection.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AudioLanguageSelectionPolicy.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AudioNormalizationAlgorithm.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AudioNormalizationAlgorithmControl.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AudioNormalizationSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AudioOnlyHlsSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AudioOnlyHlsTrackType.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AudioPidSelection.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AudioSelector.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AudioSelectorSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AudioType.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AuthenticationScheme.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AvailBlanking.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AvailBlankingState.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AvailConfiguration.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/AvailSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/BatchScheduleActionCreateRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/BatchScheduleActionCreateResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/BatchScheduleActionDeleteRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/BatchScheduleActionDeleteResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/BatchUpdateScheduleRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/BatchUpdateScheduleResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/BlackoutSlate.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/BlackoutSlateNetworkEndBlackout.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/BlackoutSlateState.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/BurnInAlignment.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/BurnInBackgroundColor.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/BurnInDestinationSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/BurnInFontColor.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/BurnInOutlineColor.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/BurnInShadowColor.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/BurnInTeletextGridControl.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/CaptionDescription.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/CaptionDestinationSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/CaptionLanguageMapping.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/CaptionSelector.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/CaptionSelectorSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Channel.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ChannelEgressEndpoint.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ChannelState.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ChannelSummary.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/CreateChannelRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/CreateChannelResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/CreateInputRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/CreateInputResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/CreateInputSecurityGroupRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/CreateInputSecurityGroupResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DeleteChannelRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DeleteChannelResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DeleteInputRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DeleteInputResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DeleteInputSecurityGroupRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DeleteInputSecurityGroupResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DeleteReservationRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DeleteReservationResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DescribeChannelRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DescribeChannelResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DescribeInputRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DescribeInputResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DescribeInputSecurityGroupRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DescribeInputSecurityGroupResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DescribeOfferingRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DescribeOfferingResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DescribeReservationRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DescribeReservationResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DescribeScheduleRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DescribeScheduleResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DvbNitSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DvbSdtOutputSdt.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DvbSdtSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DvbSubDestinationAlignment.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DvbSubDestinationBackgroundColor.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DvbSubDestinationFontColor.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DvbSubDestinationOutlineColor.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DvbSubDestinationSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DvbSubDestinationShadowColor.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DvbSubDestinationTeletextGridControl.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DvbSubSourceSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/DvbTdtSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Eac3AttenuationControl.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Eac3BitstreamMode.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Eac3CodingMode.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Eac3DcFilter.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Eac3DrcLine.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Eac3DrcRf.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Eac3LfeControl.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Eac3LfeFilter.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Eac3MetadataControl.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Eac3PassthroughControl.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Eac3PhaseControl.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Eac3Settings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Eac3StereoDownmix.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Eac3SurroundExMode.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Eac3SurroundMode.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/EmbeddedConvert608To708.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/EmbeddedDestinationSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/EmbeddedPlusScte20DestinationSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/EmbeddedScte20Detection.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/EmbeddedSourceSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/EncoderSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/FecOutputIncludeFec.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/FecOutputSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/FixedAfd.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/FixedModeScheduleActionStartSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/FollowModeScheduleActionStartSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/FollowPoint.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/GlobalConfiguration.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/GlobalConfigurationInputEndAction.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/GlobalConfigurationLowFramerateInputs.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/GlobalConfigurationOutputTimingSource.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/H264AdaptiveQuantization.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/H264ColorMetadata.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/H264EntropyEncoding.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/H264FlickerAq.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/H264FramerateControl.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/H264GopBReference.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/H264GopSizeUnits.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/H264Level.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/H264LookAheadRateControl.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/H264ParControl.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/H264Profile.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/H264RateControlMode.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/H264ScanType.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/H264SceneChangeDetect.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/H264Settings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/H264SpatialAq.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/H264SubGopLength.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/H264Syntax.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/H264TemporalAq.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/H264TimecodeInsertionBehavior.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsAdMarkers.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsAkamaiHttpTransferMode.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsAkamaiSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsBasicPutSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsCaptionLanguageSetting.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsCdnSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsClientCache.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsCodecSpecification.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsDirectoryStructure.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsEncryptionType.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsGroupSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsInputSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsIvInManifest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsIvSource.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsManifestCompression.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsManifestDurationFormat.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsMediaStoreSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsMediaStoreStorageClass.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsMode.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsOutputSelection.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsOutputSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsProgramDateTime.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsRedundantManifest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsSegmentationMode.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsStreamInfResolution.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsTimedMetadataId3Frame.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsTimedMetadataScheduleActionSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsTsFileMode.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsWebdavHttpTransferMode.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/HlsWebdavSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Input.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputAttachment.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputChannelLevel.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputCodec.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputDeblockFilter.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputDenoiseFilter.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputDestination.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputDestinationRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputFilter.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputLocation.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputLossActionForHlsOut.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputLossActionForMsSmoothOut.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputLossActionForRtmpOut.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputLossActionForUdpOut.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputLossBehavior.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputLossImageType.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputMaximumBitrate.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputResolution.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputSecurityGroup.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputSecurityGroupState.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputSource.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputSourceEndBehavior.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputSourceRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputSpecification.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputState.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputSwitchScheduleActionSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputType.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputWhitelistRule.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/InputWhitelistRuleCidr.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/KeyProviderSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ListChannelsRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ListChannelsResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ListInputSecurityGroupsRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ListInputSecurityGroupsResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ListInputsRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ListInputsResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ListOfferingsRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ListOfferingsResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ListReservationsRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ListReservationsResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/LogLevel.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/M2tsAbsentInputAudioBehavior.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/M2tsArib.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/M2tsAribCaptionsPidControl.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/M2tsAudioBufferModel.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/M2tsAudioInterval.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/M2tsAudioStreamType.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/M2tsBufferModel.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/M2tsCcDescriptor.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/M2tsEbifControl.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/M2tsEbpPlacement.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/M2tsEsRateInPes.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/M2tsKlv.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/M2tsPcrControl.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/M2tsRateMode.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/M2tsScte35Control.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/M2tsSegmentationMarkers.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/M2tsSegmentationStyle.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/M2tsSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/M2tsTimedMetadataBehavior.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/M3u8PcrControl.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/M3u8Scte35Behavior.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/M3u8Settings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/M3u8TimedMetadataBehavior.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/MediaConnectFlow.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/MediaConnectFlowRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Mp2CodingMode.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Mp2Settings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/MsSmoothGroupSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/MsSmoothOutputSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/NetworkInputServerValidation.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/NetworkInputSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Offering.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/OfferingDurationUnits.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/OfferingType.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Output.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/OutputDestination.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/OutputDestinationSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/OutputGroup.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/OutputGroupSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/OutputLocationRef.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/OutputSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/PassThroughSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/PurchaseOfferingRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/PurchaseOfferingResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/RemixSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Reservation.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ReservationCodec.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ReservationMaximumBitrate.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ReservationMaximumFramerate.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ReservationResolution.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ReservationResourceSpecification.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ReservationResourceType.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ReservationSpecialFeature.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ReservationState.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ReservationVideoQuality.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/RtmpCacheFullBehavior.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/RtmpCaptionData.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/RtmpCaptionInfoDestinationSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/RtmpGroupSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/RtmpOutputCertificateMode.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/RtmpOutputSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ScheduleAction.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ScheduleActionSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ScheduleActionStartSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Scte20Convert608To708.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Scte20PlusEmbeddedDestinationSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Scte20SourceSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Scte27DestinationSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Scte27SourceSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Scte35AposNoRegionalBlackoutBehavior.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Scte35AposWebDeliveryAllowedBehavior.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Scte35ArchiveAllowedFlag.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Scte35DeliveryRestrictions.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Scte35Descriptor.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Scte35DescriptorSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Scte35DeviceRestrictions.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Scte35NoRegionalBlackoutFlag.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Scte35ReturnToNetworkScheduleActionSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Scte35SegmentationCancelIndicator.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Scte35SegmentationDescriptor.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Scte35SpliceInsert.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Scte35SpliceInsertNoRegionalBlackoutBehavior.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Scte35SpliceInsertScheduleActionSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Scte35SpliceInsertWebDeliveryAllowedBehavior.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Scte35TimeSignalApos.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Scte35TimeSignalScheduleActionSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/Scte35WebDeliveryAllowedFlag.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/SmoothGroupAudioOnlyTimecodeControl.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/SmoothGroupCertificateMode.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/SmoothGroupEventIdMode.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/SmoothGroupEventStopBehavior.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/SmoothGroupSegmentationMode.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/SmoothGroupSparseTrackType.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/SmoothGroupStreamManifestBehavior.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/SmoothGroupTimestampOffsetMode.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/SmpteTtDestinationSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/StandardHlsSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/StartChannelRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/StartChannelResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/StaticImageActivateScheduleActionSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/StaticImageDeactivateScheduleActionSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/StaticKeySettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/StopChannelRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/StopChannelResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/TeletextDestinationSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/TeletextSourceSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/TimecodeConfig.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/TimecodeConfigSource.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/TtmlDestinationSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/TtmlDestinationStyleControl.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/UdpContainerSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/UdpGroupSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/UdpOutputSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/UdpTimedMetadataId3Frame.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/UpdateChannelRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/UpdateChannelResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/UpdateInputRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/UpdateInputResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/UpdateInputSecurityGroupRequest.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/UpdateInputSecurityGroupResult.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/ValidationError.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/VideoCodecSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/VideoDescription.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/VideoDescriptionRespondToAfd.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/VideoDescriptionScalingBehavior.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/VideoSelector.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/VideoSelectorColorSpace.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/VideoSelectorColorSpaceUsage.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/VideoSelectorPid.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/VideoSelectorProgramId.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/VideoSelectorSettings.h"
+    "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-medialive/include/aws/medialive/model/WebvttDestinationSettings.h"
+    )
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/aws-cpp-sdk-medialive/aws-cpp-sdk-medialive-targets.cmake")
+    file(DIFFERENT EXPORT_FILE_CHANGED FILES
+         "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/aws-cpp-sdk-medialive/aws-cpp-sdk-medialive-targets.cmake"
+         "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-medialive/CMakeFiles/Export/lib/cmake/aws-cpp-sdk-medialive/aws-cpp-sdk-medialive-targets.cmake")
+    if(EXPORT_FILE_CHANGED)
+      file(GLOB OLD_CONFIG_FILES "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/aws-cpp-sdk-medialive/aws-cpp-sdk-medialive-targets-*.cmake")
+      if(OLD_CONFIG_FILES)
+        message(STATUS "Old export file \"$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/aws-cpp-sdk-medialive/aws-cpp-sdk-medialive-targets.cmake\" will be replaced.  Removing files [${OLD_CONFIG_FILES}].")
+        file(REMOVE ${OLD_CONFIG_FILES})
+      endif()
+    endif()
+  endif()
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/aws-cpp-sdk-medialive" TYPE FILE FILES "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-medialive/CMakeFiles/Export/lib/cmake/aws-cpp-sdk-medialive/aws-cpp-sdk-medialive-targets.cmake")
+  if("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^()$")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/aws-cpp-sdk-medialive" TYPE FILE FILES "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-medialive/CMakeFiles/Export/lib/cmake/aws-cpp-sdk-medialive/aws-cpp-sdk-medialive-targets-noconfig.cmake")
+  endif()
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xDevelx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/aws-cpp-sdk-medialive" TYPE FILE FILES
+    "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-medialive/aws-cpp-sdk-medialive-config.cmake"
+    "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-medialive/aws-cpp-sdk-medialive-config-version.cmake"
+    )
+endif()
+

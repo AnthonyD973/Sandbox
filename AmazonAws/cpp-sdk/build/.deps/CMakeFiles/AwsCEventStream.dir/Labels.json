@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/CMakeFiles/AwsCEventStream"
+		},
+		{
+			"file" : "/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/CMakeFiles/AwsCEventStream.rule"
+		},
+		{
+			"file" : "/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/CMakeFiles/AwsCEventStream-complete.rule"
+		},
+		{
+			"file" : "/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/build/src/AwsCEventStream-stamp/AwsCEventStream-install.rule"
+		},
+		{
+			"file" : "/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/build/src/AwsCEventStream-stamp/AwsCEventStream-mkdir.rule"
+		},
+		{
+			"file" : "/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/build/src/AwsCEventStream-stamp/AwsCEventStream-download.rule"
+		},
+		{
+			"file" : "/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/build/src/AwsCEventStream-stamp/AwsCEventStream-update.rule"
+		},
+		{
+			"file" : "/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/build/src/AwsCEventStream-stamp/AwsCEventStream-patch.rule"
+		},
+		{
+			"file" : "/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/build/src/AwsCEventStream-stamp/AwsCEventStream-configure.rule"
+		},
+		{
+			"file" : "/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/build/src/AwsCEventStream-stamp/AwsCEventStream-build.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"AwsCEventStream"
+		],
+		"name" : "AwsCEventStream"
+	}
+}

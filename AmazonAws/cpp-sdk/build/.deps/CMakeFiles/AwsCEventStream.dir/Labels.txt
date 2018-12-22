@@ -1,0 +1,13 @@
+# Target labels
+ AwsCEventStream
+# Source files and their labels
+/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/CMakeFiles/AwsCEventStream
+/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/CMakeFiles/AwsCEventStream.rule
+/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/CMakeFiles/AwsCEventStream-complete.rule
+/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/build/src/AwsCEventStream-stamp/AwsCEventStream-install.rule
+/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/build/src/AwsCEventStream-stamp/AwsCEventStream-mkdir.rule
+/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/build/src/AwsCEventStream-stamp/AwsCEventStream-download.rule
+/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/build/src/AwsCEventStream-stamp/AwsCEventStream-update.rule
+/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/build/src/AwsCEventStream-stamp/AwsCEventStream-patch.rule
+/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/build/src/AwsCEventStream-stamp/AwsCEventStream-configure.rule
+/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/build/src/AwsCEventStream-stamp/AwsCEventStream-build.rule

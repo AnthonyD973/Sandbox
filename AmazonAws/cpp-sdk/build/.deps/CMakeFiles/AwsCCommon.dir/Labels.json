@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/CMakeFiles/AwsCCommon"
+		},
+		{
+			"file" : "/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/CMakeFiles/AwsCCommon.rule"
+		},
+		{
+			"file" : "/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/CMakeFiles/AwsCCommon-complete.rule"
+		},
+		{
+			"file" : "/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/build/src/AwsCCommon-stamp/AwsCCommon-install.rule"
+		},
+		{
+			"file" : "/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/build/src/AwsCCommon-stamp/AwsCCommon-mkdir.rule"
+		},
+		{
+			"file" : "/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/build/src/AwsCCommon-stamp/AwsCCommon-download.rule"
+		},
+		{
+			"file" : "/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/build/src/AwsCCommon-stamp/AwsCCommon-update.rule"
+		},
+		{
+			"file" : "/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/build/src/AwsCCommon-stamp/AwsCCommon-patch.rule"
+		},
+		{
+			"file" : "/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/build/src/AwsCCommon-stamp/AwsCCommon-configure.rule"
+		},
+		{
+			"file" : "/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/build/src/AwsCCommon-stamp/AwsCCommon-build.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"AwsCCommon"
+		],
+		"name" : "AwsCCommon"
+	}
+}

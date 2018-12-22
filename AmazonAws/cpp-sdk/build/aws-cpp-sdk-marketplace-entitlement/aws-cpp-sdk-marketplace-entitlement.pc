@@ -1,0 +1,10 @@
+includedir=/usr/local/include
+libdir=/usr/local/lib
+
+Name: aws-cpp-sdk-marketplace-entitlement
+Description: C++ SDK for the AWS marketplace-entitlement service
+Version: 1.7.25
+Cflags: -I${includedir} -fno-exceptions -std=c++11
+Libs: -L${libdir} -laws-cpp-sdk-marketplace-entitlement 
+Libs.private: -lpthread -lcurl -lcrypto -lssl -lz
+Requires:  aws-cpp-sdk-core

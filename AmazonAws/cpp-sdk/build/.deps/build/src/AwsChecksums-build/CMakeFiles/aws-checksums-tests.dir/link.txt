@@ -1,0 +1,1 @@
+/usr/bin/cc -O3 -DNDEBUG  -rdynamic CMakeFiles/aws-checksums-tests.dir/tests/crc_test.c.o CMakeFiles/aws-checksums-tests.dir/tests/run_tests.c.o  -o aws-checksums-tests -Wl,-rpath,/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/build/src/AwsChecksums-build libaws-checksums.so 

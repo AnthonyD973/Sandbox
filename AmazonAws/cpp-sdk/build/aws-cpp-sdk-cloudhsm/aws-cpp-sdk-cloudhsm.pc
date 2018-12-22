@@ -1,0 +1,10 @@
+includedir=/usr/local/include
+libdir=/usr/local/lib
+
+Name: aws-cpp-sdk-cloudhsm
+Description: C++ SDK for the AWS cloudhsm service
+Version: 1.7.25
+Cflags: -I${includedir} -fno-exceptions -std=c++11
+Libs: -L${libdir} -laws-cpp-sdk-cloudhsm 
+Libs.private: -lpthread -lcurl -lcrypto -lssl -lz
+Requires:  aws-cpp-sdk-core

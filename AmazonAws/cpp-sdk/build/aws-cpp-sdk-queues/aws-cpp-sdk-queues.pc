@@ -1,0 +1,10 @@
+includedir=/usr/local/include
+libdir=/usr/local/lib
+
+Name: aws-cpp-sdk-queues
+Description: High-level C++ SDK for SQS message passing
+Version: 1.7.25
+Cflags: -I${includedir} -fno-exceptions -std=c++11
+Libs: -L${libdir} -laws-cpp-sdk-queues 
+Libs.private: -lpthread -lcurl -lcrypto -lssl -lz
+Requires:  aws-cpp-sdk-sqs aws-cpp-sdk-core

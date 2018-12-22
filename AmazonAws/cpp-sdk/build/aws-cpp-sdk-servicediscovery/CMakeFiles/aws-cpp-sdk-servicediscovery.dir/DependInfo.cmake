@@ -1,0 +1,116 @@
+# The set of languages for which implicit dependencies are needed:
+set(CMAKE_DEPENDS_LANGUAGES
+  "CXX"
+  )
+# The set of files for implicit dependencies of each language:
+set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/ServiceDiscoveryClient.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/ServiceDiscoveryClient.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/ServiceDiscoveryEndpoint.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/ServiceDiscoveryEndpoint.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/ServiceDiscoveryErrorMarshaller.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/ServiceDiscoveryErrorMarshaller.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/ServiceDiscoveryErrors.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/ServiceDiscoveryErrors.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/CreateHttpNamespaceRequest.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/CreateHttpNamespaceRequest.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/CreateHttpNamespaceResult.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/CreateHttpNamespaceResult.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/CreatePrivateDnsNamespaceRequest.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/CreatePrivateDnsNamespaceRequest.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/CreatePrivateDnsNamespaceResult.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/CreatePrivateDnsNamespaceResult.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/CreatePublicDnsNamespaceRequest.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/CreatePublicDnsNamespaceRequest.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/CreatePublicDnsNamespaceResult.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/CreatePublicDnsNamespaceResult.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/CreateServiceRequest.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/CreateServiceRequest.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/CreateServiceResult.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/CreateServiceResult.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/CustomHealthStatus.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/CustomHealthStatus.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/DeleteNamespaceRequest.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/DeleteNamespaceRequest.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/DeleteNamespaceResult.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/DeleteNamespaceResult.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/DeleteServiceRequest.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/DeleteServiceRequest.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/DeleteServiceResult.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/DeleteServiceResult.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/DeregisterInstanceRequest.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/DeregisterInstanceRequest.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/DeregisterInstanceResult.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/DeregisterInstanceResult.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/DiscoverInstancesRequest.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/DiscoverInstancesRequest.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/DiscoverInstancesResult.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/DiscoverInstancesResult.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/DnsConfig.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/DnsConfig.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/DnsConfigChange.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/DnsConfigChange.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/DnsProperties.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/DnsProperties.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/DnsRecord.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/DnsRecord.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/FilterCondition.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/FilterCondition.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/GetInstanceRequest.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/GetInstanceRequest.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/GetInstanceResult.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/GetInstanceResult.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/GetInstancesHealthStatusRequest.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/GetInstancesHealthStatusRequest.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/GetInstancesHealthStatusResult.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/GetInstancesHealthStatusResult.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/GetNamespaceRequest.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/GetNamespaceRequest.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/GetNamespaceResult.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/GetNamespaceResult.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/GetOperationRequest.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/GetOperationRequest.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/GetOperationResult.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/GetOperationResult.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/GetServiceRequest.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/GetServiceRequest.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/GetServiceResult.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/GetServiceResult.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/HealthCheckConfig.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/HealthCheckConfig.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/HealthCheckCustomConfig.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/HealthCheckCustomConfig.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/HealthCheckType.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/HealthCheckType.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/HealthStatus.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/HealthStatus.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/HealthStatusFilter.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/HealthStatusFilter.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/HttpInstanceSummary.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/HttpInstanceSummary.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/HttpProperties.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/HttpProperties.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/Instance.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/Instance.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/InstanceSummary.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/InstanceSummary.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/ListInstancesRequest.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/ListInstancesRequest.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/ListInstancesResult.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/ListInstancesResult.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/ListNamespacesRequest.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/ListNamespacesRequest.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/ListNamespacesResult.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/ListNamespacesResult.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/ListOperationsRequest.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/ListOperationsRequest.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/ListOperationsResult.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/ListOperationsResult.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/ListServicesRequest.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/ListServicesRequest.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/ListServicesResult.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/ListServicesResult.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/Namespace.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/Namespace.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/NamespaceFilter.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/NamespaceFilter.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/NamespaceFilterName.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/NamespaceFilterName.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/NamespaceProperties.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/NamespaceProperties.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/NamespaceSummary.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/NamespaceSummary.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/NamespaceType.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/NamespaceType.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/Operation.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/Operation.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/OperationFilter.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/OperationFilter.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/OperationFilterName.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/OperationFilterName.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/OperationStatus.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/OperationStatus.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/OperationSummary.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/OperationSummary.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/OperationTargetType.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/OperationTargetType.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/OperationType.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/OperationType.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/RecordType.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/RecordType.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/RegisterInstanceRequest.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/RegisterInstanceRequest.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/RegisterInstanceResult.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/RegisterInstanceResult.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/RoutingPolicy.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/RoutingPolicy.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/Service.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/Service.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/ServiceChange.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/ServiceChange.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/ServiceFilter.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/ServiceFilter.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/ServiceFilterName.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/ServiceFilterName.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/ServiceSummary.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/ServiceSummary.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/UpdateInstanceCustomHealthStatusRequest.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/UpdateInstanceCustomHealthStatusRequest.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/UpdateServiceRequest.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/UpdateServiceRequest.cpp.o"
+  "/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-servicediscovery/source/model/UpdateServiceResult.cpp" "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-servicediscovery/CMakeFiles/aws-cpp-sdk-servicediscovery.dir/source/model/UpdateServiceResult.cpp.o"
+  )
+set(CMAKE_CXX_COMPILER_ID "GNU")
+
+# Preprocessor definitions for this target.
+set(CMAKE_TARGET_DEFINITIONS_CXX
+  "AWS_COMMON_USE_IMPORT_EXPORT"
+  "AWS_EVENT_STREAM_USE_IMPORT_EXPORT"
+  "AWS_SDK_VERSION_MAJOR=1"
+  "AWS_SDK_VERSION_MINOR=7"
+  "AWS_SDK_VERSION_PATCH=25"
+  "ENABLE_CURL_CLIENT"
+  "ENABLE_OPENSSL_ENCRYPTION"
+  "HAS_PATHCONF"
+  "HAS_UMASK"
+  "PLATFORM_LINUX"
+  )
+
+# The include file search paths:
+set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "../aws-cpp-sdk-servicediscovery/include"
+  "../aws-cpp-sdk-core/include"
+  "/usr/include/x86_64-linux-gnu"
+  ".deps/install/include"
+  )
+
+# Targets to which this target links.
+set(CMAKE_TARGET_LINKED_INFO_FILES
+  "/home/anthonyd973/Git/aws-sdk-cpp/build/aws-cpp-sdk-core/CMakeFiles/aws-cpp-sdk-core.dir/DependInfo.cmake"
+  )
+
+# Fortran module output directory.
+set(CMAKE_Fortran_TARGET_MODULE_DIR "")

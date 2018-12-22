@@ -1,0 +1,1 @@
+-I/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-clouddirectory/include -I/home/anthonyd973/Git/aws-sdk-cpp/aws-cpp-sdk-core/include -I/usr/include/x86_64-linux-gnu -isystem /home/anthonyd973/Git/aws-sdk-cpp/build/.deps/install/include 
