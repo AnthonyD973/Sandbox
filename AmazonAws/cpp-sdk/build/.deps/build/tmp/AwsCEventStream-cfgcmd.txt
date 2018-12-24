@@ -1,1 +1,0 @@
-cmd='/usr/bin/cmake;-DCMAKE_INSTALL_PREFIX=/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/install;-DCMAKE_PREFIX_PATH=/home/anthonyd973/Git/aws-sdk-cpp/build/.deps/install;-DCMAKE_BUILD_TYPE=Release;-DBUILD_SHARED_LIBS=ON;-DCMAKE_TOOLCHAIN_FILE=;-GUnix Makefiles;<SOURCE_DIR><SOURCE_SUBDIR>'
