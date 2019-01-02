@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# Anthonyize
+cd ~
+mkdir -p Git
+cd Git
+git clone https://github.com/AnthonyD973/Anthonyize
+. Anthonyize/anthonyize
+
+# Setup npm and npm packages
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install npm -y
+sudo npm install -g npm@latest
+sudo npm install -g nodejs@latest
+sudo npm install -g @angular/cli
+sudo npm install -g @aws-amplify/cli
+sudo npm install -g npm-gyp
+
+# Setup Sandbox
+if [ ! -d "$HOME/Git/Sandbox" ]; then
+    cd ~/Git
+    git clone https://github.com/AnthonyD973/Sandbox
+fi
+cd ~/Git/Sandbox
+git checkout amazonaws-branch
+cd ~/Git/Sandbox/AmazonAws/client/AmazonAwsClient
+npm install
