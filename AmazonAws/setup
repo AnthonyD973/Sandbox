@@ -15,7 +15,7 @@ sudo npm install -g npm@latest
 sudo npm install -g nodejs@latest
 sudo npm install -g @angular/cli
 sudo npm install -g @aws-amplify/cli
-sudo npm install -g npm-gyp
+sudo npm install -g node-gyp
 
 # Setup Sandbox
 if [ ! -d "$HOME/Git/Sandbox" ]; then
