@@ -1,5 +1,22 @@
 #!/usr/bin/env bash
 
+# Setup swap, if none
+haveSwap() {
+    swapon --summary | awk '{print $3}' | grep -oP '[0-9]+' > /dev/null
+}
+
+makeSwap() {
+    sudo fallocate -l 2G /swapfile || exit 1
+    sudo chmod 600 /swapfile
+    sudo mkswap /swapfile
+    sudo swapon /swapfile
+    sudo sed -ie '$a/swapfile swap swap defaults 0 0' /etc/fstab
+}
+
+if ! haveSwap; then
+    makeSwap
+fi
+
 # Anthonyize
 cd ~
 mkdir -p Git
