@@ -43,3 +43,7 @@ cd ~/Git/Sandbox
 git checkout amazonaws-branch
 cd ~/Git/Sandbox/AmazonAws/client/AmazonAwsClient
 npm install
+
+# Apply changes to bash.
+# Must be the last command, since this script will stop after it.
+exec bash
