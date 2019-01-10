@@ -1,0 +1,14 @@
+{
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "mazonwslient-20190107201225-authRole",
+            "UnauthRoleArn": "arn:aws:iam::914799980413:role/mazonwslient-20190107201225-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::914799980413:role/mazonwslient-20190107201225-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "mazonwslient-20190107201225-deployment",
+            "UnauthRoleName": "mazonwslient-20190107201225-unauthRole",
+            "StackName": "mazonwslient-20190107201225",
+            "StackId": "arn:aws:cloudformation:us-east-2:914799980413:stack/mazonwslient-20190107201225/8ccf5070-12b8-11e9-909c-0a888d4075c6"
+        }
+    }
+}

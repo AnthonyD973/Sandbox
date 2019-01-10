@@ -1,0 +1,9 @@
+{
+    "bucketName": "amplifystoragebucket3141",
+    "authPolicyName": "s3_amplify_e1ae8e0e",
+    "unauthPolicyName": "s3_amplify_e1ae8e0e",
+    "authRoleName": "mazonwslient-20190107201225-authRole",
+    "unauthRoleName": "mazonwslient-20190107201225-unauthRole",
+    "authPermissions": "rw",
+    "unauthPermissions": "rw"
+}
