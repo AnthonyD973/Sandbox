@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AwsS3CredentialsService } from './aws/aws-s3-credentials.service';
+import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
 
 @NgModule({
   declarations: [
@@ -11,10 +11,11 @@ import { AwsS3CredentialsService } from './aws/aws-s3-credentials.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AmplifyAngularModule
   ],
   providers: [
-    AwsS3CredentialsService
+    AmplifyService
   ],
   bootstrap: [AppComponent]
 })
