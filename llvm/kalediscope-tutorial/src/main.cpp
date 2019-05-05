@@ -1,6 +1,5 @@
 // MODIFIED FROM https://llvm.org/docs/tutorial/LangImpl02.html
 
-#include "llvm/ADT/STLExtras.h"
 #include <algorithm>
 #include <cctype>
 #include <cstdio>
@@ -9,6 +8,19 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <inttypes.h>
+
+#include <llvm/ADT/APFloat.h>
+#include <llvm/ADT/STLExtras.h>
+#include <llvm/IR/BasicBlock.h>
+#include <llvm/IR/Constants.h>
+#include <llvm/IR/DerivedTypes.h>
+#include <llvm/IR/Function.h>
+#include <llvm/IR/IRBuilder.h>
+#include <llvm/IR/LLVMContext.h>
+#include <llvm/IR/Module.h>
+#include <llvm/IR/Type.h>
+#include <llvm/IR/Verifier.h>
 
 //===----------------------------------------------------------------------===//
 // Lexer
@@ -86,28 +98,50 @@ static int gettok() {
 // Abstract Syntax Tree (aka Parse Tree)
 //===----------------------------------------------------------------------===//
 
+static llvm::LLVMContext llvmContext;
+static llvm::IRBuilder<> llvmIrBuilder(llvmContext);
+static std::unique_ptr<llvm::Module> llvmModule;
+static std::map<std::string, llvm::Value*> namedValues;
+
+llvm::Value* LogErrorV(const char *Str);
+
 namespace {
 
 /// ExprAST - Base class for all expression nodes.
 class ExprAST {
 public:
   virtual ~ExprAST() = default;
+  virtual llvm::Value* codegen() = 0;
 };
 
 /// NumberExprAST - Expression class for numeric literals like "1.0".
 class NumberExprAST : public ExprAST {
-  double Val;
+  double val;
 
 public:
-  NumberExprAST(double Val) : Val(Val) {}
+  NumberExprAST(double val) : val(val) {}
+
+  virtual llvm::Value* codegen() {
+    return llvm::ConstantFP::get(llvmContext, llvm::APFloat(val));
+  }
 };
 
 /// VariableExprAST - Expression class for referencing a variable, like "a".
 class VariableExprAST : public ExprAST {
-  std::string Name;
+  std::string _name;
 
 public:
-  VariableExprAST(const std::string &Name) : Name(Name) {}
+  VariableExprAST(const std::string &name) : _name(name) {}
+
+  virtual llvm::Value* codegen() {
+    try {
+      llvm::Value* v = namedValues.at(_name);
+    }
+    catch (const std::out_of_range& e) {
+      LogErrorV("Unknown variable name");
+      return nullptr;
+    }
+  }
 };
 
 /// BinaryExprAST - Expression class for a binary operator.
@@ -119,42 +153,173 @@ public:
   BinaryExprAST(char Op, std::unique_ptr<ExprAST> LHS,
                 std::unique_ptr<ExprAST> RHS)
       : Op(Op), LHS(std::move(LHS)), RHS(std::move(RHS)) {}
+
+  virtual llvm::Value* codegen() {
+    llvm::Value* lhsCode = LHS->codegen();
+    llvm::Value* rhsCode = RHS->codegen();
+    if (!lhsCode || !rhsCode) {
+      return nullptr;
+    }
+
+    switch (Op) {
+    case '+': {
+      return llvmIrBuilder.CreateFAdd(lhsCode, rhsCode, "addtmp");
+    }
+    case '-': {
+      return llvmIrBuilder.CreateFSub(lhsCode, rhsCode, "subtmp");
+    }
+    case '*': {
+      return llvmIrBuilder.CreateFMul(lhsCode, rhsCode, "multmp");
+    }
+    case '<': {
+      llvm::Value* l = llvmIrBuilder.CreateFCmpULT(lhsCode, rhsCode, "cmptmp");
+
+      // Convert bool (unsigned single-bit int) to double (floating point)
+      return llvmIrBuilder.CreateUIToFP(l, llvm::Type::getDoubleTy(llvmContext), "booltmp");
+    }
+    default: {
+      return LogErrorV("invalid binary operator");
+    }
+    }
+  }
 };
 
 /// CallExprAST - Expression class for function calls.
 class CallExprAST : public ExprAST {
-  std::string Callee;
-  std::vector<std::unique_ptr<ExprAST>> Args;
+  std::string _calleeName;
+  std::vector<std::unique_ptr<ExprAST>> _args;
 
 public:
-  CallExprAST(const std::string &Callee,
-              std::vector<std::unique_ptr<ExprAST>> Args)
-      : Callee(Callee), Args(std::move(Args)) {}
+  CallExprAST(const std::string &calleeName,
+              std::vector<std::unique_ptr<ExprAST>> args)
+      : _calleeName(calleeName), _args(std::move(args)) {}
+
+  virtual llvm::Value* codegen() {
+    llvm::Function* callee = llvmModule->getFunction(_calleeName);
+    if (!callee) {
+      return LogErrorV("Unknown function referenced");
+    }
+
+    if (callee->arg_size() != _args.size()) {
+      return LogErrorV("Incorrect argument number passed");
+    }
+
+    std::vector<llvm::Value*> argumentList;
+    for (uint32_t i = 0; i < _args.size(); ++i) {
+      argumentList.push_back(_args.at(i)->codegen());
+      if (!argumentList.back()) {
+        return nullptr;
+      }
+    }
+
+    return llvmIrBuilder.CreateCall(callee, argumentList, "calltmp");
+  }
 };
 
 /// PrototypeAST - This class represents the "prototype" for a function,
 /// which captures its name, and its argument names (thus implicitly the number
 /// of arguments the function takes).
 class PrototypeAST {
-  std::string Name;
-  std::vector<std::string> Args;
+  std::string _name;
+  std::vector<std::string> _args;
 
 public:
-  PrototypeAST(const std::string &Name, std::vector<std::string> Args)
-      : Name(Name), Args(std::move(Args)) {}
+  PrototypeAST(const std::string &name, std::vector<std::string> args)
+      : _name(name), _args(std::move(args)) {}
 
-  const std::string &getName() const { return Name; }
+  const std::string &getName() const { return _name; }
+
+  virtual llvm::Function* codegen() {
+    std::vector<llvm::Type*> argumentTypes{
+      _args.size(),
+      llvm::Type::getDoubleTy(llvmContext)
+    };
+
+    llvm::FunctionType* prototype = llvm::FunctionType::get(
+      llvm::Type::getDoubleTy(llvmContext),
+      argumentTypes,
+      false
+    );
+    
+    llvm::Function* function = llvm::Function::Create(
+      prototype,
+      llvm::Function::ExternalLinkage,
+      _name,
+      llvmModule.get()
+    );
+
+    // Assign arguments' names so that the IR is more readable.
+    std::size_t i = 0;
+    for (auto& arg : function->args()) {
+      arg.setName(_args.at(i));
+      ++i;
+    }
+
+    return function;
+  }
 };
 
 /// FunctionAST - This class represents a function definition itself.
 class FunctionAST {
-  std::unique_ptr<PrototypeAST> Proto;
-  std::unique_ptr<ExprAST> Body;
+  std::unique_ptr<PrototypeAST> _proto;
+  std::unique_ptr<ExprAST> _body;
 
 public:
-  FunctionAST(std::unique_ptr<PrototypeAST> Proto,
-              std::unique_ptr<ExprAST> Body)
-      : Proto(std::move(Proto)), Body(std::move(Body)) {}
+  FunctionAST(std::unique_ptr<PrototypeAST> proto,
+              std::unique_ptr<ExprAST> body)
+      : _proto(std::move(proto)), _body(std::move(body)) {}
+
+  virtual llvm::Value* codegen() {
+    llvm::Function* function = llvmModule->getFunction(_proto->getName());
+    if (function) {
+      // Assert prototypes are identical.
+      llvm::Function* definedFunction = _proto->codegen();
+      if (definedFunction->getFunctionType() != function->getFunctionType()) {
+        return LogErrorV("Function definition does not correspond to earlier function declaration.");
+      }
+
+      // Reassign the argument names so that the code block can reference them
+      // even if the declaration's argument names are different from the
+      // definition's.
+      const llvm::Argument* definedArg = definedFunction->args().begin();
+      for (auto& arg : function->args()) {
+        arg.setName(definedArg->getName());
+        std::advance(definedArg, 1);
+      }
+    }
+    else {
+      function = _proto->codegen();
+      if (!function) {
+        return nullptr;
+      }
+    }
+
+    if (!function->empty()) {
+      return LogErrorV("Trying to redefine a function");
+    }
+
+    llvm::BasicBlock* mainBlock = llvm::BasicBlock::Create(
+      llvmContext,
+      "functionMainBlock",
+      function
+    );
+
+    llvmIrBuilder.SetInsertPoint(mainBlock);
+    namedValues.clear();
+    for (auto& arg : function->args()) {
+      namedValues[arg.getName()] = &arg;
+    }
+
+    llvm::Value* returnValue = _body->codegen();
+    if (returnValue) {
+      llvmIrBuilder.CreateRet(returnValue);
+      llvm::verifyFunction(*function);
+      return function;
+    }
+
+    function->eraseFromParent();
+    return nullptr;
+  }
 };
 
 } // end anonymous namespace
@@ -190,7 +355,13 @@ std::unique_ptr<ExprAST> LogError(const char *Str) {
   fprintf(stderr, "Error: %s\n", Str);
   return nullptr;
 }
+
 std::unique_ptr<PrototypeAST> LogErrorP(const char *Str) {
+  LogError(Str);
+  return nullptr;
+}
+
+llvm::Value* LogErrorV(const char *Str) {
   LogError(Str);
   return nullptr;
 }
@@ -376,8 +547,12 @@ static std::unique_ptr<PrototypeAST> ParseExtern() {
 //===----------------------------------------------------------------------===//
 
 static void HandleDefinition() {
-  if (ParseDefinition()) {
-    fprintf(stderr, "Parsed a function definition.\n");
+  auto functionAst = ParseDefinition();
+  if (functionAst) {
+    auto functionIr = functionAst->codegen();
+    if (functionIr) {
+      fprintf(stderr, "Parsed a function definition.\n");
+    }
   } else {
     // Skip token for error recovery.
     getNextToken();
@@ -385,8 +560,12 @@ static void HandleDefinition() {
 }
 
 static void HandleExtern() {
-  if (ParseExtern()) {
-    fprintf(stderr, "Parsed an extern\n");
+  auto declarationAst = ParseExtern();
+  if (declarationAst) {
+    auto declarationIr = declarationAst->codegen();
+    if (declarationIr) {
+      fprintf(stderr, "Parsed an extern\n");
+    }
   } else {
     // Skip token for error recovery.
     getNextToken();
@@ -395,8 +574,12 @@ static void HandleExtern() {
 
 static void HandleTopLevelExpression() {
   // Evaluate a top-level expression into an anonymous function.
-  if (ParseTopLevelExpr()) {
-    fprintf(stderr, "Parsed a top-level expr\n");
+  auto topLevelExpressionAst = ParseTopLevelExpr();
+  if (topLevelExpressionAst) {
+    auto topLevelExpressionIr = topLevelExpressionAst->codegen();
+    if (topLevelExpressionIr) {
+      fprintf(stderr, "Parsed a top-level expr\n");
+    }
   } else {
     // Skip token for error recovery.
     getNextToken();
@@ -442,8 +625,13 @@ int main() {
   fprintf(stderr, "ready> ");
   getNextToken();
 
+  llvmModule = llvm::make_unique<llvm::Module>("my cool jit", llvmContext);
+
   // Run the main "interpreter loop" now.
   MainLoop();
+
+  // Print out all of the generated code.
+  llvmModule->print(llvm::errs(), nullptr);
 
   return 0;
 }
