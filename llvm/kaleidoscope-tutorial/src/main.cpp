@@ -1,4 +1,4 @@
-// MODIFIED FROM https://llvm.org/docs/tutorial/LangImpl02.html
+// MODIFIED FROM https://releases.llvm.org/8.0.0/docs/tutorial/LangImpl02.html
 
 #include <algorithm>
 #include <cctype>
@@ -21,6 +21,13 @@
 #include <llvm/IR/Module.h>
 #include <llvm/IR/Type.h>
 #include <llvm/IR/Verifier.h>
+#include <llvm/IR/LegacyPassManager.h>
+#include <llvm/Support/TargetSelect.h>
+#include <llvm/Transforms/InstCombine/InstCombine.h>
+#include <llvm/Transforms/Scalar.h>
+#include <llvm/Transforms/Scalar/GVN.h>
+
+#include "KaleidoscopeJit.h"
 
 //===----------------------------------------------------------------------===//
 // Lexer
@@ -98,10 +105,14 @@ static int gettok() {
 // Abstract Syntax Tree (aka Parse Tree)
 //===----------------------------------------------------------------------===//
 
+static std::unique_ptr<KaleidoscopeJIT> kaleidoscopeJit;
 static llvm::LLVMContext llvmContext;
 static llvm::IRBuilder<> llvmIrBuilder(llvmContext);
 static std::unique_ptr<llvm::Module> llvmModule;
 static std::map<std::string, llvm::Value*> namedValues;
+static std::unique_ptr<llvm::legacy::FunctionPassManager> llvmFunctionPassManager;
+
+void initializeLlvmObjects();
 
 llvm::Value* LogErrorV(const char *Str);
 
@@ -314,6 +325,7 @@ public:
     if (returnValue) {
       llvmIrBuilder.CreateRet(returnValue);
       llvm::verifyFunction(*function);
+      llvmFunctionPassManager->run(*function);
       return function;
     }
 
@@ -578,7 +590,18 @@ static void HandleTopLevelExpression() {
   if (topLevelExpressionAst) {
     auto topLevelExpressionIr = topLevelExpressionAst->codegen();
     if (topLevelExpressionIr) {
-      fprintf(stderr, "Parsed a top-level expr\n");
+      auto handle = kaleidoscopeJit->addModule(std::move(llvmModule));
+      initializeLlvmObjects();
+
+      // Try to find an "__anon_expr" symbol
+      auto expressionSymbol = kaleidoscopeJit->findSymbol("__anon_expr");
+      assert(expressionSymbol && "Function not found");
+
+      // Get the function's address and cast it.
+      double (*anonymous)() = (double(*)())(expressionSymbol.getAddress().get());
+
+      fprintf(stderr, "Evaluates to %f\n", anonymous());
+      kaleidoscopeJit->removeModule(handle);
     }
   } else {
     // Skip token for error recovery.
@@ -613,7 +636,32 @@ static void MainLoop() {
 // Main driver code.
 //===----------------------------------------------------------------------===//
 
+void initializeLlvmObjects() {
+  // Initialize the LLVM module.
+  llvmModule = llvm::make_unique<llvm::Module>("my cool jit", llvmContext);
+  llvmModule->setDataLayout(kaleidoscopeJit->getTargetMachine().createDataLayout());
+
+  // Initialize the functionPassManager
+  llvmFunctionPassManager = llvm::make_unique<llvm::legacy::FunctionPassManager>(llvmModule.get());
+  // E.g. (x+2) + (2+x) + (x+2) => 3*(x + 2)
+  llvmFunctionPassManager->add(llvm::createInstructionCombiningPass());
+  // E.g. 2 + x + 3 => x + (2 + 3)
+  llvmFunctionPassManager->add(llvm::createReassociatePass());
+  // E.g. x <- 2; y <- 2; => x <- 2 and replace "y" with "x"
+  llvmFunctionPassManager->add(llvm::createGVNPass());
+  // E.g. return x; return y; => return x;
+  llvmFunctionPassManager->add(llvm::createCFGSimplificationPass());
+  llvmFunctionPassManager->doInitialization();
+}
+
 int main() {
+  // Initialize LLVM targetor of host machine.
+  llvm::InitializeNativeTarget();
+  // Initialize LLVM targetor of host machine assembly printer.
+  llvm::InitializeNativeTargetAsmPrinter();
+  // Initiailize LLVM targetor of host machine assembly parser.
+  llvm::InitializeNativeTargetAsmParser();
+
   // Install standard binary operators.
   // 1 is lowest precedence.
   BinopPrecedence['<'] = 10;
@@ -625,7 +673,8 @@ int main() {
   fprintf(stderr, "ready> ");
   getNextToken();
 
-  llvmModule = llvm::make_unique<llvm::Module>("my cool jit", llvmContext);
+  kaleidoscopeJit = llvm::make_unique<KaleidoscopeJIT>();
+  initializeLlvmObjects();
 
   // Run the main "interpreter loop" now.
   MainLoop();
